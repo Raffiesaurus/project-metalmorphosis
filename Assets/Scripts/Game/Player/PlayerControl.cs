@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,29 +6,24 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
 
-    [SerializeField] public float moveSpeed = 5.0f;
-    [SerializeField] public float jumpForce = 5.0f;
-
-    [SerializeField] public float groundedGravity = 150.0f;
-    [SerializeField] public float jumpGravity = 250.0f;
-
-    [SerializeField] private Texture2D cursorTexture = null;
-
-    [SerializeField] public GameObject playerSprites = null;
-
+    private bool isGrounded = false;
     private Rigidbody2D rb = null;
+    private BoxCollider2D boxCol = null;
     private PlayerMain playerMain = null;
-
-    public bool canJump = true;
-    public bool isGrounded = true;
-
     private float moveHorizontal = 0.0f;
     private float moveVertical = 0.0f;
-    private void OnEnable() {
-        canJump = true;
-        isGrounded = true;
 
+    [SerializeField] private int maxJumpCount = 1;
+    [SerializeField] private int jumpCount = 0;
+    [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Texture2D cursorTexture = null;
+    [SerializeField] private GameObject playerSprites = null;
+
+    void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
+        boxCol = GetComponent<BoxCollider2D>();
         playerMain = GetComponent<PlayerMain>();
     }
 
@@ -37,22 +33,36 @@ public class PlayerControl : MonoBehaviour {
 
     void Update() {
         moveHorizontal = Input.GetAxisRaw("Horizontal");
-        moveVertical = Input.GetAxisRaw("Vertical");
+        //moveVertical = Input.GetAxisRaw("Vertical");
+
+        CheckGround();
 
         if (moveHorizontal > 0.1f) {
-            playerSprites.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            playerSprites.transform.localScale = new Vector3(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 
         if (moveHorizontal < -0.1f) {
-            playerSprites.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+            playerSprites.transform.localScale = new Vector3(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            playerMain.OnLeftClick(Input.mousePosition);
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.transform.position.z;
+
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 firePoint = new Vector3(worldMousePosition.x, worldMousePosition.y, transform.position.z);
+
+            playerMain.OnLeftClick(firePoint);
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            playerMain.OnRightClick(Input.mousePosition);
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = Camera.main.transform.position.z;
+
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 firePoint = new Vector3(worldMousePosition.x, worldMousePosition.y, transform.position.z);
+
+            playerMain.OnRightClick(firePoint);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
@@ -67,37 +77,51 @@ public class PlayerControl : MonoBehaviour {
             playerMain.OnUtilityTwo();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) {
             PlayerJump();
         }
 
     }
-    private void FixedUpdate() {
+    void FixedUpdate() {
 
         if (moveHorizontal > 0.1f || moveHorizontal < -0.1f) {
-            rb.AddForce(new Vector2(moveHorizontal * moveSpeed, 0.0f), ForceMode2D.Impulse);
+            rb.velocity = new Vector2(moveHorizontal * moveSpeed, rb.velocity.y);
+        } else {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        if (moveVertical > 0.1f) {
+        /*if (moveVertical > 0.1f) {
+            moveVertical = 0.0f;
+            Debug.Log("Calling Jump " + moveVertical);
             PlayerJump();
-        }
+        }*/
 
     }
 
-    private void PlayerJump() {
-        if (canJump) {
-            isGrounded = false;
-            canJump = false;
-            rb.gravityScale = jumpGravity;
-            rb.AddForce(new Vector2(0.0f, jumpForce), ForceMode2D.Impulse);
+    void PlayerJump() {
+        if (isGrounded || jumpCount < maxJumpCount) {
+            jumpCount++;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.name == "Floor") {
-            canJump = true;
-            isGrounded = true;
-            rb.gravityScale = groundedGravity;
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "floor") {
+
         }
+    }
+
+    void CheckGround() {
+        bool checkGroundNow = Physics2D.BoxCast(boxCol.bounds.center, boxCol.bounds.size, 0f, Vector2.down, 0.01f, groundLayer);
+        if (checkGroundNow != isGrounded) {
+            isGrounded = checkGroundNow;
+            if (isGrounded) {
+                jumpCount = 0;
+            }
+        }
+    }
+
+    void CheckFallGravity() {
+
     }
 }

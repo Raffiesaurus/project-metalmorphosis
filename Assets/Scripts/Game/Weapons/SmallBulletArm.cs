@@ -5,7 +5,6 @@ using UnityEngine;
 public class SmallBulletArm : PlayerArm
 {
     public override void PartFire(Vector3 mousePos) {
-        Debug.Log("Small bullet fired!");
-
+        PrefabManager.SpawnAndFire(bulletType, transform.position, mousePos);
     }
 }

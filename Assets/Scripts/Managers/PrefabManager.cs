@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PrefabManager : MonoBehaviour {
     [SerializeField] public GameObject basicBullet = null;
+
+    private static PrefabManager prefabManager = null;
+
+    private void Awake() {
+        if (prefabManager == null) {
+            prefabManager = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start() {
 
@@ -14,10 +23,10 @@ public class PrefabManager : MonoBehaviour {
 
     }
 
-    void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint) {
+    public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint) {
         if (prefabType == BulletType.BasicBullet) {
-            //GameObject newBasicBullet = Instantiate(basicBullet);
-            //newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint);
+            GameObject newBasicBullet = Instantiate(prefabManager.basicBullet);
+            newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint);
         }
     }
 }

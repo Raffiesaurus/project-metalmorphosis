@@ -28,7 +28,6 @@ public class PlayerMain : MonoBehaviour {
     }
 
     public void OnLeftClick(Vector3 mousePos) {
-        Debug.Log("On Left Click");
         leftArm.PartFire(mousePos);
     }
 
