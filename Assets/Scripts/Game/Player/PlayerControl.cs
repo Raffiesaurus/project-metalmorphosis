@@ -37,32 +37,20 @@ public class PlayerControl : MonoBehaviour {
 
         CheckGround();
 
-        if (moveHorizontal > 0.1f) {
-            playerSprites.transform.localScale = new Vector3(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
-        }
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = Camera.main.transform.position.z;
 
-        if (moveHorizontal < -0.1f) {
-            playerSprites.transform.localScale = new Vector3(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
-        }
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 mousePoint = new Vector3(worldMousePosition.x, worldMousePosition.y, transform.position.z);
+
+        CheckSideFacing(mousePoint);
 
         if (Input.GetMouseButtonDown(0)) {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = Camera.main.transform.position.z;
-
-            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            Vector3 firePoint = new Vector3(worldMousePosition.x, worldMousePosition.y, transform.position.z);
-
-            playerMain.OnLeftClick(firePoint);
+            playerMain.OnLeftClick(mousePoint);
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = Camera.main.transform.position.z;
-
-            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            Vector3 firePoint = new Vector3(worldMousePosition.x, worldMousePosition.y, transform.position.z);
-
-            playerMain.OnRightClick(firePoint);
+            playerMain.OnRightClick(mousePoint);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
@@ -119,6 +107,26 @@ public class PlayerControl : MonoBehaviour {
                 jumpCount = 0;
             }
         }
+    }
+
+    void CheckSideFacing(Vector3 mousePoint) {
+
+        if (moveHorizontal > 0.1f) {
+            playerSprites.transform.localScale = new Vector3(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+        }
+
+        if (moveHorizontal < -0.1f) {
+            playerSprites.transform.localScale = new Vector3(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+        }
+
+        if ((mousePoint.x - transform.position.x) > 0) {
+            playerSprites.transform.localScale = new Vector3(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+        }
+
+        if ((mousePoint.x - transform.position.x) < 0) {
+            playerSprites.transform.localScale = new Vector3(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+        }
+
     }
 
     void CheckFallGravity() {

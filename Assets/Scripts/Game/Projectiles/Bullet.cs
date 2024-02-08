@@ -13,9 +13,11 @@ public abstract class Bullet : MonoBehaviour {
     public void Start() {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        Destroy(this.gameObject, 5.0f);
     }
-    public void Update() { 
-        
+    public void Update() {
+
     }
     public abstract void OnFire(Vector3 startPoint, Vector3 firePoint);
 
