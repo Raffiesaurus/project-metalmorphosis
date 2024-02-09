@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerMain : MonoBehaviour {
 
-    private float health = 100.0f;
-    private float fuel = 100.0f;
-    private int ammo = 100;
-
     private PlayerControl playerControl;
 
+    [SerializeField] private float health = 100.0f;
+    [SerializeField] private float fuel = 100.0f;
+    [SerializeField] private int ammo = 100;
     [SerializeField] private PlayerParts leftArm;
     [SerializeField] private PlayerParts rightArm;
     [SerializeField] private PlayerParts legs;
