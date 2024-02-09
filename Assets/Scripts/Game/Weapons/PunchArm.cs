@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PunchArm : MonoBehaviour
-{
+public class PunchArm : PlayerArm {
+    public override void Awake() {
+
+    }
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    public override void PartFire(Vector3 mousePos) {
+        transform.parent.parent.GetComponent<PlayerMain>().DealMeleeDamage(meleeDamage);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-}
+} 
