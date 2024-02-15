@@ -2,6 +2,7 @@ public enum BulletType {
     BasicBullet,
     BigBullet,
     Melee,
+    None,
 }
 
 public enum ArmType {
@@ -17,7 +18,7 @@ public enum LegType {
     SuperSpeed,
 }
 
-public enum PartType { 
+public enum PartType {
     Arm,
     Leg,
     Head,
@@ -29,4 +30,22 @@ public enum PartRarity {
     Rare,
     Epic,
     Legendary,
+}
+
+public enum ArmPart {
+    Backfire,
+    Punch,
+    Chainsaw,
+    Bat,
+    Lucky_Scalpel,
+    Lefty,
+    Judy,
+    Righty,
+    Nail_Gun,
+    Brrrrr,
+}
+
+public enum Arm_Direction {
+    Left,
+    Right
 }

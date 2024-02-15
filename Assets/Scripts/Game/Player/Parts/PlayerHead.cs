@@ -14,6 +14,10 @@ public class PlayerHead : PlayerParts
         throw new System.NotImplementedException();
     }
 
+    public override void PartReleased(Vector3 mousePos) {
+        throw new System.NotImplementedException();
+    }
+
     public override void PartUninstall() {
         throw new System.NotImplementedException();
     }

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
 
+    private readonly int MaxJumpCount = 1;
+
     private bool isGrounded = false;
     private Rigidbody2D rb = null;
     private BoxCollider2D boxCol = null;
@@ -13,13 +15,17 @@ public class PlayerControl : MonoBehaviour {
     private float moveHorizontal = 0.0f;
     private float moveVertical = 0.0f;
 
-    [SerializeField] private int maxJumpCount = 1;
-    [SerializeField] private int jumpCount = 0;
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float jumpForce = 5.0f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Texture2D cursorTexture = null;
     [SerializeField] private GameObject playerSprites = null;
+
+    [HideInInspector] private int jumpCount = 0;
+    [HideInInspector] private float moveSpeedMultiplier = 1.0f;
+
+    private bool isLeftClickPressed = false;
+    private bool isRightClickPressed = false;
 
     void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
@@ -41,15 +47,31 @@ public class PlayerControl : MonoBehaviour {
         mousePosition.z = Camera.main.transform.position.z;
 
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector3 mousePoint = new Vector3(worldMousePosition.x, worldMousePosition.y, transform.position.z);
+        Vector3 mousePoint = new(worldMousePosition.x, worldMousePosition.y, transform.position.z);
 
         CheckSideFacing(mousePoint);
 
         if (Input.GetMouseButtonDown(0)) {
-            playerMain.OnLeftClick(mousePoint);
+            isLeftClickPressed = true;
+        }
+
+        if (Input.GetMouseButtonUp(0)) {
+            isLeftClickPressed = false;
         }
 
         if (Input.GetMouseButtonDown(1)) {
+            isRightClickPressed = true;
+        }
+
+        if (Input.GetMouseButtonUp(1)) {
+            isRightClickPressed = false;
+        }
+
+        if (isLeftClickPressed) {
+            playerMain.OnLeftClick(mousePoint);
+        }
+
+        if (isRightClickPressed) {
             playerMain.OnRightClick(mousePoint);
         }
 
@@ -73,9 +95,9 @@ public class PlayerControl : MonoBehaviour {
     void FixedUpdate() {
 
         if (moveHorizontal > 0.1f || moveHorizontal < -0.1f) {
-            rb.velocity = new Vector2(moveHorizontal * moveSpeed, rb.velocity.y);
+            rb.velocity = new(moveHorizontal * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
         } else {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.velocity = new(0, rb.velocity.y);
         }
 
         /*if (moveVertical > 0.1f) {
@@ -87,9 +109,9 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void PlayerJump() {
-        if (isGrounded || jumpCount < maxJumpCount) {
+        if (isGrounded || jumpCount < MaxJumpCount) {
             jumpCount++;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new(rb.velocity.x, jumpForce);
         }
     }
 
@@ -112,24 +134,28 @@ public class PlayerControl : MonoBehaviour {
     void CheckSideFacing(Vector3 mousePoint) {
 
         if (moveHorizontal > 0.1f) {
-            playerSprites.transform.localScale = new Vector3(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerSprites.transform.localScale = new(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 
         if (moveHorizontal < -0.1f) {
-            playerSprites.transform.localScale = new Vector3(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerSprites.transform.localScale = new(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 
         if ((mousePoint.x - transform.position.x) > 0) {
-            playerSprites.transform.localScale = new Vector3(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerSprites.transform.localScale = new(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 
         if ((mousePoint.x - transform.position.x) < 0) {
-            playerSprites.transform.localScale = new Vector3(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerSprites.transform.localScale = new(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 
     }
 
     void CheckFallGravity() {
 
+    }
+
+    void UpdateMoveSpeed(float newSpeed) {
+        moveSpeed = newSpeed;
     }
 }

@@ -6,29 +6,26 @@ public class PlayerMain : MonoBehaviour {
 
     private PlayerControl playerControl;
 
-    [SerializeField] private float health = 100.0f;
-    [SerializeField] private float fuel = 100.0f;
-    [SerializeField] private int ammo = 100;
-    [SerializeField] private PlayerParts leftArm;
-    [SerializeField] private PlayerParts rightArm;
-    [SerializeField] private PlayerParts legs;
-    [SerializeField] private PlayerParts head;
-    [SerializeField] private PlayerParts torso;
+    [SerializeField] public float health = 100.0f;
+    [SerializeField] public float fuel = 100.0f;
+    [SerializeField] public int ammo = 100;
+    private float dmgReductionPercentage = 0.0f;
 
-    [SerializeField] private BoxCollider2D meleeHitBox;
+    private PlayerParts leftArm;
+    private PlayerParts rightArm;
+    private PlayerParts legs;
+    private PlayerParts head;
+    private PlayerParts torso;
+
+    private BoxCollider2D meleeHitBox;
 
     private void OnEnable() {
         playerControl = GetComponent<PlayerControl>();
         playerControl.enabled = true;
     }
 
-    // Start is called before the first frame update
     void Start() {
         CheckMissingParts();
-    }
-
-    // Update is called once per frame
-    void Update() {
     }
 
     public void OnLeftClick(Vector3 mousePos) {
@@ -43,6 +40,14 @@ public class PlayerMain : MonoBehaviour {
             rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerParts>();
 
         rightArm.PartFire(mousePos);
+    }
+
+    public void OnLeftClickRelease() {
+
+    }
+
+    public void OnRightClickRelease() {
+
     }
 
     public void OnShiftClick() {
@@ -92,11 +97,29 @@ public class PlayerMain : MonoBehaviour {
         }
     }
 
-    public void TakeDamage(float damage) {
-        health -= damage;
+    public void UpdateHealth(float healthChange) {
+
+        if (healthChange < 0) {
+            health += (healthChange * ((100 - dmgReductionPercentage) / 100));
+        } else {
+            health += healthChange;
+        }
+
 
         if (health < 0) {
             OnDeath();
         }
+    }
+
+    public void UpdateAmmo(int ammoChange) {
+        ammo += ammoChange;
+    }
+
+    public void UpdateFuel(float fuelChange) {
+        fuel += fuelChange;
+    }
+
+    public void UpdateDamageReductionPercentage(float newDmgReductionPercentage) {
+        dmgReductionPercentage = newDmgReductionPercentage;
     }
 }

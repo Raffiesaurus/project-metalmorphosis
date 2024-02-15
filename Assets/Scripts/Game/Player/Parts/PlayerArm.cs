@@ -5,24 +5,67 @@ using UnityEngine;
 
 public class PlayerArm : PlayerParts {
 
-    [SerializeField] public ArmType armType = ArmType.Punch;
-    [SerializeField] public BulletType bulletType = BulletType.Melee;
+    [SerializeField] public ArmPart armPart = ArmPart.Nail_Gun;
     [SerializeField] public float cooldown = 2.0f;
     [SerializeField] public float meleeDamage = 10.0f;
+    [SerializeField] public int ammoUsage = 1;
+
+    [HideInInspector] public float cdCounter = 0.0f;
+    [HideInInspector] public BulletType bulletType = BulletType.Melee;
 
     public virtual void Awake() {
-        if (bulletType == BulletType.Melee) {
-            if (armType == ArmType.Punch) {
-                PunchArm addedComp = gameObject.AddComponent<PunchArm>();
-                addedComp.SetData(armType, bulletType, partType, partRarity);
-                Destroy(this);
-            }
-        } else {
-            if (armType == ArmType.SmallGun) {
-                SmallBulletArm addedComp = gameObject.AddComponent<SmallBulletArm>();
-                addedComp.SetData(armType, bulletType, partType, partRarity);
-                Destroy(this);
-            }
+        PlayerArm newCompAdded = this;
+
+        switch (armPart) {
+
+            case ArmPart.Backfire:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+            case ArmPart.Punch:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+            case ArmPart.Chainsaw:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+            case ArmPart.Bat:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+            case ArmPart.Lucky_Scalpel:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+            case ArmPart.Lefty:
+                newCompAdded = gameObject.AddComponent<LeftyArm>();
+                break;
+
+            case ArmPart.Judy:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+            case ArmPart.Righty:
+                newCompAdded = gameObject.AddComponent<RightyArm>();
+                break;
+
+            case ArmPart.Nail_Gun:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+            case ArmPart.Brrrrr:
+                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                break;
+
+        }
+        newCompAdded.SetData(cooldown, meleeDamage, ammoUsage);
+        Destroy(this);
+    }
+
+    public virtual void Update() {
+        if (cdCounter > 0) {
+            cdCounter -= Time.deltaTime;
         }
     }
 
@@ -40,11 +83,12 @@ public class PlayerArm : PlayerParts {
 
     public override void PartUtilityActivate2(Vector3 mousePos) { }
 
-    public void SetData(ArmType newArmType, BulletType newBulletType, PartType newPartType, PartRarity newPartRarity) {
-        armType = newArmType;
-        bulletType = newBulletType;
-        partType = newPartType;
-        partRarity = newPartRarity;
+    public override void PartReleased(Vector3 mousePos) {
+        player.UpdateDamageReductionPercentage(0);
     }
-
+    public void SetData(float cd, float mDmg, int ammoUse) {
+        cooldown = cd;
+        meleeDamage = mDmg;
+        ammoUsage = ammoUse;
+    }
 }

@@ -171,6 +171,7 @@ MonoBehaviour:
   img: {fileID: 0}
   partType: 1
   partRarity: 0
+  player: {fileID: 0}
   isInstalled: 0
 --- !u!212 &5579763
 SpriteRenderer:
@@ -962,11 +963,14 @@ MonoBehaviour:
   img: {fileID: 0}
   partType: 0
   partRarity: 0
+  player: {fileID: 0}
   isInstalled: 0
-  armType: 0
-  bulletType: 0
-  cooldown: 2
-  meleeDamage: 10
+  armPart: 5
+  cooldown: 4
+  meleeDamage: 4
+  ammoUsage: 4
+  cdCounter: 0
+  bulletType: 2
 --- !u!1 &1131204677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1019,7 @@ MonoBehaviour:
   img: {fileID: 0}
   partType: 0
   partRarity: 0
+  player: {fileID: 0}
   isInstalled: 0
 --- !u!212 &1131204680
 SpriteRenderer:
@@ -1413,8 +1418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba86f5727a4e91848a482c16051c5d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpCount: 1
-  jumpCount: 0
   moveSpeed: 5
   jumpForce: 5
   groundLayer:
@@ -1437,12 +1440,6 @@ MonoBehaviour:
   health: 100
   fuel: 100
   ammo: 100
-  leftArm: {fileID: 0}
-  rightArm: {fileID: 0}
-  legs: {fileID: 0}
-  head: {fileID: 0}
-  torso: {fileID: 0}
-  meleeHitBox: {fileID: 0}
 --- !u!1 &1280596104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,11 +1720,14 @@ MonoBehaviour:
   img: {fileID: 0}
   partType: 0
   partRarity: 0
+  player: {fileID: 0}
   isInstalled: 0
-  armType: 3
+  armPart: 7
+  cooldown: 5
+  meleeDamage: 50
+  ammoUsage: 5
+  cdCounter: 0
   bulletType: 2
-  cooldown: 2
-  meleeDamage: 10
 --- !u!212 &1579111422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2222,6 +2222,7 @@ MonoBehaviour:
   img: {fileID: 0}
   partType: 0
   partRarity: 0
+  player: {fileID: 0}
   isInstalled: 0
 --- !u!1 &1939021872
 GameObject:
