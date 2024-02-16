@@ -6,10 +6,14 @@ public class PlayerMain : MonoBehaviour {
 
     private PlayerControl playerControl;
 
-    [SerializeField] public float health = 100.0f;
-    [SerializeField] public float fuel = 100.0f;
-    [SerializeField] public int ammo = 100;
-    private float dmgReductionPercentage = 0.0f;
+    [SerializeField] public float maxHealth = 100.0f;
+    [SerializeField] public float maxFuel = 100.0f;
+    [SerializeField] public int maxAmmo = 100;
+
+
+    [HideInInspector] public float currentHealth = 0.0f;
+    [HideInInspector] public float currentFuel = 0.0f;
+    [HideInInspector] public int currentAmmo = 0;
 
     private PlayerParts leftArm;
     private PlayerParts rightArm;
@@ -19,6 +23,8 @@ public class PlayerMain : MonoBehaviour {
 
     private BoxCollider2D meleeHitBox;
 
+    private float dmgReductionPercentage = 0.0f;
+
     private void OnEnable() {
         playerControl = GetComponent<PlayerControl>();
         playerControl.enabled = true;
@@ -26,6 +32,12 @@ public class PlayerMain : MonoBehaviour {
 
     void Start() {
         CheckMissingParts();
+        currentHealth = maxHealth;
+        currentFuel = maxFuel;
+        currentAmmo = maxAmmo;
+        GameUIManager.UpdateHealthBar(currentHealth / maxHealth);
+        GameUIManager.UpdateFuelBar(currentFuel / maxFuel);
+        GameUIManager.UpdateAmmoCount(currentAmmo, maxAmmo);
     }
 
     public void OnLeftClick(Vector3 mousePos) {
@@ -100,23 +112,30 @@ public class PlayerMain : MonoBehaviour {
     public void UpdateHealth(float healthChange) {
 
         if (healthChange < 0) {
-            health += (healthChange * ((100 - dmgReductionPercentage) / 100));
+            currentHealth += (healthChange * ((100 - dmgReductionPercentage) / 100));
         } else {
-            health += healthChange;
+            currentHealth += healthChange;
         }
 
+        Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        if (health < 0) {
+        GameUIManager.UpdateHealthBar(currentHealth / maxHealth);
+
+        if (currentHealth < 0) {
             OnDeath();
         }
     }
 
     public void UpdateAmmo(int ammoChange) {
-        ammo += ammoChange;
+        currentAmmo += ammoChange;
+        Mathf.Clamp(currentAmmo, 0, maxAmmo);
+        GameUIManager.UpdateAmmoCount(currentAmmo, maxAmmo);
     }
 
     public void UpdateFuel(float fuelChange) {
-        fuel += fuelChange;
+        currentFuel += fuelChange;
+        Mathf.Clamp(currentFuel, 0, maxFuel);
+        GameUIManager.UpdateFuelBar(currentFuel / maxFuel);
     }
 
     public void UpdateDamageReductionPercentage(float newDmgReductionPercentage) {

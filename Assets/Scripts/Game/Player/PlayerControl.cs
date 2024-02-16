@@ -116,7 +116,7 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "floor") {
+        if (collision.gameObject.CompareTag("floor")) {
 
         }
     }

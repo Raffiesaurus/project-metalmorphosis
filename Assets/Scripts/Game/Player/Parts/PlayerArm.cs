@@ -8,6 +8,7 @@ public class PlayerArm : PlayerParts {
     [SerializeField] public ArmPart armPart = ArmPart.Nail_Gun;
     [SerializeField] public float cooldown = 2.0f;
     [SerializeField] public float meleeDamage = 10.0f;
+    [SerializeField] public float fuelUsage = 0.0f;
     [SerializeField] public int ammoUsage = 1;
 
     [HideInInspector] public float cdCounter = 0.0f;
@@ -35,7 +36,7 @@ public class PlayerArm : PlayerParts {
                 break;
 
             case ArmPart.Lucky_Scalpel:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                newCompAdded = gameObject.AddComponent<LuckyScalpelArm>();
                 break;
 
             case ArmPart.Lefty:
@@ -59,7 +60,7 @@ public class PlayerArm : PlayerParts {
                 break;
 
         }
-        newCompAdded.SetData(cooldown, meleeDamage, ammoUsage);
+        newCompAdded.SetData(cooldown, meleeDamage, ammoUsage, fuelUsage);
         Destroy(this);
     }
 
@@ -86,9 +87,10 @@ public class PlayerArm : PlayerParts {
     public override void PartReleased(Vector3 mousePos) {
         player.UpdateDamageReductionPercentage(0);
     }
-    public void SetData(float cd, float mDmg, int ammoUse) {
+    public void SetData(float cd, float mDmg, int ammoUse, float fuelUse) {
         cooldown = cd;
         meleeDamage = mDmg;
         ammoUsage = ammoUse;
+        fuelUsage = fuelUse;
     }
 }

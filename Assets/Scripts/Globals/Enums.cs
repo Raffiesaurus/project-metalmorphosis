@@ -49,3 +49,8 @@ public enum Arm_Direction {
     Left,
     Right
 }
+
+public enum Tags {
+    Floor,
+    Enemy
+}

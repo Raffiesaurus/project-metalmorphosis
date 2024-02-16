@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BasicBullet : Bullet {
     public override void OnCollision() {
-        throw new NotImplementedException();
+        
     }
 
     public override void OnFire(Vector3 startPoint, Vector3 firePoint) {

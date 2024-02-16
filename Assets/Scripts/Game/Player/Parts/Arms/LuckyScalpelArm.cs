@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RightyArm : PlayerArm {
+public class LuckyScalpelArm : PlayerArm {
 
     public override void Awake() {
         bulletType = BulletType.None;
-        armPart = ArmPart.Righty;
+        armPart = ArmPart.Lucky_Scalpel;
         partRarity = PartRarity.Common;
     }
 
     public override void PartFire(Vector3 mousePos) {
-        player.UpdateDamageReductionPercentage(50);
+        if (cdCounter <= 0 && player.currentFuel >= fuelUsage) {
+            player.UpdateFuel(-fuelUsage);
+            player.DealMeleeDamage(meleeDamage);
+        }
     }
 }
