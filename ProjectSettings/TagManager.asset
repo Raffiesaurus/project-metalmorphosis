@@ -6,6 +6,9 @@ TagManager:
   tags:
   - floor
   - enemy
+  - wall
+  - player
+  - player_melee
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - Enemy
   - Floor
   - Map
-  - 
+  - Projectile
   - Player
   - 
   - Game_UI

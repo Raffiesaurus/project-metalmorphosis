@@ -10,18 +10,17 @@ public class PlayerMain : MonoBehaviour {
     [SerializeField] public float maxFuel = 100.0f;
     [SerializeField] public int maxAmmo = 100;
 
-
     [HideInInspector] public float currentHealth = 0.0f;
     [HideInInspector] public float currentFuel = 0.0f;
     [HideInInspector] public int currentAmmo = 0;
+
+    [HideInInspector] public BoxCollider2D meleeHitBox;
 
     private PlayerParts leftArm;
     private PlayerParts rightArm;
     private PlayerParts legs;
     private PlayerParts head;
     private PlayerParts torso;
-
-    private BoxCollider2D meleeHitBox;
 
     private float dmgReductionPercentage = 0.0f;
 
@@ -75,7 +74,7 @@ public class PlayerMain : MonoBehaviour {
     }
 
     void OnDeath() {
-        playerControl.enabled = false;
+        Destroy(gameObject);
     }
 
     void CheckMissingParts() {
@@ -117,11 +116,11 @@ public class PlayerMain : MonoBehaviour {
             currentHealth += healthChange;
         }
 
-        Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
         GameUIManager.UpdateHealthBar(currentHealth / maxHealth);
 
-        if (currentHealth < 0) {
+        if (currentHealth <= 0) {
             OnDeath();
         }
     }

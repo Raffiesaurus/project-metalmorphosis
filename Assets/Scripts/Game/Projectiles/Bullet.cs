@@ -19,7 +19,8 @@ public abstract class Bullet : MonoBehaviour {
     public void Update() {
 
     }
-    public abstract void OnFire(Vector3 startPoint, Vector3 firePoint);
+    public abstract void OnFire(Vector3 startPoint, Vector3 firePoint, string ownerTag);
 
     public abstract void OnCollision();
+    public abstract void OnTriggerEnter2D(Collider2D collision);
 }

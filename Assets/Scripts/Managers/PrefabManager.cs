@@ -23,10 +23,10 @@ public class PrefabManager : MonoBehaviour {
 
     }
 
-    public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint) {
+    public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint, string ownerTag) {
         if (prefabType == BulletType.BasicBullet) {
             GameObject newBasicBullet = Instantiate(prefabManager.basicBullet);
-            newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint);
+            newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint, ownerTag);
         }
     }
 }

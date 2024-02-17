@@ -13,7 +13,7 @@ public class NailGunArm : PlayerArm {
         if (cdCounter <= 0 && player.currentAmmo >= ammoUsage) {
             player.UpdateAmmo(-ammoUsage);
             cdCounter = cooldown;
-            PrefabManager.SpawnAndFire(bulletType, transform.position, mousePos);
+            PrefabManager.SpawnAndFire(bulletType, transform.position, mousePos, gameObject.tag);
         }
     }
 

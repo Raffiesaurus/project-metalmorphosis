@@ -25,18 +25,22 @@ public class PlayerArm : PlayerParts {
 
             case ArmPart.Punch:
                 newCompAdded = gameObject.AddComponent<NailGunArm>();
+                player.meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Chainsaw:
                 newCompAdded = gameObject.AddComponent<NailGunArm>();
+                player.meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Bat:
                 newCompAdded = gameObject.AddComponent<NailGunArm>();
+                player.meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lucky_Scalpel:
                 newCompAdded = gameObject.AddComponent<LuckyScalpelArm>();
+                player.meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lefty:
@@ -45,6 +49,7 @@ public class PlayerArm : PlayerParts {
 
             case ArmPart.Judy:
                 newCompAdded = gameObject.AddComponent<NailGunArm>();
+                player.meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Righty:
