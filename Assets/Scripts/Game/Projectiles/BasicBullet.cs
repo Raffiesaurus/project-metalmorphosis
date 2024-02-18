@@ -12,7 +12,6 @@ public class BasicBullet : Bullet {
     }
 
     public override void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(shotBy);
 
         if (shotBy == "player") {
 

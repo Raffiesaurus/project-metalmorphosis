@@ -10,8 +10,11 @@ public class PlayerMain : MonoBehaviour {
     [SerializeField] public float maxFuel = 100.0f;
     [SerializeField] public int maxAmmo = 100;
 
+    [SerializeField] public LayerMask enemyLayer;
+
     [HideInInspector] public float currentHealth = 0.0f;
     [HideInInspector] public float currentFuel = 0.0f;
+
     [HideInInspector] public int currentAmmo = 0;
 
     [HideInInspector] public BoxCollider2D meleeHitBox;
@@ -101,10 +104,9 @@ public class PlayerMain : MonoBehaviour {
     }
 
     public void DealMeleeDamage(float damage) {
-        Debug.Log("Dealing " + damage + " damgage");
-        Collider2D[] enemiesToHit = Physics2D.OverlapBoxAll(meleeHitBox.bounds.center, meleeHitBox.bounds.size, 0, 6);
+        Collider2D[] enemiesToHit = Physics2D.OverlapBoxAll(meleeHitBox.bounds.center, meleeHitBox.bounds.size, 0, enemyLayer);
         for (int i = 0; i < enemiesToHit.Length; i++) {
-            //enemiesToHit[i].GetComponent<EnemyController>().TakeDamage(damage);
+            enemiesToHit[i].GetComponent<EnemyUnit>().UpdateHealth(-damage);
         }
     }
 

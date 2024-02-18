@@ -18,6 +18,9 @@ public class EnemyUnit : MonoBehaviour {
     [SerializeField] public float healthRegenPerInterval = 1;
     [SerializeField] public float healthRegenIntervalSeconds = 0.5f;
 
+    [SerializeField] public LayerMask groundLayer;
+    [SerializeField] public LayerMask playerLayer;
+
     [SerializeField] public int ammoUsage = 1;
 
     [SerializeField] public BulletType bulletType = BulletType.BasicBullet;
@@ -27,7 +30,11 @@ public class EnemyUnit : MonoBehaviour {
     [HideInInspector] public float currentFuel = 0;
     [HideInInspector] public float currentAmmo = 0;
 
+    [HideInInspector] public bool shouldMoveToPlayer = false;
+    [HideInInspector] public bool isGrounded = false;
+
     [HideInInspector] public Vector3 playerPos = Vector3.zero;
+    [HideInInspector] public Vector3 dirVec = Vector3.zero;
 
     [HideInInspector] public Rigidbody2D rb = null;
 
@@ -45,19 +52,20 @@ public class EnemyUnit : MonoBehaviour {
 
     public virtual void Update() {
 
+        CheckGround();
+
         playerPos = GameManager.GetPlayer().transform.position;
 
-        Vector3 dirVec = playerPos - transform.position;
+        dirVec = playerPos - transform.position;
+        dirVec.Normalize();
 
-        if (dirVec.x < 0) {
+        if (rb.velocity.x < 1) {
             transform.localScale = new Vector3(-Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        } else {
+        } else if (rb.velocity.x > 1) {
             transform.localScale = new Vector3(Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        if (dirVec.magnitude <= playerRange) {
-            AttackPlayer();
-        } else {
+        if (shouldMoveToPlayer) {
             MoveToPlayer(dirVec);
         }
 
@@ -72,6 +80,13 @@ public class EnemyUnit : MonoBehaviour {
             }
         }
 
+    }
+
+    void CheckGround() {
+        bool checkGroundNow = Physics2D.BoxCast(boxCol.bounds.center, boxCol.bounds.size, 0f, Vector2.down, 0.01f, groundLayer);
+        if (checkGroundNow != isGrounded) {
+            isGrounded = checkGroundNow;
+        }
     }
 
     public virtual void UpdateHealth(float healthChange) {
@@ -93,7 +108,7 @@ public class EnemyUnit : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public virtual void MoveToPlayer(Vector3 dirVec) { }
-
-    public virtual void AttackPlayer() { }
+    public virtual void MoveToPlayer(Vector3 dirVec) {
+        rb.velocity = new(dirVec.x * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
+    }
 }
