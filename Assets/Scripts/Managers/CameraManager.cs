@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
-{
+public class CameraManager : MonoBehaviour {
 
     [SerializeField] private Camera playerCam;
     [SerializeField] private Camera uiCam;
@@ -17,18 +16,20 @@ public class CameraManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+
     }
 
     public static void ScreenShake() {
-        
+
+    }
+
+    public static Camera GetPlayerCamera() {
+        return cameraManager.playerCam;
     }
 }

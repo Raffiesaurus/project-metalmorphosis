@@ -11,7 +11,7 @@ public class StabJumpEnemy : EnemyUnit {
 
     [SerializeField] private float runAwayDurationSeconds = 3.0f;
 
-    private bool isPlayerInRange = false;
+    private new bool isPlayerInRange = false;
 
     private float frameHealth = 0;
 

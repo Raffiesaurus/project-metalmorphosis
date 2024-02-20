@@ -115,12 +115,6 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("floor")) {
-
-        }
-    }
-
     void CheckGround() {
         bool checkGroundNow = Physics2D.BoxCast(boxCol.bounds.center, boxCol.bounds.size, 0f, Vector2.down, 0.01f, groundLayer);
         if (checkGroundNow != isGrounded) {

@@ -18,6 +18,9 @@ public class BasicBullet : Bullet {
             if (collision.gameObject.tag == "enemy") {
                 collision.gameObject.GetComponent<EnemyUnit>().UpdateHealth(-damage);
                 Destroy(gameObject);
+            } else if (collision.gameObject.tag == "cover") {
+                collision.gameObject.GetComponent<CoverObject>().UpdateHealth(-damage);
+                Destroy(gameObject);
             }
 
         } else if (shotBy == "enemy") {

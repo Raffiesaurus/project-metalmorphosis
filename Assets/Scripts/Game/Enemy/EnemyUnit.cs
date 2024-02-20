@@ -32,6 +32,7 @@ public class EnemyUnit : MonoBehaviour {
 
     [HideInInspector] public bool shouldMoveToPlayer = false;
     [HideInInspector] public bool isGrounded = false;
+    [HideInInspector] public bool isPlayerInRange = false;
 
     [HideInInspector] public Vector3 playerPos = Vector3.zero;
     [HideInInspector] public Vector3 dirVec = Vector3.zero;
@@ -57,6 +58,13 @@ public class EnemyUnit : MonoBehaviour {
         playerPos = GameManager.GetPlayer().transform.position;
 
         dirVec = playerPos - transform.position;
+
+        if (dirVec.magnitude <= playerRange) {
+            isPlayerInRange = true;
+        } else {
+            isPlayerInRange = false;
+        }
+
         dirVec.Normalize();
 
         if (rb.velocity.x < 1) {
@@ -66,7 +74,7 @@ public class EnemyUnit : MonoBehaviour {
         }
 
         if (shouldMoveToPlayer) {
-            MoveToPlayer(dirVec);
+            MoveToPlayer();
         }
 
         if (cdCounter > 0) {
@@ -108,7 +116,7 @@ public class EnemyUnit : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public virtual void MoveToPlayer(Vector3 dirVec) {
+    public virtual void MoveToPlayer() {
         rb.velocity = new(dirVec.x * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
     }
 }

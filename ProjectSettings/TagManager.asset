@@ -9,6 +9,7 @@ TagManager:
   - wall
   - player
   - player_melee
+  - cover
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - 3D
   - 
   - 
-  - 
+  - Cover
   - 
   - 
   - 

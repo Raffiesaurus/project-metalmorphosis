@@ -8,9 +8,12 @@ public class PlayerMain : MonoBehaviour {
 
     [SerializeField] public float maxHealth = 100.0f;
     [SerializeField] public float maxFuel = 100.0f;
+
     [SerializeField] public int maxAmmo = 100;
 
     [SerializeField] public LayerMask enemyLayer;
+
+    [SerializeField] public PlayerCamera playerCam = null;
 
     [HideInInspector] public float currentHealth = 0.0f;
     [HideInInspector] public float currentFuel = 0.0f;
@@ -141,5 +144,11 @@ public class PlayerMain : MonoBehaviour {
 
     public void UpdateDamageReductionPercentage(float newDmgReductionPercentage) {
         dmgReductionPercentage = newDmgReductionPercentage;
+    }
+
+    public void SpawnAtPoint(Vector3 spawnPoint) {
+        playerCam = CameraManager.GetPlayerCamera().GetComponent<PlayerCamera>();
+        transform.position = spawnPoint;
+        playerCam.transform.position = new(transform.position.x, transform.position.y + 2, transform.position.z - 4);
     }
 }
