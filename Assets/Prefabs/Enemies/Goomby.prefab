@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8356223508636585084}
+  - component: {fileID: 4641855818368131170}
   - component: {fileID: 2653196074547600783}
   - component: {fileID: 4449399171427049017}
-  - component: {fileID: 4641855818368131170}
   m_Layer: 6
   m_Name: Goomby
   m_TagString: enemy
@@ -119,6 +119,48 @@ Transform:
   - {fileID: 5140112421188442939}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4641855818368131170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6139245691026646794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246cae9d051bc7c419f1f47eda67da5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxFuel: 100
+  maxAmmo: 100
+  playerRange: 100
+  cooldown: 2
+  meleeDamage: 10
+  fuelUsage: 0
+  moveSpeed: 3
+  moveSpeedMultiplier: 1
+  healthRegenPerInterval: 0
+  healthRegenIntervalSeconds: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  ammoUsage: 1
+  bulletType: 2
+  cdCounter: 0
+  currentHealth: 0
+  currentFuel: 0
+  currentAmmo: 0
+  shouldMoveToPlayer: 0
+  isGrounded: 0
+  isPlayerInRange: 0
+  playerPos: {x: 0, y: 0, z: 0}
+  dirVec: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
+  boxCol: {fileID: 0}
 --- !u!61 &2653196074547600783
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190,45 +232,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &4641855818368131170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6139245691026646794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 246cae9d051bc7c419f1f47eda67da5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  maxFuel: 100
-  maxAmmo: 100
-  playerRange: 100
-  cooldown: 2
-  meleeDamage: 10
-  fuelUsage: 0
-  moveSpeed: 3
-  moveSpeedMultiplier: 1
-  healthRegenPerInterval: 0
-  healthRegenIntervalSeconds: 0.5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  ammoUsage: 1
-  bulletType: 2
-  cdCounter: 0
-  currentHealth: 0
-  currentFuel: 0
-  currentAmmo: 0
-  shouldMoveToPlayer: 0
-  isGrounded: 0
-  playerPos: {x: 0, y: 0, z: 0}
-  dirVec: {x: 0, y: 0, z: 0}
-  rb: {fileID: 0}
-  boxCol: {fileID: 0}
+  m_Constraints: 4

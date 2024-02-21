@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2525791764524408055}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.131, y: -1.5, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   jumpForce: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 131200
   cursorTexture: {fileID: 2800000, guid: a9e70cc81da425842acdf873e6accb77, type: 3}
   playerSprites: {fileID: 4632488954652684437}
 --- !u!114 &2651995766184522533
@@ -294,12 +294,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860fec1877410c44ebc8c0bdc0e1a6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 1000
   maxFuel: 100
   maxAmmo: 100
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  playerCam: {fileID: 0}
   currentHealth: 0
   currentFuel: 0
   currentAmmo: 0

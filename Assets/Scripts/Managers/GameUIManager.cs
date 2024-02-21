@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameUIManager : MonoBehaviour {
 
-    private static GameUIManager gameUIManager = null;
+    private static GameUIManager instance = null;
 
     [SerializeField] private Camera uiCamera = null;
 
@@ -15,20 +15,20 @@ public class GameUIManager : MonoBehaviour {
     [SerializeField] private TMP_Text ammoText = null;
 
     private void Awake() {
-        if (gameUIManager == null) {
-            gameUIManager = this;
+        if (instance == null) {
+            instance = this;
         }
     }
 
     public static void UpdateHealthBar(float ratio) {
-        gameUIManager.healthBar.value = ratio;
+        instance.healthBar.value = ratio;
     }
 
     public static void UpdateFuelBar(float ratio) {
-        gameUIManager.fuelBar.value = ratio;
+        instance.fuelBar.value = ratio;
     }
 
     public static void UpdateAmmoCount(int count, int maxCount) {
-        gameUIManager.ammoText.text = "Ammo: " + count + "/" + maxCount;
+        instance.ammoText.text = "Ammo: " + count + "/" + maxCount;
     }
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
-    private static AudioManager audioManager = null;
+    private static AudioManager instance = null;
     private void Awake() {
-        if (audioManager == null) {
-            audioManager = this;
+        if (instance == null) {
+            instance = this;
         }
     }
     void Update() {

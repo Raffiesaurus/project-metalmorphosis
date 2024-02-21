@@ -13,7 +13,13 @@ public class LevelManager : MonoBehaviour {
 
     private LevelBase currentLevel;
 
-    // Start is called before the first frame update
+    private static LevelManager instance = null;
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
+
     void Start() {
         currentLevel = levelParent.GetComponentInChildren<LevelBase>();
         if (currentLevel != null) {
@@ -26,10 +32,7 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
     void Update() {
-        /*if (currentLevel == null) {
-            currentLevel = levelParent.GetComponentInChildren<LevelBase>();
-        }*/
+
     }
 }

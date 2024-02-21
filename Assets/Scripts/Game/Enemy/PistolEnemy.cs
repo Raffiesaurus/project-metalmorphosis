@@ -26,7 +26,6 @@ public class PistolEnemy : EnemyUnit {
 
             if (coverObjectChosen != null) {
                 float distanceToCover = Vector3.Distance(transform.position, coverObjectChosen.transform.position);
-                Debug.Log("Distance: " + distanceToCover + " " + coverObjectChosen.name);
                 if (distanceToCover <= 0.05) {
                     isMovingToCover = false;
                     isAtCover = true;

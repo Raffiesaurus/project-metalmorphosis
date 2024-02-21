@@ -36,6 +36,7 @@ public class EnemyUnit : MonoBehaviour {
 
     [HideInInspector] public Vector3 playerPos = Vector3.zero;
     [HideInInspector] public Vector3 dirVec = Vector3.zero;
+    [HideInInspector] public Vector3 dirVecNormalized = Vector3.zero;
 
     [HideInInspector] public Rigidbody2D rb = null;
 
@@ -52,12 +53,16 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void Update() {
+        if (GameManager.IsInEquipMode) { rb.velocity = Vector2.zero; return; }
+
+        if (transform.position.y < 0) { OnDeath(); }
 
         CheckGround();
 
         playerPos = GameManager.GetPlayer().transform.position;
 
         dirVec = playerPos - transform.position;
+        dirVecNormalized = dirVec.normalized;
 
         if (dirVec.magnitude <= playerRange) {
             isPlayerInRange = true;
@@ -65,12 +70,13 @@ public class EnemyUnit : MonoBehaviour {
             isPlayerInRange = false;
         }
 
-        dirVec.Normalize();
 
-        if (rb.velocity.x < 1) {
+        if (rb.velocity.x < 0.5) {
             transform.localScale = new Vector3(-Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        } else if (rb.velocity.x > 1) {
+        } else if (rb.velocity.x > 0.5) {
             transform.localScale = new Vector3(Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        } else {
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
         if (shouldMoveToPlayer) {
@@ -117,6 +123,6 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void MoveToPlayer() {
-        rb.velocity = new(dirVec.x * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
+        rb.velocity = new(dirVecNormalized.x * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
     }
 }

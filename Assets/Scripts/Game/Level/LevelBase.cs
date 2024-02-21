@@ -15,7 +15,6 @@ public class LevelBase : MonoBehaviour {
     }
 
     public void StartLevel() {
-        Debug.Log(startPoint.transform.position);
         GameManager.GetPlayer().GetComponent<PlayerMain>().SpawnAtPoint(startPoint.transform.position);
     }
 

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour {
 
-    private static UIManager uiManager = null;
+    private static UIManager instance = null;
 
     private void Awake() {
-        if (uiManager == null) {
-            uiManager = this;
+        if (instance == null) {
+            instance = this;
         }
     }
 }

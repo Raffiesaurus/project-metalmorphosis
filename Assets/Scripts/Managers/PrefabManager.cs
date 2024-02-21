@@ -5,11 +5,11 @@ using UnityEngine;
 public class PrefabManager : MonoBehaviour {
     [SerializeField] public GameObject basicBullet = null;
 
-    private static PrefabManager prefabManager = null;
+    private static PrefabManager instance = null;
 
     private void Awake() {
-        if (prefabManager == null) {
-            prefabManager = this;
+        if (instance == null) {
+            instance = this;
         }
     }
 
@@ -25,7 +25,7 @@ public class PrefabManager : MonoBehaviour {
 
     public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint, string ownerTag) {
         if (prefabType == BulletType.BasicBullet) {
-            GameObject newBasicBullet = Instantiate(prefabManager.basicBullet);
+            GameObject newBasicBullet = Instantiate(instance.basicBullet);
             newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint, ownerTag);
         }
     }

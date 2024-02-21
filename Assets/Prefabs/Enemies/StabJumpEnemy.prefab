@@ -157,13 +157,15 @@ MonoBehaviour:
   currentAmmo: 0
   shouldMoveToPlayer: 0
   isGrounded: 0
+  isPlayerInRange: 0
   playerPos: {x: 0, y: 0, z: 0}
   dirVec: {x: 0, y: 0, z: 0}
+  dirVecNormalized: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   boxCol: {fileID: 0}
-  jumpBackForce: {x: -200, y: 200}
+  jumpBackForce: {x: 200, y: 200}
   meleeHitBox: {fileID: 3630912076830318300}
-  runAwayDurationSeconds: 3
+  runAwayDurationSeconds: 2
 --- !u!61 &5211666323825405972
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -235,7 +237,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &8114518694987349462
 GameObject:
   m_ObjectHideFlags: 0

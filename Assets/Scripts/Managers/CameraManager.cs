@@ -8,10 +8,10 @@ public class CameraManager : MonoBehaviour {
     [SerializeField] private Camera uiCam;
     [SerializeField] private Camera equipScreenCam;
 
-    private static CameraManager cameraManager = null;
+    private static CameraManager instance = null;
     private void Awake() {
-        if (cameraManager == null) {
-            cameraManager = this;
+        if (instance == null) {
+            instance = this;
         }
     }
 
@@ -23,6 +23,14 @@ public class CameraManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        if (Input.GetKeyDown(KeyCode.M)) {
+            SwitchToEquipView();
+        }
+
+        if (Input.GetKeyDown(KeyCode.N)) {
+            SwitchToGameView();
+        }
+
     }
 
     public static void ScreenShake() {
@@ -30,6 +38,28 @@ public class CameraManager : MonoBehaviour {
     }
 
     public static Camera GetPlayerCamera() {
-        return cameraManager.playerCam;
+        return instance.playerCam;
+    }
+
+    public static Camera GetUICamera() {
+        return instance.uiCam;
+    }
+
+    public static Camera GetEquipScreenCamera() {
+        return instance.equipScreenCam;
+    }
+
+    public static void SwitchToEquipView() {
+        GameManager.IsInEquipMode = true;
+        instance.playerCam.enabled = false;
+        instance.uiCam.enabled = false;
+        instance.equipScreenCam.enabled = true;
+    }
+
+    public static void SwitchToGameView() {
+        instance.playerCam.enabled = true;
+        instance.uiCam.enabled = true;
+        instance.equipScreenCam.enabled = false;
+        GameManager.IsInEquipMode = false;
     }
 }

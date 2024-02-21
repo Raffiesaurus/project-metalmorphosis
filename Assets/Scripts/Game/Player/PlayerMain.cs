@@ -52,6 +52,14 @@ public class PlayerMain : MonoBehaviour {
         leftArm.PartFire(mousePos);
     }
 
+    private void Update() {
+
+        if (transform.position.y < 0) {
+            Destroy(gameObject);
+        }
+
+    }
+
     public void OnRightClick(Vector3 mousePos) {
         if (rightArm == null)
             rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerParts>();

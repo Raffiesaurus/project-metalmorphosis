@@ -38,6 +38,9 @@ public class PlayerControl : MonoBehaviour {
     }
 
     void Update() {
+
+        if (GameManager.IsInEquipMode) { rb.velocity = Vector2.zero; return; }
+
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         //moveVertical = Input.GetAxisRaw("Vertical");
 
