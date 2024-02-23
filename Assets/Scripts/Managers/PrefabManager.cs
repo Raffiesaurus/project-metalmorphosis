@@ -10,6 +10,11 @@ public class PrefabManager : MonoBehaviour {
     [SerializeField] public GameObject legDrop = null;
     [SerializeField] public GameObject headDrop = null;
 
+    [SerializeField] public GameObject partDropParent = null;
+
+    [SerializeField] public GameObject partDropUIParent = null;
+    [SerializeField] public GameObject pickupPartUI = null;
+
     private static PrefabManager instance = null;
 
     private void Awake() {
@@ -36,7 +41,7 @@ public class PrefabManager : MonoBehaviour {
     }
 
     public static void SpawnDroppablePart(PartType type, PartRarity rarity, Vector2 spawnPoint) {
-        GameObject droppedPart;
+        GameObject droppedPart = null;
         if (type == PartType.Arm) {
             droppedPart = Instantiate(instance.armDrop);
             droppedPart.GetComponent<DroppedArm>().SetData(type, spawnPoint, rarity);
@@ -44,6 +49,24 @@ public class PrefabManager : MonoBehaviour {
             droppedPart = Instantiate(instance.legDrop);
         } else if (type == PartType.Head) {
             droppedPart = Instantiate(instance.headDrop);
+        }
+        droppedPart.transform.SetParent(instance.partDropParent.transform);
+    }
+
+    public static void ShowPickupUI(PartDropData uidata, GameObject droppedObject) {
+        GameObject newUI = Instantiate(instance.pickupPartUI);
+        newUI.transform.SetParent(instance.partDropUIParent.transform);
+        newUI.transform.localPosition = Vector3.zero;
+        newUI.transform.localScale = Vector3.one * 40;
+        newUI.GetComponent<PickupPartUI>().SetData(uidata, droppedObject);
+    }
+
+    public static void HidePickupUI() {
+        if (instance == null || instance.partDropUIParent == null) return;
+        PickupPartUI[] allUIObjects = instance.partDropUIParent.GetComponentsInChildren<PickupPartUI>();
+        if (allUIObjects == null) return;
+        foreach (PickupPartUI uiObject in allUIObjects) {
+            Destroy(uiObject.gameObject);
         }
     }
 }

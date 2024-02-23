@@ -14,12 +14,16 @@ public class DroppedArm : DroppablePart {
             int randomPart = Random.Range(0, 4);
             if (randomPart == 0) {
                 armPart = ArmPart.Lucky_Scalpel;
-            } else if (randomPart == 0) {
+                partName = "Lucky Scalpel";
+            } else if (randomPart == 1) {
                 armPart = ArmPart.Lefty;
-            } else if (randomPart == 0) {
+                partName = "Lefty";
+            } else if (randomPart == 2) {
                 armPart = ArmPart.Righty;
+                partName = "Righty";
             } else {
                 armPart = ArmPart.Nail_Gun;
+                partName = "Nail Gun";
             }
 
         } else if (partRarity == PartRarity.Rare) {
@@ -27,10 +31,13 @@ public class DroppedArm : DroppablePart {
             int randomPart = Random.Range(0, 3);
             if (randomPart == 0) {
                 armPart = ArmPart.Chainsaw;
-            } else if (randomPart == 0) {
+                partName = "Chainsaw";
+            } else if (randomPart == 1) {
                 armPart = ArmPart.Brrrrr;
+                partName = "Brrrrrrrr";
             } else {
                 armPart = ArmPart.Bat;
+                partName = "Bat";
             }
 
         } else {
@@ -38,10 +45,13 @@ public class DroppedArm : DroppablePart {
             int randomPart = Random.Range(0, 3);
             if (randomPart == 0) {
                 armPart = ArmPart.Judy;
-            } else if (randomPart == 0) {
+                partName = "Judy";
+            } else if (randomPart == 1) {
                 armPart = ArmPart.Punch;
+                partName = "Punch";
             } else {
                 armPart = ArmPart.Backfire;
+                partName = "Backfire";
             }
 
         }
@@ -50,13 +60,21 @@ public class DroppedArm : DroppablePart {
 
     public override void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "player") {
-            Debug.Log("Hello Player");
+            rb.bodyType = RigidbodyType2D.Static;
+            PartDropData uiData = new PartDropData();
+            uiData.partName = partName;
+            uiData.partDescription = "description";
+            uiData.partRarity = "Common";
+            uiData.partType = "Left";
+            uiData.partImage = assignedImage;
+            PrefabManager.ShowPickupUI(uiData, gameObject);
         }
     }
 
     public override void OnCollisionExit2D(Collision2D collision) {
         if (collision.gameObject.tag == "player") {
-            Debug.Log("Bye Player");
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            PrefabManager.HidePickupUI();
         }
     }
 

@@ -6,10 +6,15 @@ public class DroppablePart : MonoBehaviour {
 
     [HideInInspector] public PartType partType;
     [HideInInspector] public PartRarity partRarity;
+    [HideInInspector] public string partName;
 
     [HideInInspector] public Rigidbody2D rb;
 
     [HideInInspector] public BoxCollider2D boxCol;
+
+    [HideInInspector] public Sprite assignedImage;
+
+    [SerializeField] private Sprite[] partImages;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
