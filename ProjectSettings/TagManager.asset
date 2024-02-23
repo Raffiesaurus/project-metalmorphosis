@@ -10,6 +10,7 @@ TagManager:
   - player
   - player_melee
   - cover
+  - part_drop
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - 
   - 3D
   - 
-  - 
+  - PartDrop
   - Cover
   - 
   - 

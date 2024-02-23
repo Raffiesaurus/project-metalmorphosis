@@ -45,7 +45,7 @@ public enum ArmPart {
     Brrrrr,
 }
 
-public enum Arm_Direction {
+public enum ArmDirection {
     Left,
     Right
 }
