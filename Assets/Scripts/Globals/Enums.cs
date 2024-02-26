@@ -1,15 +1,15 @@
 public enum BulletType {
     BasicBullet,
-    BigBullet,
+    Grenade,
     Melee,
     None,
 }
 
-public enum ArmType {
-    SmallGun,
-    BigGun,
-    Shield,
-    Punch,
+public enum LevelType {
+    Combat,
+    Puzzle,
+    Rest,
+    Boss
 }
 
 public enum LegType {
@@ -29,7 +29,6 @@ public enum PartRarity {
     Common,
     Rare,
     Epic,
-    Legendary,
 }
 
 public enum ArmPart {

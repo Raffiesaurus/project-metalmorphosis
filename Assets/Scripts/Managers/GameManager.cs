@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         CameraManager.SwitchToGameView();
+        //GameUIManager.SwitchToMap();
+        GameUIManager.SwitchToInGame();
     }
 
     // Update is called once per frame

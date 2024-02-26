@@ -16,31 +16,32 @@ public class PlayerArm : PlayerParts {
 
     public virtual void Awake() {
         PlayerArm newCompAdded = this;
+        BoxCollider2D meleeHitBox = transform.parent.GetComponentInChildren<BoxCollider2D>();
 
         switch (armPart) {
 
             case ArmPart.Backfire:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                newCompAdded = gameObject.AddComponent<BackfireArm>();
                 break;
 
             case ArmPart.Punch:
                 newCompAdded = gameObject.AddComponent<NailGunArm>();
-                player.meleeHitBox.enabled = true;
+                meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Chainsaw:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
-                player.meleeHitBox.enabled = true;
+                newCompAdded = gameObject.AddComponent<ChainsawArm>();
+                meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Bat:
                 newCompAdded = gameObject.AddComponent<NailGunArm>();
-                player.meleeHitBox.enabled = true;
+                meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lucky_Scalpel:
                 newCompAdded = gameObject.AddComponent<LuckyScalpelArm>();
-                player.meleeHitBox.enabled = true;
+                meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lefty:
@@ -49,7 +50,7 @@ public class PlayerArm : PlayerParts {
 
             case ArmPart.Judy:
                 newCompAdded = gameObject.AddComponent<NailGunArm>();
-                player.meleeHitBox.enabled = true;
+                meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Righty:

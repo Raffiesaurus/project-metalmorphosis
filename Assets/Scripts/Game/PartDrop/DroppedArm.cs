@@ -59,7 +59,7 @@ public class DroppedArm : DroppablePart {
     }
 
     public override void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "player") {
+        if (collision.gameObject.CompareTag("player")) {
             rb.bodyType = RigidbodyType2D.Static;
             PartDropData uiData = new PartDropData();
             uiData.partName = partName;
@@ -72,7 +72,7 @@ public class DroppedArm : DroppablePart {
     }
 
     public override void OnCollisionExit2D(Collision2D collision) {
-        if (collision.gameObject.tag == "player") {
+        if (collision.gameObject.CompareTag("player")) {
             rb.bodyType = RigidbodyType2D.Dynamic;
             PrefabManager.HidePickupUI();
         }

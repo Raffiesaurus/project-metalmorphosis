@@ -15,7 +15,7 @@ public class GoombyEnemy : EnemyUnit {
 
     public override void Update() {
 
-        if (GameManager.IsInEquipMode) { rb.velocity = Vector2.zero; return; }
+        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen) { rb.velocity = Vector2.zero; return; }
 
         rb.velocity = new(moveSign * moveSpeed * moveSpeedMultiplier, 0);
 
@@ -27,22 +27,22 @@ public class GoombyEnemy : EnemyUnit {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "wall" || collision.gameObject.tag == "cover") {
+        if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("cover")) {
             moveSign = -moveSign;
         }
 
-        if (collision.gameObject.tag == "player") {
+        if (collision.gameObject.CompareTag("player")) {
             moveSign = -moveSign;
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "wall" || collision.gameObject.tag == "cover") {
+        if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("cover")) {
             moveSign = -moveSign;
         }
 
-        if (collision.gameObject.tag == "player") {
+        if (collision.gameObject.CompareTag("player")) {
             moveSign = -moveSign;
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
         }

@@ -8,6 +8,8 @@ public class LevelBase : MonoBehaviour {
 
     [SerializeField] public EndPoint endPoint = null;
 
+    [HideInInspector] public LevelType levelType;
+
     public CoverObject[] coverObjects = null;
 
     public void Start() {
@@ -21,7 +23,7 @@ public class LevelBase : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D collision) {
         Debug.Log("COLLISION");
 
-        if (collision.gameObject.tag == "player") {
+        if (collision.gameObject.CompareTag("player")) {
             Debug.Log("Level complete");
         }
 
