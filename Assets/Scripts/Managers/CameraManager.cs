@@ -52,7 +52,7 @@ public class CameraManager : MonoBehaviour {
     public static void SwitchToEquipView() {
         GameManager.IsInEquipMode = true;
         instance.playerCam.enabled = false;
-        instance.uiCam.enabled = false;
+        instance.uiCam.enabled = true;
         instance.equipScreenCam.enabled = true;
     }
 

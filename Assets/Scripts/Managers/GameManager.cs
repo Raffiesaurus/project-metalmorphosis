@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private PlayerMain playerObject;
 
+    [SerializeField] private SwapScreen swapScreen;
+
     private static GameManager instance = null;
 
     private bool isInEquipMode = false;
@@ -27,7 +29,6 @@ public class GameManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        CameraManager.SwitchToGameView();
         //GameUIManager.SwitchToMap();
         GameUIManager.SwitchToInGame();
     }
@@ -39,5 +40,14 @@ public class GameManager : MonoBehaviour {
 
     public static PlayerMain GetPlayer() {
         return instance.playerObject;
+    }
+
+    public static void SetupSwap(PartDropData data) {
+        instance.swapScreen.gameObject.SetActive(true);
+        instance.swapScreen.Setup(data);
+    }
+
+    public static void BackToGame() {
+        instance.swapScreen.gameObject.SetActive(false);
     }
 }

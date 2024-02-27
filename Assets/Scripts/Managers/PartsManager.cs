@@ -29,8 +29,8 @@ public class PartsManager : MonoBehaviour {
     }
 
     private void Awake() {
-        equippedLeftArm = ArmPart.Backfire;
-        equippedRightArm = ArmPart.Bat;
+        equippedLeftArm = ArmPart.Lucky_Scalpel;
+        equippedRightArm = ArmPart.Nail_Gun;
         if (instance == null) {
             instance = this;
         }

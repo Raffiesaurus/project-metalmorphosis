@@ -59,7 +59,7 @@ public class PistolEnemy : EnemyUnit {
     }
 
     private void MoveToCover() {
-        if (coverObjects != null) {
+        if (coverObjects != null && coverObjects.Length > 0) {
             int randomCover = Random.Range(0, coverObjects.Length);
             coverObjectChosen = coverObjects[randomCover];
 

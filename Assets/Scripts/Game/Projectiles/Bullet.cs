@@ -14,7 +14,7 @@ public abstract class Bullet : MonoBehaviour {
 
     private Vector2 savedSpeed = Vector2.zero;
 
-    public virtual void Start() {
+    public virtual void Awake() {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
 
@@ -22,13 +22,13 @@ public abstract class Bullet : MonoBehaviour {
     }
 
     public void Update() {
-        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen) {
+        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) {
             if (rb.velocity != Vector2.zero)
                 savedSpeed = rb.velocity;
             rb.velocity = Vector2.zero;
         }
 
-        if (savedSpeed != Vector2.zero && !GameManager.IsInEquipMode && !GameUIManager.IsInMapScreen && rb.velocity == Vector2.zero) {
+        if (savedSpeed != Vector2.zero && !GameManager.IsInEquipMode && !GameUIManager.IsInMapScreen && !GameUIManager.IsInSwapScreen && rb.velocity == Vector2.zero) {
             rb.velocity = savedSpeed;
             savedSpeed = Vector2.zero;
         }

@@ -1,6 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+[Serializable]
+public class PartDropData {
+    [HideInInspector] public ArmPart leftArm;
+    [HideInInspector] public ArmPart rightArm;
+    [HideInInspector] public ArmPart head;
+    [HideInInspector] public ArmPart legs;
+    [HideInInspector] public ArmPart torso;
+    [HideInInspector] public string partName;
+    [HideInInspector] public string partRarity;
+    [HideInInspector] public string partType;
+    [HideInInspector] public string partDescription;
+    [SerializeField] public Sprite partImage;
+}
 
 public class DroppablePart : MonoBehaviour {
 
@@ -33,8 +48,10 @@ public class DroppablePart : MonoBehaviour {
 
     public virtual void FormItem() { }
 
-    public virtual void OnCollisionEnter2D(Collision2D collision) { }
+    public virtual void OnCollisionEnter2D(Collision2D collision) {
+    }
 
-    public virtual void OnCollisionExit2D(Collision2D collision) { }
+    public virtual void OnCollisionExit2D(Collision2D collision) {
+    }
 
 }

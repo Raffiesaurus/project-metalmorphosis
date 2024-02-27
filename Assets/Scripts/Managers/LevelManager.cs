@@ -20,6 +20,13 @@ public class LevelManager : MonoBehaviour {
 
     private LevelBase currentLevel;
 
+    private int remainingEnemies;
+    public static int RemainingEnemies {
+        get {
+            return instance.remainingEnemies;
+        }
+    }
+
     private static LevelManager instance = null;
     private void Awake() {
         if (instance == null) {
@@ -41,7 +48,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Update() {
-
+        remainingEnemies = currentLevel.enemyCount;
     }
 
     void GenerateLevelMap() {

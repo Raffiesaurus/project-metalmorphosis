@@ -10,6 +10,8 @@ public class LevelBase : MonoBehaviour {
 
     [HideInInspector] public LevelType levelType;
 
+    [HideInInspector] public int enemyCount;
+
     public CoverObject[] coverObjects = null;
 
     public void Start() {
@@ -19,15 +21,12 @@ public class LevelBase : MonoBehaviour {
     public void StartLevel() {
         GameManager.GetPlayer().GetComponent<PlayerMain>().SpawnAtPoint(startPoint.transform.position);
         GameManager.GetPlayer().GetComponent<PlayerMain>().UpdateEquippedItems();
+        GameUIManager.ShowNotification("Level Start!");
     }
 
-    public void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("COLLISION");
-
-        if (collision.gameObject.CompareTag("player")) {
-            Debug.Log("Level complete");
-        }
-
+    private void Update() {
+        EnemyUnit[] enemies = GetComponentsInChildren<EnemyUnit>();
+        enemyCount = enemies.Length;
     }
 
 }

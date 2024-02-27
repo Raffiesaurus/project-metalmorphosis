@@ -14,12 +14,12 @@ public class GrenadeBullet : Bullet {
 
     private CircleCollider2D explosionCollider;
 
-    public override void Start() {
+    public override void Awake() {
         grenadeImage = GetComponent<SpriteRenderer>();
         explosionCollider = GetComponentInChildren<CircleCollider2D>();
         explosionParticles = GetComponentInChildren<ParticleSystem>();
         grenadeImage.enabled = true;
-        base.Start();
+        base.Awake();
     }
 
     public override void OnTriggerEnter2D(Collider2D collision) {

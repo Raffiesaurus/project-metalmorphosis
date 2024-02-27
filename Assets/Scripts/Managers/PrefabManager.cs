@@ -6,6 +6,7 @@ public class PrefabManager : MonoBehaviour {
 
     [SerializeField] public GameObject basicBullet = null;
     [SerializeField] public GameObject grenadeBullet = null;
+    [SerializeField] public GameObject blitzBullet = null;
 
     [SerializeField] public GameObject armDrop = null;
     [SerializeField] public GameObject legDrop = null;
@@ -41,6 +42,9 @@ public class PrefabManager : MonoBehaviour {
         } else if (prefabType == BulletType.Grenade) {
             GameObject newGrenadeBullet = Instantiate(instance.grenadeBullet);
             newGrenadeBullet.GetComponent<GrenadeBullet>().OnFire(startPoint, firePoint, ownerTag);
+        } else if (prefabType == BulletType.BlitzBullet) {
+            GameObject newBlitzBullet = Instantiate(instance.blitzBullet);
+            newBlitzBullet.GetComponent<BlitzBullet>().OnFire(startPoint, firePoint, ownerTag);
         }
     }
 

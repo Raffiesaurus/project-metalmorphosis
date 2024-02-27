@@ -56,9 +56,9 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void Update() {
-        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen) { rb.velocity = Vector2.zero; return; }
+        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { rb.velocity = Vector2.zero; return; }
 
-        if (transform.position.y < 0) { OnDeath(); }
+        //if (transform.position.y < 0) { OnDeath(); }
 
         CheckGround();
 
@@ -122,7 +122,7 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void OnDeath() {
-
+        Debug.Log("I do a die " + name);
         float dropChance = Random.Range(0, 100);
         float partChance = Random.Range(0, 100);
 

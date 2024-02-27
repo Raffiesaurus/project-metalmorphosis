@@ -5,80 +5,92 @@ using UnityEngine;
 public class DroppedArm : DroppablePart {
 
     private ArmPart armPart;
+    PartDropData uiData;
 
     public override void FormItem() {
         base.FormItem();
-
+        uiData = new PartDropData();
+        uiData.partImage = assignedImage;
         if (partRarity == PartRarity.Common) {
             // Lucky Scalpel, Lefty, Righty, Nail Gun
             int randomPart = Random.Range(0, 4);
+            uiData.partRarity = "Common";
             if (randomPart == 0) {
-                armPart = ArmPart.Lucky_Scalpel;
-                partName = "Lucky Scalpel";
+                uiData.partName = "Lucky Scalpel";
+                uiData.leftArm = ArmPart.Lucky_Scalpel;
+                uiData.partType = "Left";
+                uiData.partDescription = "Description";
             } else if (randomPart == 1) {
-                armPart = ArmPart.Lefty;
-                partName = "Lefty";
+                uiData.partName = "Lefty";
+                uiData.leftArm = ArmPart.Lefty;
+                uiData.partType = "Left";
+                uiData.partDescription = "Description";
             } else if (randomPart == 2) {
-                armPart = ArmPart.Righty;
-                partName = "Righty";
+                uiData.partName = "Righty";
+                uiData.rightArm = ArmPart.Righty;
+                uiData.partType = "Right";
+                uiData.partDescription = "Description";
             } else {
-                armPart = ArmPart.Nail_Gun;
-                partName = "Nail Gun";
+                uiData.partName = "Nail Gun";
+                uiData.rightArm = ArmPart.Nail_Gun;
+                uiData.partType = "Right";
+                uiData.partDescription = "Description";
             }
 
         } else if (partRarity == PartRarity.Rare) {
             // Chainsaw, brrrr, Bat
+            uiData.partRarity = "Rare";
             int randomPart = Random.Range(0, 3);
             if (randomPart == 0) {
-                armPart = ArmPart.Chainsaw;
-                partName = "Chainsaw";
+                uiData.partName = "Chainsaw";
+                uiData.leftArm = ArmPart.Chainsaw;
+                uiData.partType = "Left";
+                uiData.partDescription = "Description";
             } else if (randomPart == 1) {
-                armPart = ArmPart.Blitzburst;
-                partName = "Brrrrrrrr";
+                uiData.partName = "Blitzburst";
+                uiData.rightArm = ArmPart.Blitzburst;
+                uiData.partType = "Right";
+                uiData.partDescription = "Description";
             } else {
-                armPart = ArmPart.Bat;
-                partName = "Bat";
+                uiData.partName = "Bat";
+                uiData.leftArm = ArmPart.Bat;
+                uiData.partType = "Left";
+                uiData.partDescription = "Description";
             }
 
         } else {
             // Judy, Punch, Backfire
+            uiData.partRarity = "Epic";
             int randomPart = Random.Range(0, 3);
             if (randomPart == 0) {
-                armPart = ArmPart.Judy;
-                partName = "Judy";
+                uiData.partName = "Judy";
+                uiData.rightArm = ArmPart.Judy;
+                uiData.partType = "Right";
+                uiData.partDescription = "Description";
             } else if (randomPart == 1) {
-                armPart = ArmPart.Punch;
-                partName = "Punch";
+                uiData.partName = "Punch";
+                uiData.leftArm = ArmPart.Punch;
+                uiData.partType = "Left";
+                uiData.partDescription = "Description";
             } else {
-                armPart = ArmPart.Backfire;
-                partName = "Backfire";
+                uiData.partName = "Backfire";
+                uiData.leftArm = ArmPart.Backfire;
+                uiData.partType = "Left";
+                uiData.partDescription = "Description";
             }
 
         }
     }
 
     public override void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("player")) {
+        if (collision.gameObject.CompareTag("player") && LevelManager.RemainingEnemies <= 0) {
             rb.bodyType = RigidbodyType2D.Static;
-            PartDropData uiData = new PartDropData {
-                partName = partName,
-                partDescription = "description",
-                partRarity = "Common",
-                partType = "Left",
-                partImage = assignedImage
-            };
-
-            if (uiData.partType == "Left")
-                uiData.leftArm = armPart;
-
-            if (uiData.partType == "Right")
-                uiData.rightArm = armPart;
-
             PrefabManager.ShowPickupUI(uiData, gameObject);
         }
     }
 
     public override void OnCollisionExit2D(Collision2D collision) {
+        base.OnCollisionExit2D(collision);
         if (collision.gameObject.CompareTag("player")) {
             rb.bodyType = RigidbodyType2D.Dynamic;
             PrefabManager.HidePickupUI();

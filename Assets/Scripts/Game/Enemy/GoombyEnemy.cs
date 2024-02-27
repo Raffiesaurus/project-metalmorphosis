@@ -15,7 +15,7 @@ public class GoombyEnemy : EnemyUnit {
 
     public override void Update() {
 
-        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen) { rb.velocity = Vector2.zero; return; }
+        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { rb.velocity = Vector2.zero; return; }
 
         rb.velocity = new(moveSign * moveSpeed * moveSpeedMultiplier, 0);
 
