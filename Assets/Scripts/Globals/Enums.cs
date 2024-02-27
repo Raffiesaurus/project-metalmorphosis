@@ -1,7 +1,7 @@
 public enum BulletType {
     BasicBullet,
+    BlitzBullet,
     Grenade,
-    Melee,
     None,
 }
 
@@ -41,7 +41,7 @@ public enum ArmPart {
     Judy,
     Righty,
     Nail_Gun,
-    Brrrrr,
+    Blitzburst,
 }
 
 public enum ArmDirection {

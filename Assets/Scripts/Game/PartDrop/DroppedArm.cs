@@ -33,7 +33,7 @@ public class DroppedArm : DroppablePart {
                 armPart = ArmPart.Chainsaw;
                 partName = "Chainsaw";
             } else if (randomPart == 1) {
-                armPart = ArmPart.Brrrrr;
+                armPart = ArmPart.Blitzburst;
                 partName = "Brrrrrrrr";
             } else {
                 armPart = ArmPart.Bat;
@@ -55,18 +55,25 @@ public class DroppedArm : DroppablePart {
             }
 
         }
-
     }
 
     public override void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("player")) {
             rb.bodyType = RigidbodyType2D.Static;
-            PartDropData uiData = new PartDropData();
-            uiData.partName = partName;
-            uiData.partDescription = "description";
-            uiData.partRarity = "Common";
-            uiData.partType = "Left";
-            uiData.partImage = assignedImage;
+            PartDropData uiData = new PartDropData {
+                partName = partName,
+                partDescription = "description",
+                partRarity = "Common",
+                partType = "Left",
+                partImage = assignedImage
+            };
+
+            if (uiData.partType == "Left")
+                uiData.leftArm = armPart;
+
+            if (uiData.partType == "Right")
+                uiData.rightArm = armPart;
+
             PrefabManager.ShowPickupUI(uiData, gameObject);
         }
     }

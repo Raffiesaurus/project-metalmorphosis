@@ -22,11 +22,11 @@ public class PlayerMain : MonoBehaviour {
 
     [HideInInspector] public BoxCollider2D meleeHitBox;
 
-    private PlayerParts leftArm;
-    private PlayerParts rightArm;
-    private PlayerParts legs;
-    private PlayerParts head;
-    private PlayerParts torso;
+    [SerializeField] private PlayerParts leftArm;
+    [SerializeField] private PlayerParts rightArm;
+    [SerializeField] private PlayerParts legs;
+    [SerializeField] private PlayerParts head;
+    [SerializeField] private PlayerParts torso;
 
     private float dmgReductionPercentage = 0.0f;
 
@@ -43,6 +43,26 @@ public class PlayerMain : MonoBehaviour {
         GameUIManager.UpdateHealthBar(currentHealth / maxHealth);
         GameUIManager.UpdateFuelBar(currentFuel / maxFuel);
         GameUIManager.UpdateAmmoCount(currentAmmo, maxAmmo);
+    }
+
+    public void UpdateEquippedItems() {
+
+        meleeHitBox.enabled = false;
+
+        Debug.Log("Updating");
+        Debug.Log(PartsManager.EquippedLeftArm);
+        Debug.Log(PartsManager.EquippedRightArm);
+        Debug.Log("-------------------------");
+
+        if (leftArm == null)
+            leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerParts>();
+        leftArm.GetComponent<PlayerArm>().armPart = PartsManager.EquippedLeftArm;
+        leftArm.GetComponent<PlayerArm>().AssignScript();
+
+        if (rightArm == null)
+            rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerParts>();
+        rightArm.GetComponent<PlayerArm>().armPart = PartsManager.EquippedRightArm;
+        rightArm.GetComponent<PlayerArm>().AssignScript();
     }
 
     public void OnLeftClick(Vector3 mousePos) {
@@ -116,8 +136,14 @@ public class PlayerMain : MonoBehaviour {
 
     public void DealMeleeDamage(float damage) {
         Collider2D[] enemiesToHit = Physics2D.OverlapBoxAll(meleeHitBox.bounds.center, meleeHitBox.bounds.size, 0, enemyLayer);
+
         for (int i = 0; i < enemiesToHit.Length; i++) {
-            enemiesToHit[i].GetComponent<EnemyUnit>().UpdateHealth(-damage);
+            if (enemiesToHit[i].TryGetComponent(out EnemyUnit enemy)) {
+                enemy.UpdateHealth(-damage);
+            }
+            if (enemiesToHit[i].TryGetComponent(out CoverObject cover)) {
+                cover.UpdateHealth(-damage);
+            }
         }
     }
 

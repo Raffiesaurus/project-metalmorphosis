@@ -12,61 +12,64 @@ public class PlayerArm : PlayerParts {
     [SerializeField] public int ammoUsage = 1;
 
     [HideInInspector] public float cdCounter = 0.0f;
-    [HideInInspector] public BulletType bulletType = BulletType.Melee;
+    [HideInInspector] public BulletType bulletType = BulletType.None;
 
     public virtual void Awake() {
-        PlayerArm newCompAdded = this;
+        //AssignScript();
+    }
+
+    public void AssignScript() {
         BoxCollider2D meleeHitBox = transform.parent.GetComponentInChildren<BoxCollider2D>();
 
         switch (armPart) {
 
             case ArmPart.Backfire:
-                newCompAdded = gameObject.AddComponent<BackfireArm>();
+                gameObject.AddComponent<BackfireArm>();
                 break;
 
             case ArmPart.Punch:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                gameObject.AddComponent<PunchArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Chainsaw:
-                newCompAdded = gameObject.AddComponent<ChainsawArm>();
+                gameObject.AddComponent<ChainsawArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Bat:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                gameObject.AddComponent<BatArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lucky_Scalpel:
-                newCompAdded = gameObject.AddComponent<LuckyScalpelArm>();
+                gameObject.AddComponent<LuckyScalpelArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lefty:
-                newCompAdded = gameObject.AddComponent<LeftyArm>();
+                gameObject.AddComponent<LeftyArm>();
                 break;
 
             case ArmPart.Judy:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                gameObject.AddComponent<JudyArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Righty:
-                newCompAdded = gameObject.AddComponent<RightyArm>();
+                gameObject.AddComponent<RightyArm>();
                 break;
 
             case ArmPart.Nail_Gun:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
+                gameObject.AddComponent<NailGunArm>();
                 break;
 
-            case ArmPart.Brrrrr:
-                newCompAdded = gameObject.AddComponent<NailGunArm>();
+            case ArmPart.Blitzburst:
+                gameObject.AddComponent<BlitzburstArm>();
                 break;
 
         }
-        newCompAdded.SetData(cooldown, meleeDamage, ammoUsage, fuelUsage);
+
         Destroy(this);
     }
 

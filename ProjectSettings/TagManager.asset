@@ -22,8 +22,8 @@ TagManager:
   - Floor
   - Map
   - Projectile
+  - Grenade
   - Player
-  - 
   - Game_UI
   - 
   - 3D

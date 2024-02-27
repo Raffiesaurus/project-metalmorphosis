@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4142492469040338916}
   - component: {fileID: 8889708444548165318}
   - component: {fileID: 6597258855615236379}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Legs
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4254142953349642050}
   - component: {fileID: 8111173150071511109}
   - component: {fileID: 2651995766184522533}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Player
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ MonoBehaviour:
   jumpForce: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 131200
+    m_Bits: 196736
   cursorTexture: {fileID: 2800000, guid: a9e70cc81da425842acdf873e6accb77, type: 3}
   playerSprites: {fileID: 4632488954652684437}
 --- !u!114 &2651995766184522533
@@ -305,6 +305,11 @@ MonoBehaviour:
   currentFuel: 0
   currentAmmo: 0
   meleeHitBox: {fileID: 0}
+  leftArm: {fileID: 0}
+  rightArm: {fileID: 0}
+  legs: {fileID: 0}
+  head: {fileID: 0}
+  torso: {fileID: 0}
 --- !u!1 &4251899678211065634
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +321,7 @@ GameObject:
   - component: {fileID: 777385147051700061}
   - component: {fileID: 1358736381263348132}
   - component: {fileID: 8073511747178900979}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Left Arm
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -426,7 +431,7 @@ GameObject:
   - component: {fileID: 1889106134820502153}
   - component: {fileID: 7581219521475679094}
   - component: {fileID: 8999955216156038770}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: MeleeHitBox
   m_TagString: player_melee
   m_Icon: {fileID: 0}
@@ -548,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5564757486532342378}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Parts
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -591,7 +596,7 @@ GameObject:
   - component: {fileID: 2423889975028758237}
   - component: {fileID: 5273686054483933248}
   - component: {fileID: 4932381958101802959}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Torso
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -693,7 +698,7 @@ GameObject:
   - component: {fileID: 2642797793725549450}
   - component: {fileID: 1621718803597323391}
   - component: {fileID: 1245435468891167629}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Head
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -795,7 +800,7 @@ GameObject:
   - component: {fileID: 3231785769509931349}
   - component: {fileID: 467386598831192533}
   - component: {fileID: 4955517061011203758}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Right Arm
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -886,8 +891,8 @@ MonoBehaviour:
   partRarity: 0
   player: {fileID: 0}
   isInstalled: 0
-  armPart: 8
-  cooldown: 5
+  armPart: 3
+  cooldown: 0.5
   meleeDamage: 50
   fuelUsage: 0
   ammoUsage: 5

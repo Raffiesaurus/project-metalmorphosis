@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChainsawArm : PlayerArm {
+public class PunchArm : PlayerArm {
 
     public override void Awake() {
         bulletType = BulletType.None;
-        armPart = ArmPart.Chainsaw;
-        partRarity = PartRarity.Rare;
+        armPart = ArmPart.Punch;
+        partRarity = PartRarity.Epic;
 
-        cooldown = 1;
-        meleeDamage = 50;
-        fuelUsage = 40;
+        cooldown = 1.25f;
+        meleeDamage = 40;
+        fuelUsage = 35;
     }
 
     public override void PartFire(Vector3 mousePos) {

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour {
 
-    public Rigidbody2D rb;
-    public BoxCollider2D boxCollider;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public BoxCollider2D boxCollider;
 
-    [SerializeField] public int damage;
-    [SerializeField] public int speed;
+    [SerializeField] public float damage;
+    [SerializeField] public float speed;
 
-    public string shotBy = "";
+    [HideInInspector] public string shotBy = "";
 
     private Vector2 savedSpeed = Vector2.zero;
 
-    public void Start() {
+    public virtual void Start() {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
 

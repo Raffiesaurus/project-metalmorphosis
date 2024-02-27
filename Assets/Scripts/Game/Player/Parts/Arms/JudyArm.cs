@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChainsawArm : PlayerArm {
+public class JudyArm : PlayerArm {
 
     public override void Awake() {
         bulletType = BulletType.None;
-        armPart = ArmPart.Chainsaw;
-        partRarity = PartRarity.Rare;
+        armPart = ArmPart.Judy;
+        partRarity = PartRarity.Epic;
 
         cooldown = 1;
-        meleeDamage = 50;
-        fuelUsage = 40;
+        meleeDamage = 10;
     }
 
     public override void PartFire(Vector3 mousePos) {
-        if (cdCounter <= 0 && player.currentFuel >= fuelUsage) {
+        if (cdCounter <= 0) {
             cdCounter = cooldown;
-            player.UpdateFuel(-fuelUsage);
             player.DealMeleeDamage(meleeDamage);
         }
     }

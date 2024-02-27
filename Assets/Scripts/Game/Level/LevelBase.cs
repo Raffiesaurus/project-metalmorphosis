@@ -18,6 +18,7 @@ public class LevelBase : MonoBehaviour {
 
     public void StartLevel() {
         GameManager.GetPlayer().GetComponent<PlayerMain>().SpawnAtPoint(startPoint.transform.position);
+        GameManager.GetPlayer().GetComponent<PlayerMain>().UpdateEquippedItems();
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {

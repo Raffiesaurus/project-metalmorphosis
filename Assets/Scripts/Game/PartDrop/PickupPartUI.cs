@@ -7,6 +7,11 @@ using UnityEngine;
 
 [Serializable]
 public class PartDropData {
+    [HideInInspector] public ArmPart leftArm;
+    [HideInInspector] public ArmPart rightArm;
+    [HideInInspector] public ArmPart head;
+    [HideInInspector] public ArmPart legs;
+    [HideInInspector] public ArmPart torso;
     [HideInInspector] public string partName;
     [HideInInspector] public string partRarity;
     [HideInInspector] public string partType;
@@ -44,7 +49,16 @@ public class PickupPartUI : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Z)) {
-            CameraManager.SwitchToEquipView();
+            //CameraManager.SwitchToEquipView();
+
+            if (uiData.partType == "Left")
+                PartsManager.EquippedLeftArm = uiData.leftArm;
+
+            else if (uiData.partType == "Right")
+                PartsManager.EquippedRightArm = uiData.rightArm;
+
+            Destroy(linkedObject);
+            Destroy(gameObject);
         } else if (Input.GetKeyDown(KeyCode.X)) {
             Destroy(linkedObject);
             Destroy(gameObject);

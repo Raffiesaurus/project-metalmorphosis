@@ -265,7 +265,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 198592
+    m_Bits: 200640
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -758,6 +758,10 @@ PrefabInstance:
     - target: {fileID: 4641855818368131170, guid: 5f1d983a45d3cee4ca52c58df466b4d9, type: 3}
       propertyPath: maxHealth
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641855818368131170, guid: 5f1d983a45d3cee4ca52c58df466b4d9, type: 3}
+      propertyPath: moveSpeedMultiplier
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4641855818368131170, guid: 5f1d983a45d3cee4ca52c58df466b4d9, type: 3}
       propertyPath: armDropProps.epicDropChance
@@ -1319,6 +1323,10 @@ PrefabInstance:
     - target: {fileID: 4641855818368131170, guid: 5f1d983a45d3cee4ca52c58df466b4d9, type: 3}
       propertyPath: maxHealth
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641855818368131170, guid: 5f1d983a45d3cee4ca52c58df466b4d9, type: 3}
+      propertyPath: moveSpeedMultiplier
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4641855818368131170, guid: 5f1d983a45d3cee4ca52c58df466b4d9, type: 3}
       propertyPath: armDropProps.epicDropChance
@@ -2168,6 +2176,7 @@ GameObject:
   - component: {fileID: 1939021878}
   - component: {fileID: 1939021879}
   - component: {fileID: 1939021880}
+  - component: {fileID: 1939021881}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2282,6 +2291,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4747ee66eb4574c9106bab3fe76381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1939021881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939021872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4857873231bb2c74596403b0a94bf526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2040952770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2290,6 +2311,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 415019552}
     m_Modifications:
+    - target: {fileID: 2093517883686863852, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4441532820719156763, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6220067245855684185, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2328,6 +2357,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6220067245855684185, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766828089837280942, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
@@ -2455,6 +2488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2651995766184522533, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 131136
+      objectReference: {fileID: 0}
     - target: {fileID: 4625457155458918190, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.008
@@ -2493,10 +2530,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4625457155458918190, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4955517061011203758, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-      propertyPath: armPart
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -15,16 +15,16 @@ public abstract class PlayerParts : MonoBehaviour {
         player = GameManager.GetPlayer().GetComponent<PlayerMain>();
     }
 
-    public abstract void PartInstall();
+    public virtual void PartInstall() { }
 
-    public abstract void PartUninstall();
+    public virtual void PartUninstall() { }
 
-    public abstract void PartFire(Vector3 mousePos);
+    public virtual void PartFire(Vector3 mousePos) { }
 
-    public abstract void PartReleased(Vector3 mousePos);
+    public virtual void PartReleased(Vector3 mousePos) { }
 
-    public abstract void PartUtilityActivate1(Vector3 mousePos);
+    public virtual void PartUtilityActivate1(Vector3 mousePos) { }
 
-    public abstract void PartUtilityActivate2(Vector3 mousePos);
+    public virtual void PartUtilityActivate2(Vector3 mousePos) { }
 
 }
