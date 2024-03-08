@@ -74,7 +74,7 @@ public class StabJumpEnemy : EnemyUnit {
     }
 
     private void RunAway() {
-        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { rb.velocity = Vector2.zero; return; }
+        if (GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { rb.velocity = Vector2.zero; return; }
 
         rb.velocity = new(-dirVecNormalized.x * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
     }

@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void OnPlayButton() {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(1);
     }
 
     public void OnExitButton() {

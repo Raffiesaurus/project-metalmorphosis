@@ -22,13 +22,13 @@ public abstract class Bullet : MonoBehaviour {
     }
 
     public void Update() {
-        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) {
+        if (GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) {
             if (rb.velocity != Vector2.zero)
                 savedSpeed = rb.velocity;
             rb.velocity = Vector2.zero;
         }
 
-        if (savedSpeed != Vector2.zero && !GameManager.IsInEquipMode && !GameUIManager.IsInMapScreen && !GameUIManager.IsInSwapScreen && rb.velocity == Vector2.zero) {
+        if (savedSpeed != Vector2.zero && !GameUIManager.IsInMapScreen && !GameUIManager.IsInSwapScreen && rb.velocity == Vector2.zero) {
             rb.velocity = savedSpeed;
             savedSpeed = Vector2.zero;
         }

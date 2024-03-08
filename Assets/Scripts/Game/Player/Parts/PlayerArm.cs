@@ -20,7 +20,7 @@ public class PlayerArm : PlayerParts {
 
     public void AssignScript() {
         BoxCollider2D meleeHitBox = transform.parent.GetComponentInChildren<BoxCollider2D>();
-        Debug.Log(name + " " + armPart);
+        // Debug.Log(name + " " + armPart);
         switch (armPart) {
 
             case ArmPart.Backfire:

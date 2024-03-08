@@ -66,7 +66,7 @@ public class GameUIManager : MonoBehaviour {
         instance.inGameUI.SetActive(false);
         instance.mapScreen.SetActive(true);
         instance.swapUI.SetActive(false);
-        //CameraManager.SwitchToGameView();
+        CameraManager.SwitchToMapView();
     }
 
     public static void SwitchToInGame() {
@@ -76,7 +76,6 @@ public class GameUIManager : MonoBehaviour {
         instance.mapScreen.SetActive(false);
         instance.swapUI.SetActive(false);
         CameraManager.SwitchToGameView();
-        GameManager.BackToGame();
     }
 
     public static void SwitchToSwapScreen() {

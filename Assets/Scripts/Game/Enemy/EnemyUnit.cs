@@ -56,7 +56,7 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void Update() {
-        if (GameManager.IsInEquipMode || GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { rb.velocity = Vector2.zero; return; }
+        if (GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { rb.velocity = Vector2.zero; return; }
 
         //if (transform.position.y < 0) { OnDeath(); }
 

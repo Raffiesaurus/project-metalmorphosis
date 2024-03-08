@@ -50,7 +50,6 @@ public class CameraManager : MonoBehaviour {
     }
 
     public static void SwitchToEquipView() {
-        GameManager.IsInEquipMode = true;
         instance.playerCam.enabled = false;
         instance.uiCam.enabled = true;
         instance.equipScreenCam.enabled = true;
@@ -60,6 +59,12 @@ public class CameraManager : MonoBehaviour {
         instance.playerCam.enabled = true;
         instance.uiCam.enabled = true;
         instance.equipScreenCam.enabled = false;
-        GameManager.IsInEquipMode = false;
+        GameManager.BackToGame();
+    }
+
+    public static void SwitchToMapView() {
+        instance.playerCam.enabled = false;
+        instance.uiCam.enabled = true;
+        instance.equipScreenCam.enabled = false;
     }
 }

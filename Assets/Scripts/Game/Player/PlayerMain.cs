@@ -49,11 +49,11 @@ public class PlayerMain : MonoBehaviour {
 
         meleeHitBox.enabled = false;
 
-        Debug.Log("Udating");
+        /*Debug.Log("Udating");
         Debug.Log(leftArm);
         Debug.Log(rightArm);
         Debug.Log("---------------------------");
-
+*/
         if (leftArm == null)
             leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerParts>();
         leftArm.GetComponent<PlayerArm>().armPart = PartsManager.EquippedLeftArm;

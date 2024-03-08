@@ -10,17 +10,6 @@ public class GameManager : MonoBehaviour {
 
     private static GameManager instance = null;
 
-    private bool isInEquipMode = false;
-
-    public static bool IsInEquipMode {
-        get {
-            return instance.isInEquipMode;
-        }
-        set {
-            instance.isInEquipMode = value;
-        }
-    }
-
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -29,8 +18,8 @@ public class GameManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        //GameUIManager.SwitchToMap();
-        GameUIManager.SwitchToInGame();
+        GameUIManager.SwitchToMap();
+        //GameUIManager.SwitchToInGame();
     }
 
     // Update is called once per frame
