@@ -76,12 +76,15 @@ public class LevelManager : MonoBehaviour {
 
 
         MapLevelPrefab bossLevel = new MapLevelPrefab();
-        bossLevel.levelType = LevelType.Boss;
+        //bossLevel.SetLevelType(LevelType.Boss);
         bossLevel.tempName = (levelsPerGame - 1).ToString() + " BOSS";
 
         for (int i = 0; i < levelsPerGame - 1; i++) {
             for (int j = 0; j < levelsPerRow; j++) {
                 mapLevels[i, j].tempName = i.ToString() + " " + j.ToString();
+                mapLevels[i, j].gameObject.name = i.ToString() + " " + j.ToString();
+                mapLevels[i, j].row = i;
+                mapLevels[i, j].col = j;
             }
         }
 
@@ -125,32 +128,46 @@ public class LevelManager : MonoBehaviour {
 
             randomlyChosenFirstLevel.Append(randLevel);
             randomlyChosenSecondLevel.Append(randLevel2);
+
+            if (!mapLevels[0, randLevel].postConnection.Contains(mapLevels[1, randLevel2].gameObject)) {
+                mapLevels[0, randLevel].postConnection.Add(mapLevels[1, randLevel2].gameObject);
+            }
+
+            if (!mapLevels[1, randLevel2].preConnection.Contains(mapLevels[0, randLevel].gameObject)) {
+                mapLevels[1, randLevel2].preConnection.Add(mapLevels[0, randLevel].gameObject);
+            }
+
+            //Debug.Log("Linkning 0 " + randLevel + " and 1 " + randLevel2);
             chosenLevelsPerRow.Add(randLevel);
             chosenLevelsPerRow.Add(randLevel2);
-            mapLevels[0, randLevel].postConnection.Add(mapLevels[1, randLevel2].gameObject);
-            mapLevels[1, randLevel2].preConnection.Add(mapLevels[0, randLevel].gameObject);
-
-            Debug.Log("Linkning 0 " + randLevel + " and 1 " + randLevel2);
 
             for (int rowCount = 2; rowCount < levelsPerGame - 1; rowCount++) {
                 int nextLevel;
                 do {
-                    minLevel = (int)chosenLevelsPerRow[chosenLevelsPerRow.Count - 1] - 1;
+                    minLevel = (int)chosenLevelsPerRow[^1] - 1;
+                    //Debug.Log("Min Level: " + minLevel);
                     if (minLevel < 0) {
                         minLevel = 0;
                     }
-                    maxLevel = (int)chosenLevelsPerRow[chosenLevelsPerRow.Count - 1] + 1;
+                    //Debug.Log("Max Level: " + maxLevel);
+                    maxLevel = (int)chosenLevelsPerRow[^1] + 1;
                     if (maxLevel > levelsPerRow - 1) {
                         maxLevel = levelsPerRow - 1;
                     }
                     nextLevel = Random.Range(minLevel, maxLevel + 1);
+                    //Debug.Log("Next Level: " + nextLevel);
+                } while (CheckCrossingPaths((int)chosenLevelsPerRow[^1], nextLevel, chosenLevelsPerRow.Count - 1, chosenLevelsPerRowPerRunGen));
 
-                } while (CheckCrossingPaths((int)chosenLevelsPerRow[chosenLevelsPerRow.Count - 1], nextLevel, chosenLevelsPerRow.Count - 1, chosenLevelsPerRowPerRunGen));
+                if (!mapLevels[rowCount - 1, (int)chosenLevelsPerRow[^1]].postConnection.Contains(mapLevels[rowCount, nextLevel].gameObject)) {
+                    mapLevels[rowCount - 1, (int)chosenLevelsPerRow[^1]].postConnection.Add(mapLevels[rowCount, nextLevel].gameObject);
+                }
+
+                if (!mapLevels[rowCount, nextLevel].preConnection.Contains(mapLevels[rowCount - 1, (int)chosenLevelsPerRow[^1]].gameObject)) {
+                    mapLevels[rowCount, nextLevel].preConnection.Add(mapLevels[rowCount - 1, (int)chosenLevelsPerRow[^1]].gameObject);
+                }
+
+                //Debug.Log("Linkning " + (rowCount - 1) + " " + (int)chosenLevelsPerRow[^1] + " and " + rowCount + " " + nextLevel);
                 chosenLevelsPerRow.Add(nextLevel);
-                mapLevels[rowCount - 1, (int)chosenLevelsPerRow[chosenLevelsPerRow.Count - 1]].postConnection.Add(mapLevels[rowCount, nextLevel].gameObject);
-                mapLevels[rowCount, nextLevel].preConnection.Add(mapLevels[rowCount - 1, (int)chosenLevelsPerRow[chosenLevelsPerRow.Count - 1]].gameObject);
-
-                Debug.Log("Linkning " + (rowCount - 1) + " " + (int)chosenLevelsPerRow[chosenLevelsPerRow.Count - 1] + " and " + rowCount + " " + nextLevel);
             }
 
 
@@ -160,22 +177,46 @@ public class LevelManager : MonoBehaviour {
 
 
         foreach (ArrayList element in chosenLevelsPerRowPerRunGen) {
-            Debug.Log("-------------------------------------------");
+            /*Debug.Log("-------------------------------------------");
             //Debug.Log(element);
             foreach (int element2 in element) {
                 Debug.Log(element2);
-            }
+            }*/
         }
 
         foreach (MapLevelPrefab mapLevel in mapLevels) {
+            /*if (mapLevel.tempName.StartsWith("0")) {
+                mapLevel.SetLevelType(LevelType.Rest);
+            }*/
             if (mapLevel.preConnection.Count == 0 && mapLevel.postConnection.Count == 0) {
                 Destroy(mapLevel.transform.GetChild(0).gameObject);
+            } else {
+                if (mapLevel.tempName.StartsWith((levelsPerGame - 2).ToString())) {
+                    mapLevel.SetLevelType(LevelType.Rest);
+                } else if (mapLevel.tempName.StartsWith(((levelsPerGame - 2) / 2).ToString())) {
+                    mapLevel.SetLevelType(LevelType.Puzzle);
+                } else {
+                    if (mapLevel.tempName.StartsWith("0") || mapLevel.tempName.StartsWith("1")) {
+                        mapLevel.SetLevelType(LevelType.Combat);
+                    } else {
+                        int randChance = Random.Range(1, 10);
+                        if (randChance == 1) {
+                            mapLevel.SetLevelType(LevelType.Rest);
+                        } else if (randChance == 2) {
+                            mapLevel.SetLevelType(LevelType.Puzzle);
+                        } else {
+                            mapLevel.SetLevelType(LevelType.Combat);
+                        }
+                    }
+                }
             }
+
         }
+
+
     }
 
     bool CheckCrossingPaths(int preRandLevel, int currentRandLevel, int prevRow, ArrayList chosenLevelsPerRowPerRunGen) {
-        Debug.Log("Prev " + prevRow);
         foreach (ArrayList rowPerGen in chosenLevelsPerRowPerRunGen) {
             //Debug.Log("kek? " + rowPerGen[prevRow] + " " + rowPerGen[prevRow+1]);
             if (preRandLevel == (int)rowPerGen[prevRow] + 1 || preRandLevel == (int)rowPerGen[prevRow] - 1) {
@@ -190,12 +231,12 @@ public class LevelManager : MonoBehaviour {
                  */
                 if (preRandLevel < (int)rowPerGen[prevRow]) {
                     if (currentRandLevel > (int)rowPerGen[prevRow + 1]) {
-                        Debug.Log("SMOL IM SORRY IM CROSSING YOUR PATH " + preRandLevel + currentRandLevel + " " + (int)rowPerGen[prevRow] + (int)rowPerGen[prevRow + 1]);
+                        //Debug.Log("SMOL IM SORRY IM CROSSING YOUR PATH " + preRandLevel + currentRandLevel + " " + (int)rowPerGen[prevRow] + (int)rowPerGen[prevRow + 1]);
                         return true;
                     }
                 } else {
                     if (currentRandLevel < (int)rowPerGen[prevRow + 1]) {
-                        Debug.Log("BIG IM SORRY IM CROSSING YOUR PATH " + preRandLevel + currentRandLevel + " " + (int)rowPerGen[prevRow] + (int)rowPerGen[prevRow + 1]);
+                        //Debug.Log("BIG IM SORRY IM CROSSING YOUR PATH " + preRandLevel + currentRandLevel + " " + (int)rowPerGen[prevRow] + (int)rowPerGen[prevRow + 1]);
                         return true;
                     }
                 }

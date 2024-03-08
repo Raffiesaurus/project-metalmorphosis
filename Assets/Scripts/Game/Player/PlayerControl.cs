@@ -155,4 +155,12 @@ public class PlayerControl : MonoBehaviour {
     void UpdateMoveSpeed(float newSpeed) {
         moveSpeed = newSpeed;
     }
+
+    void Crouch() {
+
+    }
+
+    void Slide() {
+
+    }
 }
