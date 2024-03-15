@@ -19,12 +19,19 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         GameUIManager.SwitchToMap();
-        //GameUIManager.SwitchToInGame();
     }
 
     // Update is called once per frame
     void Update() {
 
+    }
+
+    public static void SwitchToLevel() {
+        GameUIManager.SwitchToInGame();
+    }
+
+    public static void SwitchToMap() {
+        GameUIManager.SwitchToMap();
     }
 
     public static PlayerMain GetPlayer() {
@@ -36,7 +43,7 @@ public class GameManager : MonoBehaviour {
         instance.swapScreen.Setup(data);
     }
 
-    public static void BackToGame() {
+    public static void BackToGameFromSwap() {
         instance.swapScreen.gameObject.SetActive(false);
     }
 }

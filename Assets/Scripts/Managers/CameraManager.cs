@@ -59,7 +59,7 @@ public class CameraManager : MonoBehaviour {
         instance.playerCam.enabled = true;
         instance.uiCam.enabled = true;
         instance.equipScreenCam.enabled = false;
-        GameManager.BackToGame();
+        GameManager.BackToGameFromSwap();
     }
 
     public static void SwitchToMapView() {

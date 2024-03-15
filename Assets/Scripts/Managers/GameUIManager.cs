@@ -67,6 +67,7 @@ public class GameUIManager : MonoBehaviour {
         instance.mapScreen.SetActive(true);
         instance.swapUI.SetActive(false);
         CameraManager.SwitchToMapView();
+        LevelManager.UpdateLevels();
     }
 
     public static void SwitchToInGame() {

@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
-    [SerializeField] private GameObject[] morgueLevels;
+    [SerializeField] private GameObject[] morgueCombat;
+    [SerializeField] private GameObject[] morgueRest;
+    [SerializeField] private GameObject[] morguePuzzle;
+    [SerializeField] private GameObject[] morgueBoss;
     [SerializeField] private GameObject[] cityLevels;
 
     [SerializeField] private GameObject levelParent;
@@ -27,6 +30,9 @@ public class LevelManager : MonoBehaviour {
 
     private LevelBase currentLevel;
 
+    ArrayList chosenLevelsPerRowPerRunGen = new ArrayList();
+    MapLevelPrefab[,] mapLevels;
+
     private int remainingEnemies;
     public static int RemainingEnemies {
         get {
@@ -43,15 +49,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Start() {
-        currentLevel = levelParent.GetComponentInChildren<LevelBase>();
-        if (currentLevel != null) {
-            currentLevel.StartLevel();
-        } else {
-            GameObject newLevel = Instantiate(spawnLevel);
-            newLevel.transform.SetParent(levelParent.transform);
-            newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            newLevel.GetComponent<LevelBase>().StartLevel();
-        }
+
     }
 
     void Update() {
@@ -64,16 +62,13 @@ public class LevelManager : MonoBehaviour {
         int runGens = 4;
         int[] randomlyChosenFirstLevel = new int[runGens];
         int[] randomlyChosenSecondLevel = new int[runGens];
-        ArrayList chosenLevelsPerRowPerRunGen = new ArrayList();
-        MapLevelPrefab[,] mapLevels = new MapLevelPrefab[levelsPerGame - 1, levelsPerRow];
-
+        mapLevels = new MapLevelPrefab[levelsPerGame - 1, levelsPerRow];
         for (int i = 0; i < levelsPerGame - 1; i++) {
             for (int j = 0; j < levelsPerRow; j++) {
                 GameObject newLevelPrefab = Instantiate(mapScreen.levelUIObject, mapScreen.levelUIParent.transform, false);
                 mapLevels[i, j] = newLevelPrefab.GetComponent<MapLevelPrefab>();
             }
         }
-
 
         MapLevelPrefab bossLevel = new MapLevelPrefab();
         //bossLevel.SetLevelType(LevelType.Boss);
@@ -213,7 +208,7 @@ public class LevelManager : MonoBehaviour {
 
         }
 
-
+        CheckAllLevels();
     }
 
     bool CheckCrossingPaths(int preRandLevel, int currentRandLevel, int prevRow, ArrayList chosenLevelsPerRowPerRunGen) {
@@ -244,5 +239,66 @@ public class LevelManager : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    void CheckAllLevels() {
+
+        int rowsCompleted = -1;
+        foreach (MapLevelPrefab mapLevel in mapLevels) {
+            if (mapLevel.hasCompletedLevel) {
+                if (mapLevel.row > rowsCompleted)
+                    rowsCompleted = mapLevel.row;
+            }
+        }
+
+        foreach (MapLevelPrefab mapLevel in mapLevels) {
+            if (rowsCompleted >= mapLevel.row) {
+                mapLevel.canClick = false;
+            } else {
+                if (mapLevel.preConnection.Count == 0) {
+                    mapLevel.canClick = true;
+                } else {
+                    foreach (GameObject preMap in mapLevel.preConnection) {
+                        MapLevelPrefab preMapScript = preMap.GetComponent<MapLevelPrefab>();
+                        if (preMapScript.hasCompletedLevel) {
+                            mapLevel.canClick = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    void LoadAndStartLevel(MapLevelPrefab mapObj, LevelType lvlType) {
+        GameObject[] bunchOfLevels;
+        if (lvlType == LevelType.Combat) {
+            bunchOfLevels = morgueCombat;
+        } else if (lvlType == LevelType.Puzzle) {
+            bunchOfLevels = morguePuzzle;
+        } else if (lvlType == LevelType.Rest) {
+            bunchOfLevels = morgueRest;
+        } else {
+            bunchOfLevels = morgueBoss;
+        }
+
+        int randLevelNum = Random.Range(0, bunchOfLevels.Length - 1);
+
+        GameObject mapToSpawn = bunchOfLevels[randLevelNum];
+
+        GameObject newLevel = Instantiate(mapToSpawn);
+        newLevel.transform.SetParent(levelParent.transform);
+        newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        newLevel.GetComponent<LevelBase>().StartLevel();
+        newLevel.GetComponent<LevelBase>().connectedUIMap = mapObj;
+
+        GameManager.SwitchToLevel();
+    }
+
+    public static void StartLevel(MapLevelPrefab mapObj, LevelType lvlType) {
+        instance.LoadAndStartLevel(mapObj, lvlType);
+    }
+
+    public static void UpdateLevels() {
+        instance.CheckAllLevels();
     }
 }

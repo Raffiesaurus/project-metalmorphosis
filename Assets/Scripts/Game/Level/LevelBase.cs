@@ -12,6 +12,8 @@ public class LevelBase : MonoBehaviour {
 
     [HideInInspector] public int enemyCount;
 
+    [HideInInspector] public MapLevelPrefab connectedUIMap;
+
     public CoverObject[] coverObjects = null;
 
     public void Start() {
@@ -27,6 +29,16 @@ public class LevelBase : MonoBehaviour {
     private void Update() {
         EnemyUnit[] enemies = GetComponentsInChildren<EnemyUnit>();
         enemyCount = enemies.Length;
+
+        if (endPoint.hasCompletedLevel) {
+            OnLevelComplete();
+        }
     }
 
+    void OnLevelComplete() {
+        endPoint.hasCompletedLevel = false;
+        connectedUIMap.hasCompletedLevel = true;
+        GameManager.SwitchToMap();
+        Destroy(gameObject);
+    }
 }

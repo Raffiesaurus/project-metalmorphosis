@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapLevelPrefab : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI levelText = null;
     [SerializeField] public GameObject[] arrowObjects = null;
+    [SerializeField] public Button levelStartButton = null;
+    [SerializeField] public Image disabledImage = null;
+    [SerializeField] public Image completedImage = null;
     public bool hasStartedLevel = false;
     public bool hasCompletedLevel = false;
+    public bool canClick = false;
     public int row = 0;
     public int col = 0;
     public LevelType levelType;
@@ -57,5 +62,27 @@ public class MapLevelPrefab : MonoBehaviour {
             }
         }
 
+    }
+
+    private void Update() {
+        if (levelStartButton != null) {
+            levelStartButton.enabled = canClick;
+            disabledImage.gameObject.SetActive(!levelStartButton.enabled);
+            if (hasCompletedLevel) {
+                disabledImage.gameObject.SetActive(false);
+                completedImage.gameObject.SetActive(true);
+            } else {
+                completedImage.gameObject.SetActive(false);
+            }
+        } else {
+            disabledImage.gameObject.SetActive(false);
+            completedImage.gameObject.SetActive(false);
+        }
+
+    }
+
+    public void OnLevelStart() {
+        hasStartedLevel = true;
+        LevelManager.StartLevel(this, levelType);
     }
 }
