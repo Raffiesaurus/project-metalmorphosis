@@ -8,7 +8,9 @@ public class MapScreen : MonoBehaviour {
     [SerializeField] private Vector3 offset;
 
     public GameObject levelUIObject;
+    public GameObject bossLevelUIObject;
     public GameObject levelUIParent;
+    public GameObject bossLevelPrefab;
 
     private void Update() {
         if (dragging) {

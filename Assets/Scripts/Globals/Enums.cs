@@ -44,6 +44,28 @@ public enum ArmPart {
     Blitzburst,
 }
 
+public enum LegPart { 
+    Dumptruck,
+    Heavy_Artillery,
+    Gassy,
+    Overclocked,
+    Plain,
+}
+
+public enum HeadPart {
+    Fishbowl,
+    Surgeon,
+    Boundman,   // one piece reference hehe
+    Meathead,
+    Pinhead,
+    Neurons,
+    Farsighted,
+    Nearsighted,
+    Thinker,
+    Magnifeye,
+    Minimifeye,
+}
+
 public enum ArmDirection {
     Left,
     Right

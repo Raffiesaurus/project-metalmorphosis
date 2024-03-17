@@ -35,7 +35,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public static PlayerMain GetPlayer() {
-        return instance.playerObject;
+        if (instance.playerObject)
+            return instance.playerObject;
+        else
+            return null;
     }
 
     public static void SetupSwap(PartDropData data) {
@@ -45,5 +48,9 @@ public class GameManager : MonoBehaviour {
 
     public static void BackToGameFromSwap() {
         instance.swapScreen.gameObject.SetActive(false);
+    }
+
+    public static void GameOver(bool victory) {
+        GameUIManager.GameOver(victory);
     }
 }

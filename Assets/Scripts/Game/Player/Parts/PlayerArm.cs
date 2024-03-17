@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PlayerArm : PlayerParts {
@@ -18,59 +17,59 @@ public class PlayerArm : PlayerParts {
         //AssignScript();
     }
 
-    public void AssignScript() {
+    public PlayerArm AssignScript() {
         BoxCollider2D meleeHitBox = transform.parent.GetComponentInChildren<BoxCollider2D>();
-        // Debug.Log(name + " " + armPart);
+        PlayerArm armAdded = null;
         switch (armPart) {
 
             case ArmPart.Backfire:
-                gameObject.AddComponent<BackfireArm>();
+                armAdded = gameObject.AddComponent<BackfireArm>();
                 break;
 
             case ArmPart.Punch:
-                gameObject.AddComponent<PunchArm>();
+                armAdded = gameObject.AddComponent<PunchArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Chainsaw:
-                gameObject.AddComponent<ChainsawArm>();
+                armAdded = gameObject.AddComponent<ChainsawArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Bat:
-                gameObject.AddComponent<BatArm>();
+                armAdded = gameObject.AddComponent<BatArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lucky_Scalpel:
-                gameObject.AddComponent<LuckyScalpelArm>();
+                armAdded = gameObject.AddComponent<LuckyScalpelArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Lefty:
-                gameObject.AddComponent<LeftyArm>();
+                armAdded = gameObject.AddComponent<LeftyArm>();
                 break;
 
             case ArmPart.Judy:
-                gameObject.AddComponent<JudyArm>();
+                armAdded = gameObject.AddComponent<JudyArm>();
                 meleeHitBox.enabled = true;
                 break;
 
             case ArmPart.Righty:
-                gameObject.AddComponent<RightyArm>();
+                armAdded = gameObject.AddComponent<RightyArm>();
                 break;
 
             case ArmPart.Nail_Gun:
-                gameObject.AddComponent<NailGunArm>();
+                armAdded = gameObject.AddComponent<NailGunArm>();
                 break;
 
             case ArmPart.Blitzburst:
-                gameObject.AddComponent<BlitzburstArm>();
+                armAdded = gameObject.AddComponent<BlitzburstArm>();
                 break;
 
         }
-
         Destroy(this);
+        return armAdded;
     }
 
     public virtual void Update() {
@@ -96,6 +95,7 @@ public class PlayerArm : PlayerParts {
     public override void PartReleased(Vector3 mousePos) {
         player.UpdateDamageReductionPercentage(0);
     }
+
     public void SetData(float cd, float mDmg, int ammoUse, float fuelUse) {
         cooldown = cd;
         meleeDamage = mDmg;

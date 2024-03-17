@@ -38,7 +38,11 @@ public class LevelBase : MonoBehaviour {
     void OnLevelComplete() {
         endPoint.hasCompletedLevel = false;
         connectedUIMap.hasCompletedLevel = true;
-        GameManager.SwitchToMap();
+        if (levelType != LevelType.Boss) {
+            GameManager.SwitchToMap();
+        } else {
+            GameManager.GameOver(true);
+        }
         Destroy(gameObject);
     }
 }

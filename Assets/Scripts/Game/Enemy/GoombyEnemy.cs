@@ -19,7 +19,7 @@ public class GoombyEnemy : EnemyUnit {
 
         rb.velocity = new(moveSign * moveSpeed * moveSpeedMultiplier, 0);
 
-        if (rb.velocity.x < 0) {
+        if (rb.velocity.x > 0) {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         } else {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);

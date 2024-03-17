@@ -28,9 +28,21 @@ public class PartsManager : MonoBehaviour {
         }
     }
 
+    private LegPart equippedLeg;
+    public static LegPart EquippedLeg {
+        get {
+            return instance.equippedLeg;
+        }
+        set {
+            instance.equippedLeg = value;
+            GameManager.GetPlayer().UpdateEquippedItems();
+        }
+    }
+
     private void Awake() {
-        equippedLeftArm = ArmPart.Lucky_Scalpel;
-        equippedRightArm = ArmPart.Nail_Gun;
+        equippedLeftArm = ArmPart.Backfire;
+        equippedRightArm = ArmPart.Blitzburst;
+        equippedLeg = LegPart.Overclocked;
         if (instance == null) {
             instance = this;
         }

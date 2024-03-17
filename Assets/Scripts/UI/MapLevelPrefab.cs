@@ -34,7 +34,8 @@ public class MapLevelPrefab : MonoBehaviour {
         } else {
             levelText.text = "P";
         }
-        SetArrowDirections();
+        if (levelType != LevelType.Boss)
+            SetArrowDirections();
     }
 
     public void SetArrowDirections() {

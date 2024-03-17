@@ -98,7 +98,7 @@ public class PlayerControl : MonoBehaviour {
     void FixedUpdate() {
 
         if (moveHorizontal > 0.1f || moveHorizontal < -0.1f) {
-            rb.velocity = new(moveHorizontal * moveSpeed * moveSpeedMultiplier, rb.velocity.y);
+            rb.velocity = new(moveHorizontal * moveSpeed * moveSpeedMultiplier * playerMain.legSpeedMulti, rb.velocity.y);
         } else {
             rb.velocity = new(0, rb.velocity.y);
         }

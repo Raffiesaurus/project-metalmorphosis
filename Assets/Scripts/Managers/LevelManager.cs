@@ -26,9 +26,8 @@ public class LevelManager : MonoBehaviour {
 
     [SerializeField] private MapScreen mapScreen;
 
-    private LevelBase[] orderedLevels;
-
     private LevelBase currentLevel;
+    private MapLevelPrefab bossLevel;
 
     ArrayList chosenLevelsPerRowPerRunGen = new ArrayList();
     MapLevelPrefab[,] mapLevels;
@@ -41,6 +40,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     private static LevelManager instance = null;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -55,6 +55,8 @@ public class LevelManager : MonoBehaviour {
     void Update() {
         if (currentLevel != null) {
             remainingEnemies = currentLevel.enemyCount;
+        } else {
+            currentLevel = levelParent.GetComponentInChildren<LevelBase>();
         }
     }
 
@@ -70,10 +72,6 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
-        MapLevelPrefab bossLevel = new MapLevelPrefab();
-        //bossLevel.SetLevelType(LevelType.Boss);
-        bossLevel.tempName = (levelsPerGame - 1).ToString() + " BOSS";
-
         for (int i = 0; i < levelsPerGame - 1; i++) {
             for (int j = 0; j < levelsPerRow; j++) {
                 mapLevels[i, j].tempName = i.ToString() + " " + j.ToString();
@@ -82,6 +80,15 @@ public class LevelManager : MonoBehaviour {
                 mapLevels[i, j].col = j;
             }
         }
+
+        mapScreen.bossLevelPrefab = Instantiate(mapScreen.bossLevelUIObject, mapScreen.levelUIParent.transform, false);
+        bossLevel = mapScreen.bossLevelPrefab.GetComponent<MapLevelPrefab>();
+        bossLevel.tempName = (levelsPerGame - 1).ToString() + " BOSS";
+        bossLevel.gameObject.name = (levelsPerGame - 1).ToString() + " BOSS";
+        bossLevel.row = (levelsPerGame - 1);
+        bossLevel.col = 0;
+        bossLevel.canClick = false;
+        bossLevel.SetLevelType(LevelType.Boss);
 
         foreach (MapLevelPrefab level in mapLevels) {
             //Debug.Log(level.tempName);
@@ -209,6 +216,7 @@ public class LevelManager : MonoBehaviour {
         }
 
         CheckAllLevels();
+
     }
 
     bool CheckCrossingPaths(int preRandLevel, int currentRandLevel, int prevRow, ArrayList chosenLevelsPerRowPerRunGen) {
@@ -267,6 +275,10 @@ public class LevelManager : MonoBehaviour {
                 }
             }
         }
+        if (rowsCompleted >= levelsPerGame - 2) {
+            Debug.Log("Unlock final level");
+            bossLevel.canClick = true;
+        }
     }
 
     void LoadAndStartLevel(MapLevelPrefab mapObj, LevelType lvlType) {
@@ -289,6 +301,7 @@ public class LevelManager : MonoBehaviour {
         newLevel.transform.SetParent(levelParent.transform);
         newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         newLevel.GetComponent<LevelBase>().StartLevel();
+        newLevel.GetComponent<LevelBase>().levelType = lvlType;
         newLevel.GetComponent<LevelBase>().connectedUIMap = mapObj;
 
         GameManager.SwitchToLevel();

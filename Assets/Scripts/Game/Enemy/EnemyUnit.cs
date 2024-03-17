@@ -63,7 +63,9 @@ public class EnemyUnit : MonoBehaviour {
         CheckGround();
 
         playerPos = GameManager.GetPlayer().transform.position;
-
+        if (playerPos == null) {
+            return;
+        }
         dirVec = playerPos - transform.position;
         dirVecNormalized = dirVec.normalized;
 

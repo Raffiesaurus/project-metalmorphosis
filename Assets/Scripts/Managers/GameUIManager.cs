@@ -42,10 +42,13 @@ public class GameUIManager : MonoBehaviour {
 
     [SerializeField] private TMP_Text notificationText = null;
 
+    [SerializeField] private GameOverUI gameOverScreen = null;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
         }
+        gameOverScreen.gameObject.SetActive(false);
     }
 
     public static void UpdateHealthBar(float ratio) {
@@ -92,6 +95,17 @@ public class GameUIManager : MonoBehaviour {
         instance.notificationText.text = message;
         Tween.Scale(instance.notificationText.transform, endValue: 1, startValue: 0, duration: 1.0f, ease: Ease.InSine);
         Tween.Scale(instance.notificationText.transform, endValue: 0, startValue: 1, duration: 1.0f, ease: Ease.OutSine, startDelay: 1.5f);
+    }
+
+    public static void GameOver(bool victory) {
+        instance.isInMapScreen = true;
+        CameraManager.SwitchToMapView();
+        instance.gameOverScreen.gameObject.SetActive(true);
+        if (victory) {
+            instance.gameOverScreen.PlayerWon();
+        } else {
+            instance.gameOverScreen.PlayerDeath();
+        }
     }
 
 }

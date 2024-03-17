@@ -17,16 +17,21 @@ public class PlayerMain : MonoBehaviour {
 
     [HideInInspector] public float currentHealth = 0.0f;
     [HideInInspector] public float currentFuel = 0.0f;
+    [HideInInspector] public float legSpeedMulti = 1.0f;
 
     [HideInInspector] public int currentAmmo = 0;
 
     [HideInInspector] public BoxCollider2D meleeHitBox;
 
-    [SerializeField] private PlayerParts leftArm;
-    [SerializeField] private PlayerParts rightArm;
-    [SerializeField] private PlayerParts legs;
+    [SerializeField] private PlayerArm leftArm;
+    [SerializeField] private PlayerArm rightArm;
+    [SerializeField] private PlayerLeg legs;
     [SerializeField] private PlayerParts head;
     [SerializeField] private PlayerParts torso;
+
+    private float healthBoost = 0.0f;
+    private float fuelBoost = 0.0f;
+    private int ammoBoost = 0;
 
     private float dmgReductionPercentage = 0.0f;
 
@@ -49,40 +54,50 @@ public class PlayerMain : MonoBehaviour {
 
         meleeHitBox.enabled = false;
 
-        /*Debug.Log("Udating");
-        Debug.Log(leftArm);
-        Debug.Log(rightArm);
-        Debug.Log("---------------------------");
-*/
         if (leftArm == null)
-            leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerParts>();
-        leftArm.GetComponent<PlayerArm>().armPart = PartsManager.EquippedLeftArm;
-        leftArm.GetComponent<PlayerArm>().AssignScript();
+            leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerArm>();
+        leftArm.armPart = PartsManager.EquippedLeftArm;
+        leftArm = leftArm.AssignScript();
 
         if (rightArm == null)
-            rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerParts>();
-        rightArm.GetComponent<PlayerArm>().armPart = PartsManager.EquippedRightArm;
-        rightArm.GetComponent<PlayerArm>().AssignScript();
+            rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerArm>();
+        rightArm.armPart = PartsManager.EquippedRightArm;
+        rightArm = rightArm.AssignScript();
+
+        if (legs == null)
+            legs = transform.Find("Parts").Find("Legs").GetComponent<PlayerLeg>();
+        legs.legPart = PartsManager.EquippedLeg;
+        legs = legs.AssignScript();
+
+        healthBoost = legs.healthUp;
+        ammoBoost = legs.ammoUp;
+        fuelBoost = legs.fuelUp;
+        legSpeedMulti = legs.speedUp;
+
+        UpdateHealth(0);
+        UpdateFuel(0);
+        UpdateAmmo(0);
+
+        Debug.Log(healthBoost);
+        Debug.Log(ammoBoost);
+        Debug.Log(fuelBoost);
+        Debug.Log(legSpeedMulti);
     }
 
     public void OnLeftClick(Vector3 mousePos) {
         if (leftArm == null)
-            leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerParts>();
+            leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerArm>();
 
         leftArm.PartFire(mousePos);
     }
 
     private void Update() {
 
-        /*if (transform.position.y < 0) {
-            Destroy(gameObject);
-        }*/
-
     }
 
     public void OnRightClick(Vector3 mousePos) {
         if (rightArm == null)
-            rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerParts>();
+            rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerArm>();
 
         rightArm.PartFire(mousePos);
     }
@@ -108,6 +123,7 @@ public class PlayerMain : MonoBehaviour {
     }
 
     void OnDeath() {
+        GameManager.GameOver(false);
         Destroy(gameObject);
     }
 
@@ -116,10 +132,10 @@ public class PlayerMain : MonoBehaviour {
         Transform partParent = transform.Find("Parts");
 
         if (leftArm == null)
-            leftArm = partParent.Find("Left Arm").GetComponent<PlayerParts>();
+            leftArm = partParent.Find("Left Arm").GetComponent<PlayerArm>();
 
         if (rightArm == null)
-            rightArm = partParent.Find("Right Arm").GetComponent<PlayerParts>();
+            rightArm = partParent.Find("Right Arm").GetComponent<PlayerArm>();
 
         if (legs == null)
             legs = partParent.Find("Legs").GetComponent<PlayerLeg>();
@@ -155,9 +171,9 @@ public class PlayerMain : MonoBehaviour {
             currentHealth += healthChange;
         }
 
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        Mathf.Clamp(currentHealth, 0, (maxHealth + healthBoost));
 
-        GameUIManager.UpdateHealthBar(currentHealth / maxHealth);
+        GameUIManager.UpdateHealthBar(currentHealth / (maxHealth + healthBoost));
 
         if (currentHealth <= 0) {
             OnDeath();
@@ -166,14 +182,14 @@ public class PlayerMain : MonoBehaviour {
 
     public void UpdateAmmo(int ammoChange) {
         currentAmmo += ammoChange;
-        Mathf.Clamp(currentAmmo, 0, maxAmmo);
-        GameUIManager.UpdateAmmoCount(currentAmmo, maxAmmo);
+        Mathf.Clamp(currentAmmo, 0, (maxAmmo + ammoBoost));
+        GameUIManager.UpdateAmmoCount(currentAmmo, (maxAmmo + ammoBoost));
     }
 
     public void UpdateFuel(float fuelChange) {
         currentFuel += fuelChange;
-        Mathf.Clamp(currentFuel, 0, maxFuel);
-        GameUIManager.UpdateFuelBar(currentFuel / maxFuel);
+        Mathf.Clamp(currentFuel, 0, (maxFuel + fuelBoost));
+        GameUIManager.UpdateFuelBar(currentFuel / (maxFuel + fuelBoost));
     }
 
     public void UpdateDamageReductionPercentage(float newDmgReductionPercentage) {
