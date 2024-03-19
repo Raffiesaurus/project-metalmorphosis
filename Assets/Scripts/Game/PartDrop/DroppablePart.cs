@@ -14,6 +14,7 @@ public class PartDropData {
     [HideInInspector] public string partRarity;
     [HideInInspector] public string partType;
     [HideInInspector] public string partDescription;
+    [HideInInspector] public string partConsumption;
     [SerializeField] public Sprite partImage;
 }
 

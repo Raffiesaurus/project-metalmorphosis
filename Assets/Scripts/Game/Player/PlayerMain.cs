@@ -21,7 +21,7 @@ public class PlayerMain : MonoBehaviour {
 
     [HideInInspector] public int currentAmmo = 0;
 
-    [HideInInspector] public BoxCollider2D meleeHitBox;
+    [SerializeField] public BoxCollider2D meleeHitBox;
 
     [SerializeField] private PlayerArm leftArm;
     [SerializeField] private PlayerArm rightArm;

@@ -42,7 +42,7 @@ public class PartsManager : MonoBehaviour {
     private void Awake() {
         equippedLeftArm = ArmPart.Backfire;
         equippedRightArm = ArmPart.Blitzburst;
-        equippedLeg = LegPart.Overclocked;
+        equippedLeg = LegPart.Plain;
         if (instance == null) {
             instance = this;
         }
