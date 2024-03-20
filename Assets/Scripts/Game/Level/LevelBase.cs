@@ -21,6 +21,7 @@ public class LevelBase : MonoBehaviour {
     }
 
     public void StartLevel() {
+        GameManager.SwitchToLevel();
         GameManager.GetPlayer().GetComponent<PlayerMain>().SpawnAtPoint(startPoint.transform.position);
         GameManager.GetPlayer().GetComponent<PlayerMain>().UpdateEquippedItems();
         GameUIManager.ShowNotification("Level Start!");

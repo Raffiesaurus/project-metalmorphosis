@@ -39,6 +39,17 @@ public class PartsManager : MonoBehaviour {
         }
     }
 
+    private HeadPart equippedHead;
+    public static HeadPart EquippedHead {
+        get {
+            return instance.equippedHead;
+        }
+        set {
+            instance.equippedHead = value;
+            GameManager.GetPlayer().UpdateEquippedItems();
+        }
+    }
+
     private void Awake() {
         equippedLeftArm = ArmPart.Backfire;
         equippedRightArm = ArmPart.Blitzburst;

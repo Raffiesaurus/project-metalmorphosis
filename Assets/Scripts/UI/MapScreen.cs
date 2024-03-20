@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class MapScreen : MonoBehaviour {
     private bool dragging = false;
+
     [SerializeField] private Vector3 offset;
 
-    public GameObject levelUIObject;
-    public GameObject bossLevelUIObject;
-    public GameObject levelUIParent;
-    public GameObject bossLevelPrefab;
+    [SerializeField] public GameObject levelUIPrefab;
+    [SerializeField] public GameObject bossLevelUIPrefab;
+    [SerializeField] public GameObject levelUIParent;
+    [SerializeField] public GameObject emptyLevelUIPrefab;
+    [HideInInspector] public GameObject bossLevelObject;
 
     private void Update() {
         if (dragging) {

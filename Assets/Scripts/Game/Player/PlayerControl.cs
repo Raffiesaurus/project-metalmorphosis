@@ -102,6 +102,8 @@ public class PlayerControl : MonoBehaviour {
         } else {
             rb.velocity = new(0, rb.velocity.y);
         }
+        playerMain.playerAnimator.SetFloat("Speed", rb.velocity.x);
+        Debug.Log(playerMain.playerAnimator.GetFloat("Speed"));
 
         /*if (moveVertical > 0.1f) {
             moveVertical = 0.0f;
@@ -114,6 +116,7 @@ public class PlayerControl : MonoBehaviour {
     void PlayerJump() {
         if (isGrounded || jumpCount < MaxJumpCount) {
             jumpCount++;
+            playerMain.playerAnimator.SetTrigger("Jump");
             rb.velocity = new(rb.velocity.x, jumpForce);
         }
     }
@@ -130,19 +133,20 @@ public class PlayerControl : MonoBehaviour {
 
     void CheckSideFacing(Vector3 mousePoint) {
 
-        if (moveHorizontal > 0.1f) {
-            playerSprites.transform.localScale = new(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
-        }
-
-        if (moveHorizontal < -0.1f) {
-            playerSprites.transform.localScale = new(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
-        }
 
         if ((mousePoint.x - transform.position.x) > 0) {
             playerSprites.transform.localScale = new(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 
         if ((mousePoint.x - transform.position.x) < 0) {
+            playerSprites.transform.localScale = new(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+        }
+
+        if (moveHorizontal > 0.1f) {
+            playerSprites.transform.localScale = new(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+        }
+
+        if (moveHorizontal < -0.1f) {
             playerSprites.transform.localScale = new(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
         }
 

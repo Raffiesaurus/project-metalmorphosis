@@ -265,10 +265,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
-  levelUIObject: {fileID: 6562985406024653352, guid: 559cc2583415c36418ef85fb0155fe7f, type: 3}
-  bossLevelUIObject: {fileID: 6562985406024653352, guid: 2fe451768006b9841af407375bd81860, type: 3}
+  levelUIPrefab: {fileID: 6562985406024653352, guid: 559cc2583415c36418ef85fb0155fe7f, type: 3}
+  bossLevelUIPrefab: {fileID: 6562985406024653352, guid: 2fe451768006b9841af407375bd81860, type: 3}
   levelUIParent: {fileID: 608679872}
-  bossLevelPrefab: {fileID: 0}
+  emptyLevelUIPrefab: {fileID: 6562985406024653352, guid: 924cb69a45fcad44aa6d60b9e0402ff7, type: 3}
+  bossLevelObject: {fileID: 0}
 --- !u!1 &188237607
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,6 +3674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff287c1a6f55aa445802edd9284927a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animCheck: 0
   morgueCombat:
   - {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
   - {fileID: 7335079822759661267, guid: 2198f3f141f90e446b8f80eb7e5e443f, type: 3}

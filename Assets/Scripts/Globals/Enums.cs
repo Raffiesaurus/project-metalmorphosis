@@ -64,6 +64,7 @@ public enum HeadPart {
     Thinker,
     Magnifeye,
     Minimifeye,
+    Plain,
 }
 
 public enum ArmDirection {

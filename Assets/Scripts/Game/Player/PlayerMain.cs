@@ -23,11 +23,12 @@ public class PlayerMain : MonoBehaviour {
 
     [SerializeField] public BoxCollider2D meleeHitBox;
 
+    [SerializeField] public Animator playerAnimator;
+
     [SerializeField] private PlayerArm leftArm;
     [SerializeField] private PlayerArm rightArm;
     [SerializeField] private PlayerLeg legs;
     [SerializeField] private PlayerParts head;
-    [SerializeField] private PlayerParts torso;
 
     private float healthBoost = 0.0f;
     private float fuelBoost = 0.0f;
@@ -41,7 +42,6 @@ public class PlayerMain : MonoBehaviour {
     }
 
     void Start() {
-        CheckMissingParts();
         currentHealth = maxHealth;
         currentFuel = maxFuel;
         currentAmmo = maxAmmo;
@@ -54,18 +54,12 @@ public class PlayerMain : MonoBehaviour {
 
         meleeHitBox.enabled = false;
 
-        if (leftArm == null)
-            leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerArm>();
         leftArm.armPart = PartsManager.EquippedLeftArm;
         leftArm = leftArm.AssignScript();
 
-        if (rightArm == null)
-            rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerArm>();
         rightArm.armPart = PartsManager.EquippedRightArm;
         rightArm = rightArm.AssignScript();
 
-        if (legs == null)
-            legs = transform.Find("Parts").Find("Legs").GetComponent<PlayerLeg>();
         legs.legPart = PartsManager.EquippedLeg;
         legs = legs.AssignScript();
 
@@ -77,17 +71,10 @@ public class PlayerMain : MonoBehaviour {
         UpdateHealth(0);
         UpdateFuel(0);
         UpdateAmmo(0);
-
-        Debug.Log(healthBoost);
-        Debug.Log(ammoBoost);
-        Debug.Log(fuelBoost);
-        Debug.Log(legSpeedMulti);
     }
 
     public void OnLeftClick(Vector3 mousePos) {
-        if (leftArm == null)
-            leftArm = transform.Find("Parts").Find("Left Arm").GetComponent<PlayerArm>();
-
+        playerAnimator.SetTrigger("LeftArmFire");
         leftArm.PartFire(mousePos);
     }
 
@@ -96,9 +83,7 @@ public class PlayerMain : MonoBehaviour {
     }
 
     public void OnRightClick(Vector3 mousePos) {
-        if (rightArm == null)
-            rightArm = transform.Find("Parts").Find("Right Arm").GetComponent<PlayerArm>();
-
+        playerAnimator.SetTrigger("RightArmFire");
         rightArm.PartFire(mousePos);
     }
 
@@ -125,29 +110,6 @@ public class PlayerMain : MonoBehaviour {
     void OnDeath() {
         GameManager.GameOver(false);
         Destroy(gameObject);
-    }
-
-    void CheckMissingParts() {
-
-        Transform partParent = transform.Find("Parts");
-
-        if (leftArm == null)
-            leftArm = partParent.Find("Left Arm").GetComponent<PlayerArm>();
-
-        if (rightArm == null)
-            rightArm = partParent.Find("Right Arm").GetComponent<PlayerArm>();
-
-        if (legs == null)
-            legs = partParent.Find("Legs").GetComponent<PlayerLeg>();
-
-        if (torso == null)
-            torso = partParent.Find("Torso").GetComponent<PlayerTorso>();
-
-        if (head == null)
-            head = partParent.Find("Head").GetComponent<PlayerHead>();
-
-        if (meleeHitBox == null)
-            meleeHitBox = partParent.Find("MeleeHitBox").GetComponent<BoxCollider2D>();
     }
 
     public void DealMeleeDamage(float damage) {

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
+    [SerializeField] private bool animCheck = false;
+
     [SerializeField] private GameObject[] morgueCombat;
     [SerializeField] private GameObject[] morgueRest;
     [SerializeField] private GameObject[] morguePuzzle;
@@ -45,11 +47,24 @@ public class LevelManager : MonoBehaviour {
         if (instance == null) {
             instance = this;
         }
-        GenerateLevelMap();
+
     }
 
     void Start() {
 
+        if (animCheck) {
+            int randLevelNum = Random.Range(0, morgueRest.Length - 1);
+
+            GameObject mapToSpawn = morgueRest[randLevelNum];
+
+            GameObject newLevel = Instantiate(mapToSpawn);
+            newLevel.transform.SetParent(levelParent.transform);
+            newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            newLevel.GetComponent<LevelBase>().levelType = LevelType.Rest;
+            newLevel.GetComponent<LevelBase>().StartLevel();
+        } else {
+            GenerateLevelMap();
+        }
     }
 
     void Update() {
@@ -67,7 +82,7 @@ public class LevelManager : MonoBehaviour {
         mapLevels = new MapLevelPrefab[levelsPerGame - 1, levelsPerRow];
         for (int i = 0; i < levelsPerGame - 1; i++) {
             for (int j = 0; j < levelsPerRow; j++) {
-                GameObject newLevelPrefab = Instantiate(mapScreen.levelUIObject, mapScreen.levelUIParent.transform, false);
+                GameObject newLevelPrefab = Instantiate(mapScreen.levelUIPrefab, mapScreen.levelUIParent.transform, false);
                 mapLevels[i, j] = newLevelPrefab.GetComponent<MapLevelPrefab>();
             }
         }
@@ -81,19 +96,21 @@ public class LevelManager : MonoBehaviour {
             }
         }
 
-        mapScreen.bossLevelPrefab = Instantiate(mapScreen.bossLevelUIObject, mapScreen.levelUIParent.transform, false);
-        bossLevel = mapScreen.bossLevelPrefab.GetComponent<MapLevelPrefab>();
-        bossLevel.tempName = (levelsPerGame - 1).ToString() + " BOSS";
-        bossLevel.gameObject.name = (levelsPerGame - 1).ToString() + " BOSS";
-        bossLevel.row = (levelsPerGame - 1);
-        bossLevel.col = 0;
-        bossLevel.canClick = false;
-        bossLevel.SetLevelType(LevelType.Boss);
-
-        foreach (MapLevelPrefab level in mapLevels) {
-            //Debug.Log(level.tempName);
+        for (int i = 0; i < 5; i++) {
+            if (i == 2) {
+                mapScreen.bossLevelObject = Instantiate(mapScreen.bossLevelUIPrefab, mapScreen.levelUIParent.transform, false);
+                bossLevel = mapScreen.bossLevelObject.GetComponent<MapLevelPrefab>();
+                bossLevel.tempName = (levelsPerGame - 1).ToString() + " BOSS";
+                bossLevel.gameObject.name = (levelsPerGame - 1).ToString() + " BOSS";
+                bossLevel.row = (levelsPerGame - 1);
+                bossLevel.col = 0;
+                bossLevel.canClick = false;
+                bossLevel.SetLevelType(LevelType.Boss);
+            } else {
+                Instantiate(mapScreen.emptyLevelUIPrefab, mapScreen.levelUIParent.transform, false);
+            }
         }
-        //Debug.Log(bossLevel.tempName);
+
 
         for (int runCount = 0; runCount < runGens; runCount++) {
             ArrayList chosenLevelsPerRow = new ArrayList();
@@ -300,11 +317,9 @@ public class LevelManager : MonoBehaviour {
         GameObject newLevel = Instantiate(mapToSpawn);
         newLevel.transform.SetParent(levelParent.transform);
         newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-        newLevel.GetComponent<LevelBase>().StartLevel();
         newLevel.GetComponent<LevelBase>().levelType = lvlType;
         newLevel.GetComponent<LevelBase>().connectedUIMap = mapObj;
-
-        GameManager.SwitchToLevel();
+        newLevel.GetComponent<LevelBase>().StartLevel();
     }
 
     public static void StartLevel(MapLevelPrefab mapObj, LevelType lvlType) {
