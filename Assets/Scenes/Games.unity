@@ -1935,6 +1935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff287c1a6f55aa445802edd9284927a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animCheck: 0
   morgueCombat: []
   morgueRest: []
   morguePuzzle: []
