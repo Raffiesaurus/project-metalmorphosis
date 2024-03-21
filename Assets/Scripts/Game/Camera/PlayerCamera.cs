@@ -13,6 +13,6 @@ public class PlayerCamera : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (GameManager.GetPlayer() != null)
-            transform.position = new Vector3(GameManager.GetPlayer().transform.position.x, transform.position.y, transform.position.z);
+            transform.position = new Vector3(GameManager.GetPlayer().transform.position.x, GameManager.GetPlayer().transform.position.y + 2, transform.position.z);
     }
 }

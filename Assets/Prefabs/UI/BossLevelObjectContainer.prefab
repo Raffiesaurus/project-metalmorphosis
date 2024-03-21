@@ -485,6 +485,7 @@ MonoBehaviour:
   levelStartButton: {fileID: 7665702416904134941}
   disabledImage: {fileID: 1840061023600317734}
   completedImage: {fileID: 6157652685622162584}
+  mapTypeImage: {fileID: 7936387449447030620}
   hasStartedLevel: 0
   hasCompletedLevel: 0
   canClick: 0

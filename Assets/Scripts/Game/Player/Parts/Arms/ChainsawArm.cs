@@ -14,7 +14,7 @@ public class ChainsawArm : PlayerArm {
         fuelUsage = 40;
     }
 
-    public override void PartFire(Vector3 mousePos) {
+    public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
         if (cdCounter <= 0 && player.currentFuel >= fuelUsage) {
             cdCounter = cooldown;
             player.UpdateFuel(-fuelUsage);

@@ -19,7 +19,7 @@ public abstract class PlayerParts : MonoBehaviour {
 
     public virtual void PartUninstall() { }
 
-    public virtual void PartFire(Vector3 mousePos) { }
+    public virtual void PartFire(Vector3 mousePos, Vector3 spawnPoint) { }
 
     public virtual void PartReleased(Vector3 mousePos) { }
 

@@ -48,7 +48,7 @@ public abstract class Bullet : MonoBehaviour {
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision) {
-
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("floor")) {
             KillBullet();
         }

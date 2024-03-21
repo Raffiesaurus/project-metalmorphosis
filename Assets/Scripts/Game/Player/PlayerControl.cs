@@ -103,7 +103,6 @@ public class PlayerControl : MonoBehaviour {
             rb.velocity = new(0, rb.velocity.y);
         }
         playerMain.playerAnimator.SetFloat("Speed", rb.velocity.x);
-        Debug.Log(playerMain.playerAnimator.GetFloat("Speed"));
 
         /*if (moveVertical > 0.1f) {
             moveVertical = 0.0f;

@@ -60,7 +60,7 @@ public class GameUIManager : MonoBehaviour {
     }
 
     public static void UpdateAmmoCount(int count, int maxCount) {
-        instance.ammoText.text = "Ammo: " + count + "/" + maxCount;
+        instance.ammoText.text = count + "/" + maxCount;
     }
 
     public static void SwitchToMap() {

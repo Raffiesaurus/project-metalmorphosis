@@ -13,7 +13,7 @@ public class JudyArm : PlayerArm {
         meleeDamage = 10;
     }
 
-    public override void PartFire(Vector3 mousePos) {
+    public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
         if (cdCounter <= 0) {
             cdCounter = cooldown;
             player.DealMeleeDamage(meleeDamage);

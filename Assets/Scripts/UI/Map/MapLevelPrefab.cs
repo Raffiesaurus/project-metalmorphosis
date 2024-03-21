@@ -10,6 +10,9 @@ public class MapLevelPrefab : MonoBehaviour {
     [SerializeField] public Button levelStartButton = null;
     [SerializeField] public Image disabledImage = null;
     [SerializeField] public Image completedImage = null;
+
+    [SerializeField] public Image mapTypeImage = null;
+
     public bool hasStartedLevel = false;
     public bool hasCompletedLevel = false;
     public bool canClick = false;
@@ -22,7 +25,7 @@ public class MapLevelPrefab : MonoBehaviour {
     public List<GameObject> preConnection;
     public List<GameObject> postConnection;
 
-    public void SetLevelType(LevelType type) {
+    public void SetLevelType(LevelType type, Sprite mapTypeSprite) {
         levelType = type;
         //levelText = GetComponentInChildren<TMP_Text>();
         if (levelType == LevelType.Combat) {
@@ -34,8 +37,10 @@ public class MapLevelPrefab : MonoBehaviour {
         } else {
             levelText.text = "P";
         }
-        if (levelType != LevelType.Boss)
+        if (levelType != LevelType.Boss) {
+            mapTypeImage.sprite = mapTypeSprite;
             SetArrowDirections();
+        }
     }
 
     public void SetArrowDirections() {

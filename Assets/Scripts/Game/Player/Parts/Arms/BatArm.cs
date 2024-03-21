@@ -16,7 +16,7 @@ public class BatArm : PlayerArm {
         meleeDamage = 15;
     }
 
-    public override void PartFire(Vector3 mousePos) {
+    public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
         if (cdCounter <= 0) {
             CancelInvoke();
             cdCounter = cooldown;

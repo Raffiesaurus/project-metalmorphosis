@@ -10,7 +10,7 @@ public class LeftyArm : PlayerArm {
         partRarity = PartRarity.Common;
     }
 
-    public override void PartFire(Vector3 mousePos) {
+    public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
         player.UpdateDamageReductionPercentage(50);
     }
 }

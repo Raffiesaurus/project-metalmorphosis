@@ -11,6 +11,7 @@ TagManager:
   - player_melee
   - cover
   - part_drop
+  - ui
   layers:
   - Default
   - TransparentFX
@@ -47,4 +48,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: StatsBar
+    uniqueID: 1290182895
+    locked: 0
+  - name: text
+    uniqueID: 3542220881
     locked: 0

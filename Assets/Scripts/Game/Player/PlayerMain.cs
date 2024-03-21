@@ -30,6 +30,8 @@ public class PlayerMain : MonoBehaviour {
     [SerializeField] private PlayerLeg legs;
     [SerializeField] private PlayerParts head;
 
+    [SerializeField] private GameObject firingSpawnPoint;
+
     private float healthBoost = 0.0f;
     private float fuelBoost = 0.0f;
     private int ammoBoost = 0;
@@ -41,7 +43,7 @@ public class PlayerMain : MonoBehaviour {
         playerControl.enabled = true;
     }
 
-    void Start() {
+    void Awake() {
         currentHealth = maxHealth;
         currentFuel = maxFuel;
         currentAmmo = maxAmmo;
@@ -75,7 +77,7 @@ public class PlayerMain : MonoBehaviour {
 
     public void OnLeftClick(Vector3 mousePos) {
         playerAnimator.SetTrigger("LeftArmFire");
-        leftArm.PartFire(mousePos);
+        leftArm.PartFire(mousePos, firingSpawnPoint.transform.position);
     }
 
     private void Update() {
@@ -84,7 +86,7 @@ public class PlayerMain : MonoBehaviour {
 
     public void OnRightClick(Vector3 mousePos) {
         playerAnimator.SetTrigger("RightArmFire");
-        rightArm.PartFire(mousePos);
+        rightArm.PartFire(mousePos, firingSpawnPoint.transform.position);
     }
 
     public void OnLeftClickRelease() {

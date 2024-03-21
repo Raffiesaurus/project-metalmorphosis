@@ -15,12 +15,12 @@ public class BackfireArm : PlayerArm {
         fuelUsage = 15;
     }
 
-    public override void PartFire(Vector3 mousePos) {
+    public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
         if (cdCounter <= 0 && player.currentAmmo >= ammoUsage && player.currentFuel >= fuelUsage) {
             player.UpdateAmmo(-ammoUsage);
             player.UpdateFuel(-fuelUsage);
             cdCounter = cooldown;
-            PrefabManager.SpawnAndFire(bulletType, transform.position, mousePos, gameObject.tag);
+            PrefabManager.SpawnAndFire(bulletType, spawnPoint, mousePos, gameObject.tag);
         }
     }
 

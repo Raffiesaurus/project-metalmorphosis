@@ -9,12 +9,12 @@ public class PlayerArm : PlayerParts {
     [SerializeField] public float meleeDamage = 10.0f;
     [SerializeField] public float fuelUsage = 0.0f;
     [SerializeField] public int ammoUsage = 1;
+    [SerializeField] public GameObject spawnPoint = null;
 
     [HideInInspector] public float cdCounter = 0.0f;
     [HideInInspector] public BulletType bulletType = BulletType.None;
 
     public virtual void Awake() {
-        //AssignScript();
     }
 
     public PlayerArm AssignScript() {
@@ -88,7 +88,7 @@ public class PlayerArm : PlayerParts {
 
     public override void PartUtilityActivate1(Vector3 mousePos) { }
 
-    public override void PartFire(Vector3 mousePos) { }
+    public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) { }
 
     public override void PartUtilityActivate2(Vector3 mousePos) { }
 

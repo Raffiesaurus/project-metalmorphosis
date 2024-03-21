@@ -12,7 +12,8 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private GameObject[] morgueRest;
     [SerializeField] private GameObject[] morguePuzzle;
     [SerializeField] private GameObject[] morgueBoss;
-    [SerializeField] private GameObject[] cityLevels;
+
+    [SerializeField] private GameObject spawnThisLevel;
 
     [SerializeField] private GameObject levelParent;
 
@@ -53,15 +54,20 @@ public class LevelManager : MonoBehaviour {
     void Start() {
 
         if (animCheck) {
-            int randLevelNum = Random.Range(0, morgueRest.Length - 1);
+            if (spawnThisLevel == null) {
+                int randLevelNum = Random.Range(0, morgueRest.Length - 1);
 
-            GameObject mapToSpawn = morgueRest[randLevelNum];
+                GameObject mapToSpawn = morgueRest[randLevelNum];
 
-            GameObject newLevel = Instantiate(mapToSpawn);
-            newLevel.transform.SetParent(levelParent.transform);
-            newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            newLevel.GetComponent<LevelBase>().levelType = LevelType.Rest;
-            newLevel.GetComponent<LevelBase>().StartLevel();
+                GameObject newLevel = Instantiate(mapToSpawn, levelParent.transform);
+                newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                newLevel.GetComponent<LevelBase>().levelType = LevelType.Rest;
+                newLevel.GetComponent<LevelBase>().StartLevel();
+            } else {
+                GameObject newLevel = Instantiate(spawnThisLevel, levelParent.transform);
+                newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                newLevel.GetComponent<LevelBase>().StartLevel();
+            }
         } else {
             GenerateLevelMap();
         }
@@ -105,7 +111,7 @@ public class LevelManager : MonoBehaviour {
                 bossLevel.row = (levelsPerGame - 1);
                 bossLevel.col = 0;
                 bossLevel.canClick = false;
-                bossLevel.SetLevelType(LevelType.Boss);
+                bossLevel.SetLevelType(LevelType.Boss, mapScreen.restImage);
             } else {
                 Instantiate(mapScreen.emptyLevelUIPrefab, mapScreen.levelUIParent.transform, false);
             }
@@ -204,27 +210,24 @@ public class LevelManager : MonoBehaviour {
         }
 
         foreach (MapLevelPrefab mapLevel in mapLevels) {
-            /*if (mapLevel.tempName.StartsWith("0")) {
-                mapLevel.SetLevelType(LevelType.Rest);
-            }*/
             if (mapLevel.preConnection.Count == 0 && mapLevel.postConnection.Count == 0) {
                 Destroy(mapLevel.transform.GetChild(0).gameObject);
             } else {
                 if (mapLevel.tempName.StartsWith((levelsPerGame - 2).ToString())) {
-                    mapLevel.SetLevelType(LevelType.Rest);
+                    mapLevel.SetLevelType(LevelType.Rest, mapScreen.restImage);
                 } else if (mapLevel.tempName.StartsWith(((levelsPerGame - 2) / 2).ToString())) {
-                    mapLevel.SetLevelType(LevelType.Puzzle);
+                    mapLevel.SetLevelType(LevelType.Puzzle, mapScreen.puzzleImage);
                 } else {
                     if (mapLevel.tempName.StartsWith("0") || mapLevel.tempName.StartsWith("1")) {
-                        mapLevel.SetLevelType(LevelType.Combat);
+                        mapLevel.SetLevelType(LevelType.Combat, mapScreen.combatImage);
                     } else {
                         int randChance = Random.Range(1, 10);
                         if (randChance == 1) {
-                            mapLevel.SetLevelType(LevelType.Rest);
+                            mapLevel.SetLevelType(LevelType.Rest, mapScreen.restImage);
                         } else if (randChance == 2) {
-                            mapLevel.SetLevelType(LevelType.Puzzle);
+                            mapLevel.SetLevelType(LevelType.Puzzle, mapScreen.puzzleImage);
                         } else {
-                            mapLevel.SetLevelType(LevelType.Combat);
+                            mapLevel.SetLevelType(LevelType.Combat, mapScreen.combatImage);
                         }
                     }
                 }
@@ -267,7 +270,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void CheckAllLevels() {
-
+        if (animCheck || mapLevels == null) { return; }
         int rowsCompleted = -1;
         foreach (MapLevelPrefab mapLevel in mapLevels) {
             if (mapLevel.hasCompletedLevel) {
@@ -314,8 +317,7 @@ public class LevelManager : MonoBehaviour {
 
         GameObject mapToSpawn = bunchOfLevels[randLevelNum];
 
-        GameObject newLevel = Instantiate(mapToSpawn);
-        newLevel.transform.SetParent(levelParent.transform);
+        GameObject newLevel = Instantiate(mapToSpawn, levelParent.transform);
         newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         newLevel.GetComponent<LevelBase>().levelType = lvlType;
         newLevel.GetComponent<LevelBase>().connectedUIMap = mapObj;

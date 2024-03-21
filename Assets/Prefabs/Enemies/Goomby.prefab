@@ -67,10 +67,10 @@ MonoBehaviour:
     m_Bits: 1024
   bulletType: 2
   armDropProps:
-    partDropChance: 0
-    commonDropChance: 0
-    rareDropChance: 0
-    epicDropChance: 0
+    partDropChance: 50
+    commonDropChance: 75
+    rareDropChance: 15
+    epicDropChance: 10
   legDropProps:
     partDropChance: 0
     commonDropChance: 0
@@ -125,7 +125,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0010633469, y: 0.052106738}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -136,7 +136,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.2819023, y: 1.1457865}
   m_EdgeRadius: 0
 --- !u!50 &4449399171427049017
 Rigidbody2D:
@@ -162,7 +162,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!1 &6440270392127516164
@@ -263,7 +263,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6f50fb71c62c49c4684aa5dfcb6675d2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
