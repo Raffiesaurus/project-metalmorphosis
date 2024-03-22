@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.78437126, b: 0.4575472, a: 1}
+  m_Color: {r: 1, g: 0.78431374, b: 0.45882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32e36e2e7ed2764b97dedae49d4cf81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelUIPrefab: {fileID: 6562985406024653352, guid: 559cc2583415c36418ef85fb0155fe7f, type: 3}
+  levelUIPrefab: {fileID: 1210494006098421125, guid: 3d7681ab252191740bafddd8a08b6419, type: 3}
   bossLevelUIPrefab: {fileID: 6562985406024653352, guid: 2fe451768006b9841af407375bd81860, type: 3}
   levelUIParent: {fileID: 608679872}
   emptyLevelUIPrefab: {fileID: 6562985406024653352, guid: 924cb69a45fcad44aa6d60b9e0402ff7, type: 3}
@@ -592,7 +592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &287953669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 608679877}
   - component: {fileID: 608679879}
   m_Layer: 12
-  m_Name: Levels
+  m_Name: LevelsGrid
   m_TagString: ui
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

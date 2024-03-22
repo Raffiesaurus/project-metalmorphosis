@@ -211,7 +211,9 @@ public class LevelManager : MonoBehaviour {
 
         foreach (MapLevelPrefab mapLevel in mapLevels) {
             if (mapLevel.preConnection.Count == 0 && mapLevel.postConnection.Count == 0) {
-                Destroy(mapLevel.transform.GetChild(0).gameObject);
+                while (mapLevel.transform.childCount > 0) {
+                    DestroyImmediate(mapLevel.transform.GetChild(0).gameObject);
+                }
             } else {
                 if (mapLevel.tempName.StartsWith((levelsPerGame - 2).ToString())) {
                     mapLevel.SetLevelType(LevelType.Rest, mapScreen.restImage);

@@ -28,7 +28,7 @@ public class MapLevelPrefab : MonoBehaviour {
     public void SetLevelType(LevelType type, Sprite mapTypeSprite) {
         levelType = type;
         //levelText = GetComponentInChildren<TMP_Text>();
-        if (levelType == LevelType.Combat) {
+        /*if (levelType == LevelType.Combat) {
             levelText.text = "C";
         } else if (levelType == LevelType.Boss) {
             levelText.text = "B";
@@ -36,7 +36,7 @@ public class MapLevelPrefab : MonoBehaviour {
             levelText.text = "R";
         } else {
             levelText.text = "P";
-        }
+        }*/
         if (levelType != LevelType.Boss) {
             mapTypeImage.sprite = mapTypeSprite;
             SetArrowDirections();
@@ -81,8 +81,12 @@ public class MapLevelPrefab : MonoBehaviour {
                 completedImage.gameObject.SetActive(false);
             }
         } else {
-            disabledImage.gameObject.SetActive(false);
-            completedImage.gameObject.SetActive(false);
+            if (disabledImage != null) {
+                disabledImage.gameObject.SetActive(false);
+            }
+            if (completedImage != null) {
+                completedImage.gameObject.SetActive(false);
+            }
         }
 
     }

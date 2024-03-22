@@ -18,7 +18,7 @@ public class PlayerArm : PlayerParts {
     }
 
     public PlayerArm AssignScript() {
-        BoxCollider2D meleeHitBox = transform.parent.GetComponentInChildren<BoxCollider2D>();
+        BoxCollider2D meleeHitBox = GameManager.GetPlayer().meleeHitBox;
         PlayerArm armAdded = null;
         switch (armPart) {
 
