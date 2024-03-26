@@ -9,6 +9,5 @@ public class HeavyArtilleryLeg : PlayerLeg {
         ammoUp = 25;
         fuelUp = 0;
         speedUp = 1;
-        Debug.Log("Hih i " + this);
     }
 }

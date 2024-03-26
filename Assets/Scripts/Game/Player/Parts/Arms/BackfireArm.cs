@@ -10,7 +10,7 @@ public class BackfireArm : PlayerArm {
         partRarity = PartRarity.Epic;
 
         cooldown = 2;
-        meleeDamage = 15;
+        meleeDamage = 0;
         ammoUsage = 15;
         fuelUsage = 15;
     }

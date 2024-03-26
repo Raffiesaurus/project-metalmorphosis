@@ -13,11 +13,13 @@ public class PlayerArm : PlayerParts {
 
     [HideInInspector] public float cdCounter = 0.0f;
     [HideInInspector] public BulletType bulletType = BulletType.None;
+    [HideInInspector] public bool isMelee = false;
 
     public virtual void Awake() {
     }
 
     public PlayerArm AssignScript() {
+        isMelee = false;
         BoxCollider2D meleeHitBox = GameManager.GetPlayer().meleeHitBox;
         PlayerArm armAdded = null;
         switch (armPart) {
@@ -28,22 +30,22 @@ public class PlayerArm : PlayerParts {
 
             case ArmPart.Punch:
                 armAdded = gameObject.AddComponent<PunchArm>();
-                meleeHitBox.enabled = true;
+                armAdded.isMelee = true;
                 break;
 
             case ArmPart.Chainsaw:
                 armAdded = gameObject.AddComponent<ChainsawArm>();
-                meleeHitBox.enabled = true;
+                armAdded.isMelee = true;
                 break;
 
             case ArmPart.Bat:
                 armAdded = gameObject.AddComponent<BatArm>();
-                meleeHitBox.enabled = true;
+                armAdded.isMelee = true;
                 break;
 
             case ArmPart.Lucky_Scalpel:
                 armAdded = gameObject.AddComponent<LuckyScalpelArm>();
-                meleeHitBox.enabled = true;
+                armAdded.isMelee = true;
                 break;
 
             case ArmPart.Lefty:
@@ -52,7 +54,7 @@ public class PlayerArm : PlayerParts {
 
             case ArmPart.Judy:
                 armAdded = gameObject.AddComponent<JudyArm>();
-                meleeHitBox.enabled = true;
+                armAdded.isMelee = true;
                 break;
 
             case ArmPart.Righty:
@@ -68,6 +70,7 @@ public class PlayerArm : PlayerParts {
                 break;
 
         }
+        meleeHitBox.enabled = armAdded.isMelee;
         Destroy(this);
         return armAdded;
     }

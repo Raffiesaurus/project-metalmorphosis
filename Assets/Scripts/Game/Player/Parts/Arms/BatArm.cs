@@ -22,7 +22,7 @@ public class BatArm : PlayerArm {
             cdCounter = cooldown;
             comboCount++;
             Invoke(nameof(ResetCombo), 1.0f);
-            player.DealMeleeDamage(meleeDamage * comboCount);
+            player.DealMeleeDamage(meleeDamage * ((100 + player.meleeDmgBonus) / 100) * comboCount);
             if (comboCount >= maxComboCount) {
                 ResetCombo();
                 CancelInvoke();

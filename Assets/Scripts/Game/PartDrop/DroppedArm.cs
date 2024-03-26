@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DroppedArm : DroppablePart {
 
-    private ArmPart armPart;
     PartDropData uiData;
 
     public override void FormItem() {

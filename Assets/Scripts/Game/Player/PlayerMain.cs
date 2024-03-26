@@ -18,6 +18,8 @@ public class PlayerMain : MonoBehaviour {
     [HideInInspector] public float currentHealth = 0.0f;
     [HideInInspector] public float currentFuel = 0.0f;
     [HideInInspector] public float legSpeedMulti = 1.0f;
+    [HideInInspector] public float meleeDmgBonus = 0.0f;
+    [HideInInspector] public float rangeDmgBonus = 0.0f;
 
     [HideInInspector] public int currentAmmo = 0;
 
@@ -28,7 +30,7 @@ public class PlayerMain : MonoBehaviour {
     [SerializeField] private PlayerArm leftArm;
     [SerializeField] private PlayerArm rightArm;
     [SerializeField] private PlayerLeg legs;
-    [SerializeField] private PlayerParts head;
+    [SerializeField] private PlayerHead head;
 
     [SerializeField] private GameObject firingSpawnPoint;
 
@@ -70,9 +72,21 @@ public class PlayerMain : MonoBehaviour {
         fuelBoost = legs.fuelUp;
         legSpeedMulti = legs.speedUp;
 
+        head.headPart = PartsManager.EquippedHead;
+        head = head.AssignScript();
+
+        healthBoost += head.healthChange;
+        ammoBoost += head.ammoChange;
+        fuelBoost += head.fuelChange;
+        legSpeedMulti += head.speedChange;
+
         UpdateHealth(0);
         UpdateFuel(0);
         UpdateAmmo(0);
+        GameManager.BulletBounce = head.bulletBounce;
+        GameManager.OneHitMode = head.oneHitMode;
+        GameManager.PlayerReturnDamage = head.returnDmg;
+        GameManager.PlayerReturnDamageAmount = head.returnDmgAmount;
     }
 
     public void OnLeftClick(Vector3 mousePos) {
@@ -102,7 +116,10 @@ public class PlayerMain : MonoBehaviour {
     }
 
     public void OnUtilityOne() {
-
+        if (head.swapAmmoHp) {
+            UpdateHealth(head.hpGain);
+            UpdateAmmo(head.ammoLoss);
+        }
     }
 
     public void OnUtilityTwo() {

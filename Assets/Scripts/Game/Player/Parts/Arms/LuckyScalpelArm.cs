@@ -19,7 +19,7 @@ public class LuckyScalpelArm : PlayerArm {
         if (cdCounter <= 0 && player.currentFuel >= fuelUsage) {
             cdCounter = cooldown;
             player.UpdateFuel(-fuelUsage);
-            player.DealMeleeDamage(meleeDamage);
+            player.DealMeleeDamage(meleeDamage * ((100 + player.meleeDmgBonus) / 100));
         }
     }
 }

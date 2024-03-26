@@ -67,14 +67,14 @@ MonoBehaviour:
     m_Bits: 1024
   bulletType: 2
   armDropProps:
-    partDropChance: 50
-    commonDropChance: 75
-    rareDropChance: 15
-    epicDropChance: 10
-  legDropProps:
     partDropChance: 0
     commonDropChance: 0
     rareDropChance: 0
+    epicDropChance: 0
+  legDropProps:
+    partDropChance: 100
+    commonDropChance: 50
+    rareDropChance: 50
     epicDropChance: 0
   headDropProps:
     partDropChance: 0

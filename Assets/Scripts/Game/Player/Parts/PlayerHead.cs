@@ -3,43 +3,84 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHead : PlayerParts {
-    [SerializeField] public LegPart legPart = LegPart.Plain;
 
-    [SerializeField] public int ammoUp = 0;
-    [SerializeField] public float healthUp = 0.0f;
-    [SerializeField] public float fuelUp = 0.0f;
-    [SerializeField] public float speedUp = 1.0f;
+    [SerializeField] public HeadPart headPart = HeadPart.Plain;
+
+    [SerializeField] public int ammoChange = 0;
+    [SerializeField] public float healthChange = 0.0f;
+    [SerializeField] public float fuelChange = 0.0f;
+    [SerializeField] public float speedChange = 1.0f;
+    [SerializeField] public float meleeDmgChange = 0.0f;
+    [SerializeField] public float rangeDmgChange = 0.0f;
+    
+    [SerializeField] public bool swapAmmoHp = false;
+    [SerializeField] public float hpGain = 0.0f;
+    [SerializeField] public int ammoLoss = 0;
+    
+    [SerializeField] public bool bulletBounce = false;
+    [SerializeField] public bool oneHitMode = false;
+    
+    [SerializeField] public bool returnDmg = false;
+    [SerializeField] public float returnDmgAmount = 0.0f;
 
     public virtual void Awake() {
 
     }
 
-    public PlayerLeg AssignScript() {
-        PlayerLeg legAdded = null;
-        switch (legPart) {
+    public PlayerHead AssignScript() {
+        PlayerHead headAdded = null;
+        switch (headPart) {
 
-            case LegPart.Plain:
-                legAdded = gameObject.AddComponent<PlainLeg>();
+            case HeadPart.Plain:
+                headAdded = gameObject.AddComponent<PlainHead>();
                 break;
 
-            case LegPart.Dumptruck:
-                legAdded = gameObject.AddComponent<DumptruckLeg>();
+            case HeadPart.Fishbowl:
+                headAdded = gameObject.AddComponent<PlainHead>();
                 break;
 
-            case LegPart.Overclocked:
-                legAdded = gameObject.AddComponent<OverclockedLeg>();
+            case HeadPart.Surgeon:
+                headAdded = gameObject.AddComponent<PlainHead>();
                 break;
 
-            case LegPart.Gassy:
-                legAdded = gameObject.AddComponent<GassyLeg>();
+            case HeadPart.Boundman:
+                headAdded = gameObject.AddComponent<PlainHead>();
                 break;
 
-            case LegPart.Heavy_Artillery:
-                legAdded = gameObject.AddComponent<HeavyArtilleryLeg>();
+            case HeadPart.Meathead:
+                headAdded = gameObject.AddComponent<PlainHead>();
+                break;
+
+            case HeadPart.Pinhead:
+                headAdded = gameObject.AddComponent<PlainHead>();
+                break;
+
+            case HeadPart.Neurons:
+                headAdded = gameObject.AddComponent<PlainHead>();
+                break;
+
+            case HeadPart.Farsighted:
+                headAdded = gameObject.AddComponent<PlainHead>();
+                break;
+
+            case HeadPart.Nearsighted:
+                headAdded = gameObject.AddComponent<PlainHead>();
+                break;
+
+            case HeadPart.Thinker:
+                headAdded = gameObject.AddComponent<PlainHead>();
+                break;
+
+            case HeadPart.Magnifeye:
+                headAdded = gameObject.AddComponent<PlainHead>();
+                break;
+
+            case HeadPart.Minimifeye:
+                headAdded = gameObject.AddComponent<PlainHead>();
                 break;
         }
         Destroy(this);
-        return legAdded;
+        return headAdded;
     }
 
     public virtual void Update() {

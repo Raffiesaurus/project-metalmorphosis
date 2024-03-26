@@ -7,8 +7,8 @@ using UnityEngine;
 public class PartDropData {
     [HideInInspector] public ArmPart leftArm;
     [HideInInspector] public ArmPart rightArm;
-    [HideInInspector] public ArmPart head;
-    [HideInInspector] public ArmPart legs;
+    [HideInInspector] public HeadPart head;
+    [HideInInspector] public LegPart legs;
     [HideInInspector] public ArmPart torso;
     [HideInInspector] public string partName;
     [HideInInspector] public string partRarity;

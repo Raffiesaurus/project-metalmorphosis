@@ -7,8 +7,9 @@ public abstract class Bullet : MonoBehaviour {
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public BoxCollider2D boxCollider;
 
-    [SerializeField] public float damage;
-    [SerializeField] public float speed;
+    [SerializeField] public float damage = 0.0f;
+    [SerializeField] public float speed = 0.0f;
+    [SerializeField] public int bounceCount = 0;
 
     [HideInInspector] public string shotBy = "";
 
@@ -45,12 +46,20 @@ public abstract class Bullet : MonoBehaviour {
         rb.rotation = angle;
 
         rb.velocity = dirVec * speed;
+
+        if (shotBy == "player") {
+            damage *= ((100 + GameManager.GetPlayer().rangeDmgBonus) / 100);
+        }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("floor")) {
-            KillBullet();
+            if (GameManager.BulletBounce && bounceCount <= 0) {
+                bounceCount = 0;
+                // TODO
+            } else {
+                KillBullet();
+            }
         }
 
         if (shotBy == "player") {

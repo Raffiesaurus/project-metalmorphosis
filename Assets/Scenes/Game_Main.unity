@@ -3631,7 +3631,7 @@ MonoBehaviour:
   grenadeBullet: {fileID: 5923554066920280848, guid: 01f8cd62e176cea468d0242327e88146, type: 3}
   blitzBullet: {fileID: 5923554066920280848, guid: b69ecae5c8b73aa4f81a1a7ce033cae2, type: 3}
   armDrop: {fileID: 552995977303755338, guid: 0371fca564cdf994a9985f0450e0799c, type: 3}
-  legDrop: {fileID: 0}
+  legDrop: {fileID: 552995977303755338, guid: daccf184021c59945ba699c47ff6200e, type: 3}
   headDrop: {fileID: 0}
   partDropParent: {fileID: 1815558228}
   partDropUIParent: {fileID: 1338161692}
@@ -3692,7 +3692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff287c1a6f55aa445802edd9284927a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animCheck: 0
+  animCheck: 1
   morgueCombat:
   - {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
   - {fileID: 7335079822759661267, guid: 2198f3f141f90e446b8f80eb7e5e443f, type: 3}

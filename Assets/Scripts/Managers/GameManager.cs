@@ -10,6 +10,47 @@ public class GameManager : MonoBehaviour {
 
     private static GameManager instance = null;
 
+    private bool bulletBounce;
+    public static bool BulletBounce {
+        get {
+            return instance.bulletBounce;
+        }
+        set {
+            instance.bulletBounce = value;
+        }
+    }
+
+    private bool oneHitMode;
+    public static bool OneHitMode {
+        get {
+            return instance.oneHitMode;
+        }
+        set {
+            instance.oneHitMode = value;
+        }
+    }
+
+    private bool playerReturnDamage;
+    public static bool PlayerReturnDamage {
+        get {
+            return instance.playerReturnDamage;
+        }
+        set {
+            instance.playerReturnDamage = value;
+        }
+    }
+
+    private float playerReturnDamageAmount;
+    public static float PlayerReturnDamageAmount {
+        get {
+            return instance.playerReturnDamageAmount;
+        }
+        set {
+            instance.playerReturnDamageAmount = value;
+        }
+    }
+
+
     private void Awake() {
         if (instance == null) {
             instance = this;

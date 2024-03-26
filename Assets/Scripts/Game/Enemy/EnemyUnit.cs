@@ -124,7 +124,6 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void OnDeath() {
-        Debug.Log("I do a die " + name);
         float dropChance = Random.Range(0, 100);
         float partChance = Random.Range(0, 100);
 
