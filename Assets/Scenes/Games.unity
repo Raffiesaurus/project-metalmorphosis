@@ -1940,7 +1940,7 @@ MonoBehaviour:
   morgueRest: []
   morguePuzzle: []
   morgueBoss: []
-  cityLevels: []
+  spawnThisLevel: {fileID: 0}
   levelParent: {fileID: 415019551}
   spawnLevel: {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
   maxLevel: 20
