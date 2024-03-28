@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.131, y: -1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4456784391725453259}
@@ -233,6 +233,8 @@ MonoBehaviour:
   currentHealth: 0
   currentFuel: 0
   legSpeedMulti: 1
+  meleeDmgBonus: 0
+  rangeDmgBonus: 0
   currentAmmo: 0
   meleeHitBox: {fileID: 2690281236362297377}
   playerAnimator: {fileID: 3448094803195167877}

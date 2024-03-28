@@ -3710,7 +3710,7 @@ MonoBehaviour:
   - {fileID: 7335079822759661267, guid: 882cb0834a490654bb3b5d91883a32a0, type: 3}
   morgueBoss:
   - {fileID: 7335079822759661267, guid: c7c0cf071f8922b4e9f3d2faf46d3f6c, type: 3}
-  spawnThisLevel: {fileID: 7335079822759661267, guid: 82f6d31f711fb2a4aafacba970437747, type: 3}
+  spawnThisLevel: {fileID: 7335079822759661267, guid: f6bb45382d4171446bc7ffd6579d2324, type: 3}
   levelParent: {fileID: 415019551}
   spawnLevel: {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
   maxLevel: 20
@@ -3876,6 +3876,10 @@ PrefabInstance:
     - target: {fileID: 4625457155458918190, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647054509120971160, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.8719991
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
