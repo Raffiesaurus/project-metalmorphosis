@@ -109,6 +109,9 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void UpdateHealth(float healthChange) {
+        if (GameManager.OneHitMode && healthChange < 0) {
+            healthChange = -999999999;
+        }
 
         if (healthChange < 0) {
             currentHealth += (healthChange * ((100 - dmgReductionPercentage) / 100));

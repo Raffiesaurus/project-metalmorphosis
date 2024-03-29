@@ -66,6 +66,9 @@ public class StabJumpEnemy : EnemyUnit {
             rb.AddForce(new(jumpBackForce.x * -moveSign, jumpBackForce.y));
 
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
+            if (GameManager.PlayerReturnDamage) {
+                UpdateHealth(-meleeDamage * (GameManager.PlayerReturnDamageAmount / 100));
+            }
         }
 
         if (!isPlayerInMeleeRange && cdCounter <= 0 && !hasBeenInjured) {

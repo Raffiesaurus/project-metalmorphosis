@@ -55,7 +55,7 @@ public class PistolEnemy : EnemyUnit {
         isAtCover = false;
         currentAmmo -= ammoUsage;
         cdCounter = cooldown;
-        PrefabManager.SpawnAndFire(bulletType, transform.position, playerPos, gameObject.tag);
+        PrefabManager.SpawnAndFire(bulletType, transform.position, playerPos, gameObject);
     }
 
     private void MoveToCover() {

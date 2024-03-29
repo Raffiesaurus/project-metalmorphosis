@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerLeg : PlayerParts {
     [SerializeField] public LegPart legPart = LegPart.Plain;
 
-    [SerializeField] public int ammoUp = 0;
-    [SerializeField] public float healthUp = 0.0f;
-    [SerializeField] public float fuelUp = 0.0f;
-    [SerializeField] public float speedUp = 1.0f;
+    [SerializeField] public int ammoBoost = 0;
+    [SerializeField] public float healthBoost = 0.0f;
+    [SerializeField] public float fuelBoost = 0.0f;
+    [SerializeField] public float speedBoost = 1.0f;
 
     public virtual void Awake() {
 

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlainHead : PlayerHead {
+public class FishbowlHead : PlayerHead {
     public override void Awake() {
-        headPart = HeadPart.Plain;
-        partRarity = PartRarity.Common;
+        headPart = HeadPart.Fishbowl;
+        partRarity = PartRarity.Epic;
 
         healthBoost = 0;
         ammoBoost = 0;
@@ -17,7 +17,7 @@ public class PlainHead : PlayerHead {
         ammoLoss = 0;
         swapAmmoHp = false;
         bulletBounce = false;
-        oneHitMode = false;
+        oneHitMode = true;
         returnDmg = false;
         returnDmgAmount = 0.0f;
     }

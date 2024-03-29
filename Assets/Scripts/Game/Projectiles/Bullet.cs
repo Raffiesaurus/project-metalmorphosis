@@ -11,7 +11,9 @@ public abstract class Bullet : MonoBehaviour {
     [SerializeField] public float speed = 0.0f;
     [SerializeField] public int bounceCount = 0;
 
-    [HideInInspector] public string shotBy = "";
+    [HideInInspector] public GameObject shotBy = null;
+
+    private Vector2 lastVelocity = Vector2.zero;
 
     private Vector2 savedSpeed = Vector2.zero;
 
@@ -33,10 +35,14 @@ public abstract class Bullet : MonoBehaviour {
             rb.velocity = savedSpeed;
             savedSpeed = Vector2.zero;
         }
+
+        lastVelocity = rb.velocity;
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        rb.rotation = angle;
     }
 
-    public virtual void OnFire(Vector3 startPoint, Vector3 firePoint, string ownerTag) {
-        shotBy = ownerTag;
+    public virtual void OnFire(Vector3 startPoint, Vector3 firePoint, GameObject owner) {
+        shotBy = owner;
         transform.position = startPoint;
 
         Vector3 dirVec = (firePoint - startPoint);
@@ -47,22 +53,28 @@ public abstract class Bullet : MonoBehaviour {
 
         rb.velocity = dirVec * speed;
 
-        if (shotBy == "player") {
+        if (shotBy.CompareTag("player")) {
             damage *= ((100 + GameManager.GetPlayer().rangeDmgBonus) / 100);
         }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision) {
+        ContactPoint2D[] myContact = new ContactPoint2D[1];
+        collision.GetContacts(myContact);
         if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("floor")) {
             if (GameManager.BulletBounce && bounceCount <= 0) {
-                bounceCount = 0;
-                // TODO
+                bounceCount++;
+                float speed = lastVelocity.magnitude;
+                Vector3 reflectedDir = Vector2.Reflect(lastVelocity.normalized, myContact[0].normal.normalized);
+                rb.velocity = reflectedDir * speed;
+                Debug.Log("BOUNCE! " + reflectedDir);
+
             } else {
                 KillBullet();
             }
         }
 
-        if (shotBy == "player") {
+        if (shotBy.CompareTag("player")) {
 
             if (collision.gameObject.CompareTag("enemy")) {
                 collision.gameObject.GetComponent<EnemyUnit>().UpdateHealth(-damage);
@@ -72,10 +84,13 @@ public abstract class Bullet : MonoBehaviour {
                 KillBullet();
             }
 
-        } else if (shotBy == "enemy") {
+        } else if (shotBy.CompareTag("enemy")) {
 
             if (collision.gameObject.CompareTag("player")) {
                 collision.gameObject.GetComponent<PlayerMain>().UpdateHealth(-damage);
+                if (GameManager.PlayerReturnDamage) {
+                    shotBy.GetComponent<EnemyUnit>().UpdateHealth(-damage * (GameManager.PlayerReturnDamageAmount / 100));
+                }
                 KillBullet();
             }
 

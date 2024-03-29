@@ -3,9 +3,9 @@ public class GassyLeg : PlayerLeg {
         legPart = LegPart.Gassy;
         partRarity = PartRarity.Common;
 
-        healthUp = 0;
-        ammoUp = 0;
-        fuelUp = 50;
-        speedUp = 1;
+        healthBoost = 0;
+        ammoBoost = 0;
+        fuelBoost = 50;
+        speedBoost = 1;
     }
 }

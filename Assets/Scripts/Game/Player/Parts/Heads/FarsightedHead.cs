@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlainHead : PlayerHead {
+public class FarsightedHead : PlayerHead {
     public override void Awake() {
-        headPart = HeadPart.Plain;
-        partRarity = PartRarity.Common;
+        headPart = HeadPart.Farsighted;
+        partRarity = PartRarity.Rare;
 
         healthBoost = 0;
         ammoBoost = 0;
         fuelBoost = 0;
         speedBoost = 0;
-        meleeDmgBoost = 0;
-        rangeDmgBoost = 0;
+        meleeDmgBoost = -50;
+        rangeDmgBoost = 50;
         hpGain = 0;
         ammoLoss = 0;
         swapAmmoHp = false;

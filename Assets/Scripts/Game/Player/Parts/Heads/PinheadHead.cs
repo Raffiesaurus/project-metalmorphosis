@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlainHead : PlayerHead {
+public class PinheadHead : PlayerHead {
     public override void Awake() {
-        headPart = HeadPart.Plain;
-        partRarity = PartRarity.Common;
+        headPart = HeadPart.Pinhead;
+        partRarity = PartRarity.Rare;
 
         healthBoost = 0;
         ammoBoost = 0;
@@ -18,7 +18,7 @@ public class PlainHead : PlayerHead {
         swapAmmoHp = false;
         bulletBounce = false;
         oneHitMode = false;
-        returnDmg = false;
-        returnDmgAmount = 0.0f;
+        returnDmg = true;
+        returnDmgAmount = 25.0f;
     }
 }

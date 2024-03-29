@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlainHead : PlayerHead {
+public class NeuronsHead : PlayerHead {
     public override void Awake() {
-        headPart = HeadPart.Plain;
-        partRarity = PartRarity.Common;
+        headPart = HeadPart.Neurons;
+        partRarity = PartRarity.Rare;
 
         healthBoost = 0;
         ammoBoost = 0;
         fuelBoost = 0;
-        speedBoost = 0;
+        speedBoost = 1.5f;
         meleeDmgBoost = 0;
         rangeDmgBoost = 0;
         hpGain = 0;

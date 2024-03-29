@@ -3,9 +3,9 @@ public class OverclockedLeg : PlayerLeg {
         legPart = LegPart.Overclocked;
         partRarity = PartRarity.Common;
 
-        healthUp = 0;
-        ammoUp = 0;
-        fuelUp = 0;
-        speedUp = 10;
+        healthBoost = 0;
+        ammoBoost = 0;
+        fuelBoost = 0;
+        speedBoost = 3;
     }
 }

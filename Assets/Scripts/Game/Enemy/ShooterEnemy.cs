@@ -14,7 +14,7 @@ public class ShooterEnemy : EnemyUnit {
         if (cdCounter <= 0 && currentAmmo >= ammoUsage) {
             currentAmmo -= ammoUsage;
             cdCounter = cooldown;
-            PrefabManager.SpawnAndFire(bulletType, transform.position, playerPos, gameObject.tag);
+            PrefabManager.SpawnAndFire(bulletType, transform.position, playerPos, gameObject);
         }
     }
 

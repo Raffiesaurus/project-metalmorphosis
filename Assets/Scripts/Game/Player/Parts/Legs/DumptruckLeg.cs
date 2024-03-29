@@ -3,9 +3,9 @@ public class DumptruckLeg : PlayerLeg {
         legPart = LegPart.Dumptruck;
         partRarity = PartRarity.Rare;
 
-        healthUp = 50;
-        ammoUp = 0;
-        fuelUp = 0;
-        speedUp = 1;
+        healthBoost = 50;
+        ammoBoost = 0;
+        fuelBoost = 0;
+        speedBoost = 1;
     }
 }

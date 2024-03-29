@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlainHead : PlayerHead {
+public class MinimifeyeHead : PlayerHead {
     public override void Awake() {
-        headPart = HeadPart.Plain;
+        headPart = HeadPart.Minimifeye;
         partRarity = PartRarity.Common;
 
         healthBoost = 0;
         ammoBoost = 0;
         fuelBoost = 0;
         speedBoost = 0;
-        meleeDmgBoost = 0;
-        rangeDmgBoost = 0;
+        meleeDmgBoost = 25;
+        rangeDmgBoost = -25;
         hpGain = 0;
         ammoLoss = 0;
         swapAmmoHp = false;

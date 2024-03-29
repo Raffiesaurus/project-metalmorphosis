@@ -34,6 +34,9 @@ public class GoombyEnemy : EnemyUnit {
         if (collision.gameObject.CompareTag("player")) {
             moveSign = -moveSign;
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
+            if (GameManager.PlayerReturnDamage) {
+                UpdateHealth(-meleeDamage * (GameManager.PlayerReturnDamageAmount / 100));
+            }
         }
     }
 
@@ -45,6 +48,9 @@ public class GoombyEnemy : EnemyUnit {
         if (collision.gameObject.CompareTag("player")) {
             moveSign = -moveSign;
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
+            if (GameManager.PlayerReturnDamage) {
+                UpdateHealth(-meleeDamage * (GameManager.PlayerReturnDamageAmount / 100));
+            }
         }
 
     }

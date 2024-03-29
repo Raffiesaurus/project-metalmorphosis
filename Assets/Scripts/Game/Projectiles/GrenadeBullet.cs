@@ -29,6 +29,8 @@ public class GrenadeBullet : Bullet {
     public void Explode() {
         grenadeImage.enabled = false;
         explosionParticles.Play();
+        damage *= ((100 + GameManager.GetPlayer().rangeDmgBonus) / 100);
+        Debug.Log("Damage: " + damage);
         Collider2D[] enemiesToHit = Physics2D.OverlapBoxAll(explosionCollider.bounds.center, explosionCollider.bounds.size, 0, enemyLayer);
         for (int i = 0; i < enemiesToHit.Length; i++) {
             if (enemiesToHit[i].TryGetComponent(out EnemyUnit enemy)) {

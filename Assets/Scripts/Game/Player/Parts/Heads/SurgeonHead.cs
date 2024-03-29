@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlainHead : PlayerHead {
+public class SurgeonHead : PlayerHead {
     public override void Awake() {
-        headPart = HeadPart.Plain;
-        partRarity = PartRarity.Common;
+        headPart = HeadPart.Surgeon;
+        partRarity = PartRarity.Epic;
 
         healthBoost = 0;
         ammoBoost = 0;
@@ -13,9 +13,10 @@ public class PlainHead : PlayerHead {
         speedBoost = 0;
         meleeDmgBoost = 0;
         rangeDmgBoost = 0;
-        hpGain = 0;
-        ammoLoss = 0;
-        swapAmmoHp = false;
+        hpGain = 25;
+        ammoLoss = -25;
+        fuelLoss = -10;
+        swapAmmoHp = true;
         bulletBounce = false;
         oneHitMode = false;
         returnDmg = false;

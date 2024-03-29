@@ -35,16 +35,16 @@ public class PrefabManager : MonoBehaviour {
 
     }
 
-    public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint, string ownerTag) {
+    public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint, GameObject owner) {
         if (prefabType == BulletType.BasicBullet) {
             GameObject newBasicBullet = Instantiate(instance.basicBullet);
-            newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint, ownerTag);
+            newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint, owner);
         } else if (prefabType == BulletType.Grenade) {
             GameObject newGrenadeBullet = Instantiate(instance.grenadeBullet);
-            newGrenadeBullet.GetComponent<GrenadeBullet>().OnFire(startPoint, firePoint, ownerTag);
+            newGrenadeBullet.GetComponent<GrenadeBullet>().OnFire(startPoint, firePoint, owner);
         } else if (prefabType == BulletType.BlitzBullet) {
             GameObject newBlitzBullet = Instantiate(instance.blitzBullet);
-            newBlitzBullet.GetComponent<BlitzBullet>().OnFire(startPoint, firePoint, ownerTag);
+            newBlitzBullet.GetComponent<BlitzBullet>().OnFire(startPoint, firePoint, owner);
         }
     }
 
