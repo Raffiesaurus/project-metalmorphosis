@@ -57,6 +57,37 @@ public class SwapScreen : MonoBehaviour {
         }
     }
 
+    public string GetHeadName(HeadPart headNum) {
+        switch (headNum) {
+            case HeadPart.Plain:
+                return "Plain";
+            case HeadPart.Meathead:
+                return "Meathead";
+            case HeadPart.Minimifeye:
+                return "Minimifeye";
+            case HeadPart.Pinhead:
+                return "Pinhead";
+            case HeadPart.Nearsighted:
+                return "Nearsighted";
+            case HeadPart.Boundman:
+                return "Boundman";
+            case HeadPart.Fishbowl:
+                return "Fishbowl";
+            case HeadPart.Surgeon:
+                return "Surgeon";
+            case HeadPart.Neurons:
+                return "Neurons";
+            case HeadPart.Farsighted:
+                return "Farsighted";
+            case HeadPart.Thinker:
+                return "Thinker";
+            case HeadPart.Magnifeye:
+                return "Magnifeye";
+            default:
+                return "Uhoh";
+        }
+    }
+
     public void Update() {
 
         if (Input.GetKeyDown(KeyCode.I)) {
@@ -70,6 +101,9 @@ public class SwapScreen : MonoBehaviour {
             } else if (partData.partType == "Legs") {
                 PartsManager.EquippedLeg = partData.legs;
                 GameUIManager.ShowNotification("Installed " + partData.partName + " in legs.");
+            } else if (partData.partType == "Head") {
+                PartsManager.EquippedHead = partData.head;
+                GameUIManager.ShowNotification("Installed " + partData.partName + " in head.");
             }
 
         } else if (Input.GetKeyDown(KeyCode.U)) {
@@ -86,6 +120,10 @@ public class SwapScreen : MonoBehaviour {
                 uninstalledPart = GetLegName(PartsManager.EquippedLeg);
                 PartsManager.EquippedLeg = LegPart.Plain;
                 GameUIManager.ShowNotification("Uninstalled " + uninstalledPart + " from legs.");
+            } else if (partData.partType == "Head") {
+                uninstalledPart = GetHeadName(PartsManager.EquippedHead);
+                PartsManager.EquippedHead = HeadPart.Plain;
+                GameUIManager.ShowNotification("Uninstalled " + uninstalledPart + " from head.");
             }
 
         } else if (Input.GetKeyDown(KeyCode.P)) {

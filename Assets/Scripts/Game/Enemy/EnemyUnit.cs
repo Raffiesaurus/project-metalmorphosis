@@ -170,6 +170,7 @@ public class EnemyUnit : MonoBehaviour {
                     } else {
                         DropsManager.DropHead(PartRarity.Common, transform.position);
                     }
+                    Destroy(gameObject);
                 } else {
                     // Failed head check, unlucky no drops for you
                     Destroy(gameObject);

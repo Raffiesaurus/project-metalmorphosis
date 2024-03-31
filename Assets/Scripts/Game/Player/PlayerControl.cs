@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
@@ -14,6 +15,8 @@ public class PlayerControl : MonoBehaviour {
     private PlayerMain playerMain = null;
     private float moveHorizontal = 0.0f;
     private float moveVertical = 0.0f;
+
+    [SerializeField] private BoxCollider2D[] boxCols;
 
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float jumpForce = 5.0f;
@@ -122,6 +125,8 @@ public class PlayerControl : MonoBehaviour {
 
     void CheckGround() {
         bool checkGroundNow = Physics2D.BoxCast(boxCol.bounds.center, boxCol.bounds.size, 0f, Vector2.down, 0.01f, groundLayer);
+        //bool checkGroundNows = Physics2D.BoxCast(boxCols[0].bounds.center, boxCols[0].bounds.size, 0f, Vector2.down, 0.01f, groundLayer)
+        //    || Physics2D.BoxCast(boxCols[1].bounds.center, boxCols[1].bounds.size, 0f, Vector2.down, 0.01f, groundLayer);
         if (checkGroundNow != isGrounded) {
             isGrounded = checkGroundNow;
             if (isGrounded) {

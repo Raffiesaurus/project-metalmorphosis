@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroppedArm : DroppablePart {
+public class DroppedHead : DroppablePart {
 
     PartDropData uiData;
 
     public override void FormItem() {
         base.FormItem();
         uiData = new PartDropData();
+        uiData.partType = "Head";
         uiData.partImage = assignedImage;
-        Debug.Log("Spawned Item: " + partRarity);
         if (partRarity == PartRarity.Unassigned) {
             int partRandom = Random.Range(0, 10);
             if (partRandom <= 4) {
@@ -22,70 +22,72 @@ public class DroppedArm : DroppablePart {
             }
         }
         if (partRarity == PartRarity.Common) {
-            // Lucky Scalpel, Lefty, Righty, Nail Gun
-            int randomPart = Random.Range(0, 4);
+            int randomPart = Random.Range(0, 3);
             uiData.partRarity = "Common";
             if (randomPart == 0) {
-                uiData.partName = "Lucky Scalpel";
-                uiData.leftArm = ArmPart.Lucky_Scalpel;
-                uiData.partType = "Left";
+                uiData.partName = "Thinker";
+                uiData.head = HeadPart.Thinker;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             } else if (randomPart == 1) {
-                uiData.partName = "Lefty";
-                uiData.leftArm = ArmPart.Lefty;
-                uiData.partType = "Left";
-                uiData.partDescription = "Description";
-            } else if (randomPart == 2) {
-                uiData.partName = "Righty";
-                uiData.rightArm = ArmPart.Righty;
-                uiData.partType = "Right";
+                uiData.partName = "Magnifeye";
+                uiData.head = HeadPart.Magnifeye;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             } else {
-                uiData.partName = "Nail Gun";
-                uiData.rightArm = ArmPart.Nail_Gun;
-                uiData.partType = "Right";
+                uiData.partName = "Minimifeye";
+                uiData.head = HeadPart.Minimifeye;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             }
 
         } else if (partRarity == PartRarity.Rare) {
-            // Chainsaw, brrrr, Bat
             uiData.partRarity = "Rare";
-            int randomPart = Random.Range(0, 3);
+            int randomPart = Random.Range(0, 5);
             if (randomPart == 0) {
-                uiData.partName = "Chainsaw";
-                uiData.leftArm = ArmPart.Chainsaw;
-                uiData.partType = "Left";
+                uiData.partName = "Meathead";
+                uiData.head = HeadPart.Meathead;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             } else if (randomPart == 1) {
-                uiData.partName = "Blitzburst";
-                uiData.rightArm = ArmPart.Blitzburst;
-                uiData.partType = "Right";
+                uiData.partName = "Pinhead";
+                uiData.head = HeadPart.Pinhead;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
-            } else {
-                uiData.partName = "Bat";
-                uiData.leftArm = ArmPart.Bat;
-                uiData.partType = "Left";
+            } else if (randomPart == 2) {
+                uiData.partName = "Farsighted";
+                uiData.head = HeadPart.Farsighted;
+                uiData.partType = "Head";
+                uiData.partDescription = "Description";
+            } else if (randomPart == 3) {
+                uiData.partName = "Nearsighted";
+                uiData.head = HeadPart.Nearsighted;
+                uiData.partType = "Head";
+                uiData.partDescription = "Description";
+            } else if (randomPart == 4) {
+                uiData.partName = "Neurons";
+                uiData.head = HeadPart.Neurons;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             }
 
         } else {
-            // Judy, Punch, Backfire
             uiData.partRarity = "Epic";
             int randomPart = Random.Range(0, 3);
             if (randomPart == 0) {
-                uiData.partName = "Judy";
-                uiData.rightArm = ArmPart.Judy;
-                uiData.partType = "Right";
+                uiData.partName = "Fishbowl";
+                uiData.head = HeadPart.Fishbowl;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             } else if (randomPart == 1) {
-                uiData.partName = "Punch";
-                uiData.leftArm = ArmPart.Punch;
-                uiData.partType = "Left";
+                uiData.partName = "Surgeon";
+                uiData.head = HeadPart.Surgeon;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             } else {
-                uiData.partName = "Backfire";
-                uiData.leftArm = ArmPart.Backfire;
-                uiData.partType = "Left";
+                uiData.partName = "Boundman";
+                uiData.head = HeadPart.Boundman;
+                uiData.partType = "Head";
                 uiData.partDescription = "Description";
             }
 

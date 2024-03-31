@@ -58,6 +58,7 @@ public class PrefabManager : MonoBehaviour {
             droppedPart.GetComponent<DroppedLeg>().SetData(type, spawnPoint, rarity);
         } else if (type == PartType.Head) {
             droppedPart = Instantiate(instance.headDrop);
+            droppedPart.GetComponent<DroppedHead>().SetData(type, spawnPoint, rarity);
         }
         droppedPart.transform.SetParent(instance.partDropParent.transform);
     }

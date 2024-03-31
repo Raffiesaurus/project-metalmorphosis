@@ -28,8 +28,8 @@ TagManager:
   - Game_UI
   - 
   - 3D
-  - 
   - PartDrop
+  - PartDropInactive
   - Cover
   - PartPickup
   - 

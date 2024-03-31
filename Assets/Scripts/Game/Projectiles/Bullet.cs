@@ -59,20 +59,20 @@ public abstract class Bullet : MonoBehaviour {
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision) {
-        ContactPoint2D[] myContact = new ContactPoint2D[1];
-        collision.GetContacts(myContact);
-        if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("floor")) {
-            if (GameManager.BulletBounce && bounceCount <= 0) {
-                bounceCount++;
-                float speed = lastVelocity.magnitude;
-                Vector3 reflectedDir = Vector2.Reflect(lastVelocity.normalized, myContact[0].normal.normalized);
-                rb.velocity = reflectedDir * speed;
-                Debug.Log("BOUNCE! " + reflectedDir);
-
-            } else {
-                KillBullet();
+        if (GameManager.BulletBounce && bounceCount <= 0) {
+            if (collision.CompareTag("wall") || collision.CompareTag("floor")) {
+                Vector3 contactPoint = collision.ClosestPoint(transform.position);
+                Vector3 normal = (transform.position - contactPoint).normalized;
+                if (Vector3.Dot(rb.velocity, normal) < 0) {
+                    rb.velocity = Vector3.Reflect(rb.velocity, normal);
+                    bounceCount++;
+                }
             }
+        } else {
+            KillBullet();
         }
+
+
 
         if (shotBy.CompareTag("player")) {
 

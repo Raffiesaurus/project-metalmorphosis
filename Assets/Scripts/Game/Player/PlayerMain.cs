@@ -120,10 +120,10 @@ public class PlayerMain : MonoBehaviour {
 
     public void OnUtilityOne() {
         if (head.swapAmmoHp) {
-            if (currentAmmo <= head.ammoLoss && currentFuel <= head.fuelLoss) {
+            if (currentAmmo >= head.ammoLoss && currentFuel >= head.fuelLoss) {
                 UpdateHealth(head.hpGain);
-                UpdateAmmo(head.ammoLoss);
-                UpdateFuel(head.fuelLoss);
+                UpdateAmmo(-head.ammoLoss);
+                UpdateFuel(-head.fuelLoss);
             }
         }
     }

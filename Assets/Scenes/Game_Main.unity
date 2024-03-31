@@ -338,7 +338,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 200640
+    m_Bits: 233408
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   blitzBullet: {fileID: 5923554066920280848, guid: b69ecae5c8b73aa4f81a1a7ce033cae2, type: 3}
   armDrop: {fileID: 552995977303755338, guid: 0371fca564cdf994a9985f0450e0799c, type: 3}
   legDrop: {fileID: 552995977303755338, guid: daccf184021c59945ba699c47ff6200e, type: 3}
-  headDrop: {fileID: 0}
+  headDrop: {fileID: 552995977303755338, guid: c08e4739b5527d54290102dadf294ca8, type: 3}
   partDropParent: {fileID: 1815558228}
   partDropUIParent: {fileID: 1338161692}
   pickupPartUI: {fileID: 418844206549038668, guid: e3e27b1a5c79fae4ca5765a6a2596548, type: 3}
@@ -3877,9 +3877,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7647054509120971160, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 0.8719991
+    - target: {fileID: 8111173150071511109, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
+      propertyPath: boxCols.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

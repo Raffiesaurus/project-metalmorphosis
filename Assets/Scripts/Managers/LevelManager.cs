@@ -63,10 +63,12 @@ public class LevelManager : MonoBehaviour {
                 newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
                 newLevel.GetComponent<LevelBase>().levelType = LevelType.Rest;
                 newLevel.GetComponent<LevelBase>().StartLevel();
+                currentLevel = newLevel.GetComponent<LevelBase>();
             } else {
                 GameObject newLevel = Instantiate(spawnThisLevel, levelParent.transform);
                 newLevel.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
                 newLevel.GetComponent<LevelBase>().StartLevel();
+                currentLevel = newLevel.GetComponent<LevelBase>();
             }
         } else {
             GenerateLevelMap();

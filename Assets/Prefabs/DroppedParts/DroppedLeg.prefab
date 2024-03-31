@@ -120,12 +120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partType: 0
-  partRarity: 0
+  partRarity: 3
   partName: 
   rb: {fileID: 0}
   boxCol: {fileID: 0}
   assignedImage: {fileID: 0}
   partImages: []
+  spanwed: 1
 --- !u!1 &9116602847461387874
 GameObject:
   m_ObjectHideFlags: 0

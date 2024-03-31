@@ -29,6 +29,7 @@ public enum PartRarity {
     Common,
     Rare,
     Epic,
+    Unassigned,
 }
 
 public enum ArmPart {
