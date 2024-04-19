@@ -81,6 +81,7 @@ public class PlayerHead : PlayerParts {
                 headAdded = gameObject.AddComponent<MinimifeyeHead>();
                 break;
         }
+        headAdded.headImg = headImg;
         Destroy(this);
         return headAdded;
     }

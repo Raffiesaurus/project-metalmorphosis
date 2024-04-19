@@ -42,6 +42,9 @@ public class PlayerLeg : PlayerParts {
                 legAdded = gameObject.AddComponent<HeavyArtilleryLeg>();
                 break;
         }
+        legAdded.upperLegImg = upperLegImg;
+        legAdded.lowerLegImg = lowerLegImg;
+        legAdded.footImg = footImg;
         Destroy(this);
         return legAdded;
     }

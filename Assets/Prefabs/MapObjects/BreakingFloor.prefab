@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7703883018307455132}
   - component: {fileID: 1114666084555924905}
   m_Layer: 17
-  m_Name: Cover
+  m_Name: BreakingFloor
   m_TagString: cover
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 1875265316, guid: a25d24221442e8543aec8af2d82c28e1, type: 3}
+  m_Sprite: {fileID: 1046592451, guid: a25d24221442e8543aec8af2d82c28e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

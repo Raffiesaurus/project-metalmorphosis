@@ -72,6 +72,8 @@ public class PlayerArm : PlayerParts {
                 break;
 
         }
+        armAdded.upperArmImg = upperArmImg;
+        armAdded.lowerArmImg = lowerArmImg;
         meleeHitBox.enabled = armAdded.isMelee;
         Destroy(this);
         return armAdded;
