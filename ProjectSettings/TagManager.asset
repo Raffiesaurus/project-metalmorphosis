@@ -12,6 +12,7 @@ TagManager:
   - cover
   - part_drop
   - ui
+  - enemy_shield
   layers:
   - Default
   - TransparentFX

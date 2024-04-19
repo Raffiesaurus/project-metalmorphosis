@@ -2,6 +2,7 @@ public enum BulletType {
     BasicBullet,
     BlitzBullet,
     Grenade,
+    ShieldIgnore,
     None,
 }
 

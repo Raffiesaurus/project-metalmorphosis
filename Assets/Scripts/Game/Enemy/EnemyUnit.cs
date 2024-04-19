@@ -66,6 +66,7 @@ public class EnemyUnit : MonoBehaviour {
         if (playerPos == null) {
             return;
         }
+        playerPos.y += Random.Range(0.5f, 2.5f);
         dirVec = playerPos - transform.position;
         dirVecNormalized = dirVec.normalized;
 

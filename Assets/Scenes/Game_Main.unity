@@ -334,7 +334,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -3630,6 +3630,7 @@ MonoBehaviour:
   basicBullet: {fileID: 5923554066920280848, guid: a486d5b9c5ff19c4792c2ea2de6850e7, type: 3}
   grenadeBullet: {fileID: 5923554066920280848, guid: 01f8cd62e176cea468d0242327e88146, type: 3}
   blitzBullet: {fileID: 5923554066920280848, guid: b69ecae5c8b73aa4f81a1a7ce033cae2, type: 3}
+  shieldIgnoreBullet: {fileID: 5923554066920280848, guid: 734e81c96f41f1147990f7156bdbb8f5, type: 3}
   armDrop: {fileID: 552995977303755338, guid: 0371fca564cdf994a9985f0450e0799c, type: 3}
   legDrop: {fileID: 552995977303755338, guid: daccf184021c59945ba699c47ff6200e, type: 3}
   headDrop: {fileID: 552995977303755338, guid: c08e4739b5527d54290102dadf294ca8, type: 3}
@@ -3710,7 +3711,7 @@ MonoBehaviour:
   - {fileID: 7335079822759661267, guid: 882cb0834a490654bb3b5d91883a32a0, type: 3}
   morgueBoss:
   - {fileID: 7335079822759661267, guid: c7c0cf071f8922b4e9f3d2faf46d3f6c, type: 3}
-  spawnThisLevel: {fileID: 7335079822759661267, guid: f6bb45382d4171446bc7ffd6579d2324, type: 3}
+  spawnThisLevel: {fileID: 7335079822759661267, guid: 82f6d31f711fb2a4aafacba970437747, type: 3}
   levelParent: {fileID: 415019551}
   spawnLevel: {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
   maxLevel: 20

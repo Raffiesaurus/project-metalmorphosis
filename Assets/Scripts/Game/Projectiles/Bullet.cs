@@ -17,6 +17,8 @@ public abstract class Bullet : MonoBehaviour {
 
     private Vector2 savedSpeed = Vector2.zero;
 
+    private bool deadBullet = false;
+
     public virtual void Awake() {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -59,6 +61,7 @@ public abstract class Bullet : MonoBehaviour {
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision) {
+
         if (GameManager.BulletBounce && bounceCount <= 0) {
             if (collision.CompareTag("wall") || collision.CompareTag("floor")) {
                 Vector3 contactPoint = collision.ClosestPoint(transform.position);
@@ -72,21 +75,24 @@ public abstract class Bullet : MonoBehaviour {
             KillBullet();
         }
 
-
+        if (collision.gameObject.CompareTag("enemy_shield")) {
+            deadBullet = true;
+            KillBullet();
+        }
 
         if (shotBy.CompareTag("player")) {
 
-            if (collision.gameObject.CompareTag("enemy")) {
+            if (collision.gameObject.CompareTag("enemy") && !deadBullet) {
                 collision.gameObject.GetComponent<EnemyUnit>().UpdateHealth(-damage);
                 KillBullet();
-            } else if (collision.gameObject.CompareTag("cover")) {
+            } else if (collision.gameObject.CompareTag("cover") && !deadBullet) {
                 collision.gameObject.GetComponent<CoverObject>().UpdateHealth(-damage);
                 KillBullet();
             }
 
         } else if (shotBy.CompareTag("enemy")) {
 
-            if (collision.gameObject.CompareTag("player")) {
+            if (collision.gameObject.CompareTag("player") && !deadBullet) {
                 collision.gameObject.GetComponent<PlayerMain>().UpdateHealth(-damage);
                 if (GameManager.PlayerReturnDamage) {
                     shotBy.GetComponent<EnemyUnit>().UpdateHealth(-damage * (GameManager.PlayerReturnDamageAmount / 100));

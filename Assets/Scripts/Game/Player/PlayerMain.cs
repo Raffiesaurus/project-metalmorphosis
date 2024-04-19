@@ -82,7 +82,6 @@ public class PlayerMain : MonoBehaviour {
         meleeDmgBonus = head.meleeDmgBoost;
         rangeDmgBonus = head.rangeDmgBoost;
 
-        Debug.Log(healthBoost + " " + ammoBoost + " " + fuelBoost + " " + legSpeedMulti);
         UpdateHealth(0);
         UpdateFuel(0);
         UpdateAmmo(0);
