@@ -10,6 +10,10 @@ public class PlayerLeg : PlayerParts {
     [SerializeField] public float fuelBoost = 0.0f;
     [SerializeField] public float speedBoost = 1.0f;
 
+    [SerializeField] public SpriteRenderer upperLegImg = null;
+    [SerializeField] public SpriteRenderer lowerLegImg = null;
+    [SerializeField] public SpriteRenderer footImg = null;
+
     public virtual void Awake() {
 
     }
@@ -54,4 +58,9 @@ public class PlayerLeg : PlayerParts {
 
     }
 
+    public void UpdateSprite(Sprite upperLeg, Sprite lowerLeg, Sprite foot) {
+        upperLegImg.sprite = upperLeg;
+        lowerLegImg.sprite = lowerLeg;
+        footImg.sprite = foot;
+    }
 }

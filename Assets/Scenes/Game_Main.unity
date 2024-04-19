@@ -3744,6 +3744,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4857873231bb2c74596403b0a94bf526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armSprites:
+  - {fileID: 21300000, guid: 65820a0bf8ae28742b29978bc93ec88d, type: 3}
+  headSprites: []
+  legSprites: []
 --- !u!1 &1998485377
 GameObject:
   m_ObjectHideFlags: 0

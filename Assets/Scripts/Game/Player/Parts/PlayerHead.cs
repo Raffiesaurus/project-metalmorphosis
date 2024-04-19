@@ -23,6 +23,7 @@ public class PlayerHead : PlayerParts {
 
     [SerializeField] public bool returnDmg = false;
     [SerializeField] public float returnDmgAmount = 0.0f;
+    [SerializeField] public SpriteRenderer headImg = null;
 
     public virtual void Awake() {
 
@@ -94,5 +95,9 @@ public class PlayerHead : PlayerParts {
 
     public override void PartUninstall() {
 
+    }
+
+    public void UpdateSprite(Sprite head) {
+        headImg.sprite = head;
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class PlayerParts : MonoBehaviour {
 
-    [SerializeField] public SpriteRenderer img = null;
     [HideInInspector] public PartType partType = PartType.Arm;
     [HideInInspector] public PartRarity partRarity = PartRarity.Common;
     [HideInInspector] public PlayerMain player = null;

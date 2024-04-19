@@ -89,6 +89,21 @@ public class PlayerMain : MonoBehaviour {
         GameManager.OneHitMode = head.oneHitMode;
         GameManager.PlayerReturnDamage = head.returnDmg;
         GameManager.PlayerReturnDamageAmount = head.returnDmgAmount;
+
+        //UpdateSprites();
+    }
+
+    private void UpdateSprites() {
+        List<Sprite> leftArmImages = PartsManager.GetArmSprites(leftArm.armPart);
+        List<Sprite> rightArmImages = PartsManager.GetArmSprites(rightArm.armPart);
+        List<Sprite> legImages = PartsManager.GetLegSprites(legs.legPart);
+        List<Sprite> headImages = PartsManager.GetHeadSprites(head.headPart);
+
+        leftArm.UpdateSprite(leftArmImages[0], leftArmImages[1]);
+        rightArm.UpdateSprite(rightArmImages[0], rightArmImages[1]);
+        legs.UpdateSprite(legImages[0], legImages[1], legImages[2]);
+        head.UpdateSprite(headImages[0]);
+
     }
 
     public void OnLeftClick(Vector3 mousePos) {
