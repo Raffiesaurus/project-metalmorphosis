@@ -2340,11 +2340,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083260468}
   m_CullTransparentMesh: 1
---- !u!212 &1096292896 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1555650607033821414, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-  m_PrefabInstance: {fileID: 3829749406114382789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1140646141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,11 +2872,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284867717}
   m_CullTransparentMesh: 1
---- !u!212 &1300838064 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6687690634782230566, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-  m_PrefabInstance: {fileID: 3829749406114382789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1329565920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2919,11 +2909,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!212 &1332742058 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 479338760763776071, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-  m_PrefabInstance: {fileID: 3829749406114382789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1338161692
 GameObject:
   m_ObjectHideFlags: 0
@@ -3944,22 +3929,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4625457155458918190, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5135217816742769709, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-      propertyPath: footImg
-      value: 
-      objectReference: {fileID: 1300838064}
-    - target: {fileID: 5135217816742769709, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-      propertyPath: lowerLegImg
-      value: 
-      objectReference: {fileID: 1332742058}
-    - target: {fileID: 5135217816742769709, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-      propertyPath: upperLegImg
-      value: 
-      objectReference: {fileID: 1096292896}
-    - target: {fileID: 8111173150071511109, guid: 4343b7a3ef2cd324b8ccdca8ce7d6c42, type: 3}
-      propertyPath: boxCols.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

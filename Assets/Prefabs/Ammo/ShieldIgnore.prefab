@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3636408826340612759}
   m_Layer: 9
   m_Name: ShieldIgnore
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

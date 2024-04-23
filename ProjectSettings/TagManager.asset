@@ -13,6 +13,7 @@ TagManager:
   - part_drop
   - ui
   - enemy_shield
+  - bullet
   layers:
   - Default
   - TransparentFX

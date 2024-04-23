@@ -86,8 +86,24 @@ public abstract class Bullet : MonoBehaviour {
                 collision.gameObject.GetComponent<EnemyUnit>().UpdateHealth(-damage);
                 KillBullet();
             } else if (collision.gameObject.CompareTag("cover") && !deadBullet) {
-                collision.gameObject.GetComponent<CoverObject>().UpdateHealth(-damage);
-                KillBullet();
+                if (collision.gameObject.TryGetComponent(out OneWayCover oneWay)) {
+                    if (oneWay.CheckSide(transform.position.x)) {
+                        KillBullet();
+                    } else {
+                        Debug.Log("WHEEEEE");
+                    }
+                } else {
+                    if (collision.gameObject.TryGetComponent(out CoverObject coverObj)) {
+                        coverObj.UpdateHealth(-damage);
+                    }
+                    if (collision.gameObject.TryGetComponent(out Rubble rubble)) {
+                        Destroy(rubble.gameObject);
+                    }
+                    if (collision.gameObject.TryGetComponent(out PushBox pBox)) {
+                        pBox.ResetPosition();
+                    }
+                    KillBullet();
+                }
             }
 
         } else if (shotBy.CompareTag("enemy")) {
