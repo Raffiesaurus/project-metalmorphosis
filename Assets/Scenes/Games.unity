@@ -1873,6 +1873,7 @@ MonoBehaviour:
   basicBullet: {fileID: 5923554066920280848, guid: a486d5b9c5ff19c4792c2ea2de6850e7, type: 3}
   grenadeBullet: {fileID: 0}
   blitzBullet: {fileID: 0}
+  shieldIgnoreBullet: {fileID: 0}
   armDrop: {fileID: 0}
   legDrop: {fileID: 0}
   headDrop: {fileID: 0}
