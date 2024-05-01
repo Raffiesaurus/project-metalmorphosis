@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7008480902820604929}
   m_Layer: 10
   m_Name: ExplosionRadius
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 8604714739019021974}
   m_Layer: 10
   m_Name: ExplosionParticle
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5018,7 +5018,7 @@ GameObject:
   - component: {fileID: 7942622325346453739}
   m_Layer: 10
   m_Name: Grenade
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5108,7 +5108,8 @@ MonoBehaviour:
   boxCollider: {fileID: 7942622325346453739}
   damage: 50
   speed: 12.5
-  shotBy: 
+  bounceCount: 0
+  shotBy: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 2112

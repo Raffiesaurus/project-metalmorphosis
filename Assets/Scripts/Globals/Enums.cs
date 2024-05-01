@@ -2,6 +2,7 @@ public enum BulletType {
     BasicBullet,
     BlitzBullet,
     Grenade,
+    ShieldIgnore,
     None,
 }
 
@@ -29,6 +30,7 @@ public enum PartRarity {
     Common,
     Rare,
     Epic,
+    Unassigned,
 }
 
 public enum ArmPart {

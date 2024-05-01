@@ -21,7 +21,7 @@ public class PartDropData {
 public class DroppablePart : MonoBehaviour {
 
     [HideInInspector] public PartType partType;
-    [HideInInspector] public PartRarity partRarity;
+    [HideInInspector] public PartRarity partRarity = PartRarity.Unassigned;
     [HideInInspector] public string partName;
 
     [HideInInspector] public Rigidbody2D rb;
@@ -35,6 +35,7 @@ public class DroppablePart : MonoBehaviour {
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         boxCol = GetComponent<BoxCollider2D>();
+        FormItem();
     }
 
     public virtual void SetData(PartType type, Vector2 spawnPoint, PartRarity rarity) {
@@ -48,6 +49,14 @@ public class DroppablePart : MonoBehaviour {
     }
 
     public virtual void FormItem() { }
+
+    public virtual void Update() {
+        if (LevelManager.RemainingEnemies == 0) {
+            gameObject.layer = LayerMask.NameToLayer("PartDrop");
+        } else {
+            gameObject.layer = LayerMask.NameToLayer("PartDropInactive");
+        }
+    }
 
     public virtual void OnCollisionEnter2D(Collision2D collision) {
     }

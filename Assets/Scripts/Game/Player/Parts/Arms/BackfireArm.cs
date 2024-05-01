@@ -20,7 +20,7 @@ public class BackfireArm : PlayerArm {
             player.UpdateAmmo(-ammoUsage);
             player.UpdateFuel(-fuelUsage);
             cdCounter = cooldown;
-            PrefabManager.SpawnAndFire(bulletType, spawnPoint, mousePos, gameObject.tag);
+            PrefabManager.SpawnAndFire(bulletType, spawnPoint, mousePos, gameObject);
         }
     }
 

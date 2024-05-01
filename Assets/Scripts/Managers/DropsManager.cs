@@ -28,6 +28,6 @@ public class DropsManager : MonoBehaviour {
     }
 
     public static void DropHead(PartRarity rarity, Vector2 spawnPoint) {
-        //PrefabManager.SpawnDroppablePart(PartType.Head, rarity, spawnPoint);
+        PrefabManager.SpawnDroppablePart(PartType.Head, rarity, spawnPoint);
     }
 }

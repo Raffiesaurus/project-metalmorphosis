@@ -148,7 +148,7 @@ MonoBehaviour:
     m_Bits: 128
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 2048
   bulletType: 0
   armDropProps:
     partDropChance: 0

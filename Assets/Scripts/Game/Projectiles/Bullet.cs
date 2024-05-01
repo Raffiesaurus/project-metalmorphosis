@@ -11,9 +11,13 @@ public abstract class Bullet : MonoBehaviour {
     [SerializeField] public float speed = 0.0f;
     [SerializeField] public int bounceCount = 0;
 
-    [HideInInspector] public string shotBy = "";
+    [HideInInspector] public GameObject shotBy = null;
+
+    private Vector2 lastVelocity = Vector2.zero;
 
     private Vector2 savedSpeed = Vector2.zero;
+
+    private bool deadBullet = false;
 
     public virtual void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -33,10 +37,14 @@ public abstract class Bullet : MonoBehaviour {
             rb.velocity = savedSpeed;
             savedSpeed = Vector2.zero;
         }
+
+        lastVelocity = rb.velocity;
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        rb.rotation = angle;
     }
 
-    public virtual void OnFire(Vector3 startPoint, Vector3 firePoint, string ownerTag) {
-        shotBy = ownerTag;
+    public virtual void OnFire(Vector3 startPoint, Vector3 firePoint, GameObject owner) {
+        shotBy = owner;
         transform.position = startPoint;
 
         Vector3 dirVec = (firePoint - startPoint);
@@ -47,35 +55,64 @@ public abstract class Bullet : MonoBehaviour {
 
         rb.velocity = dirVec * speed;
 
-        if (shotBy == "player") {
+        if (shotBy.CompareTag("player")) {
             damage *= ((100 + GameManager.GetPlayer().rangeDmgBonus) / 100);
         }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("floor")) {
-            if (GameManager.BulletBounce && bounceCount <= 0) {
-                bounceCount = 0;
-                // TODO
-            } else {
-                KillBullet();
+
+        if (GameManager.BulletBounce && bounceCount <= 0) {
+            if (collision.CompareTag("wall") || collision.CompareTag("floor")) {
+                Vector3 contactPoint = collision.ClosestPoint(transform.position);
+                Vector3 normal = (transform.position - contactPoint).normalized;
+                if (Vector3.Dot(rb.velocity, normal) < 0) {
+                    rb.velocity = Vector3.Reflect(rb.velocity, normal);
+                    bounceCount++;
+                }
             }
+        } else {
+            KillBullet();
         }
 
-        if (shotBy == "player") {
+        if (collision.gameObject.CompareTag("enemy_shield")) {
+            deadBullet = true;
+            KillBullet();
+        }
 
-            if (collision.gameObject.CompareTag("enemy")) {
+        if (shotBy.CompareTag("player")) {
+
+            if (collision.gameObject.CompareTag("enemy") && !deadBullet) {
                 collision.gameObject.GetComponent<EnemyUnit>().UpdateHealth(-damage);
                 KillBullet();
-            } else if (collision.gameObject.CompareTag("cover")) {
-                collision.gameObject.GetComponent<CoverObject>().UpdateHealth(-damage);
-                KillBullet();
+            } else if (collision.gameObject.CompareTag("cover") && !deadBullet) {
+                if (collision.gameObject.TryGetComponent(out OneWayCover oneWay)) {
+                    if (oneWay.CheckSide(transform.position.x)) {
+                        KillBullet();
+                    } else {
+                        Debug.Log("WHEEEEE");
+                    }
+                } else {
+                    if (collision.gameObject.TryGetComponent(out CoverObject coverObj)) {
+                        coverObj.UpdateHealth(-damage);
+                    }
+                    if (collision.gameObject.TryGetComponent(out Rubble rubble)) {
+                        Destroy(rubble.gameObject);
+                    }
+                    if (collision.gameObject.TryGetComponent(out PushBox pBox)) {
+                        pBox.ResetPosition();
+                    }
+                    KillBullet();
+                }
             }
 
-        } else if (shotBy == "enemy") {
+        } else if (shotBy.CompareTag("enemy")) {
 
-            if (collision.gameObject.CompareTag("player")) {
+            if (collision.gameObject.CompareTag("player") && !deadBullet) {
                 collision.gameObject.GetComponent<PlayerMain>().UpdateHealth(-damage);
+                if (GameManager.PlayerReturnDamage) {
+                    shotBy.GetComponent<EnemyUnit>().UpdateHealth(-damage * (GameManager.PlayerReturnDamageAmount / 100));
+                }
                 KillBullet();
             }
 

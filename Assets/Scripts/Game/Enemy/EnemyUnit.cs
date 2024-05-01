@@ -66,6 +66,7 @@ public class EnemyUnit : MonoBehaviour {
         if (playerPos == null) {
             return;
         }
+        playerPos.y += Random.Range(0.5f, 2.5f);
         dirVec = playerPos - transform.position;
         dirVecNormalized = dirVec.normalized;
 
@@ -109,6 +110,9 @@ public class EnemyUnit : MonoBehaviour {
     }
 
     public virtual void UpdateHealth(float healthChange) {
+        if (GameManager.OneHitMode && healthChange < 0) {
+            healthChange = -999999999;
+        }
 
         if (healthChange < 0) {
             currentHealth += (healthChange * ((100 - dmgReductionPercentage) / 100));
@@ -167,6 +171,7 @@ public class EnemyUnit : MonoBehaviour {
                     } else {
                         DropsManager.DropHead(PartRarity.Common, transform.position);
                     }
+                    Destroy(gameObject);
                 } else {
                     // Failed head check, unlucky no drops for you
                     Destroy(gameObject);

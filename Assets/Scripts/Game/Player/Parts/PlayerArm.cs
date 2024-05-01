@@ -10,6 +10,8 @@ public class PlayerArm : PlayerParts {
     [SerializeField] public float fuelUsage = 0.0f;
     [SerializeField] public int ammoUsage = 1;
     [SerializeField] public GameObject spawnPoint = null;
+    [SerializeField] public SpriteRenderer upperArmImg = null;
+    [SerializeField] public SpriteRenderer lowerArmImg = null;
 
     [HideInInspector] public float cdCounter = 0.0f;
     [HideInInspector] public BulletType bulletType = BulletType.None;
@@ -70,6 +72,8 @@ public class PlayerArm : PlayerParts {
                 break;
 
         }
+        armAdded.upperArmImg = upperArmImg;
+        armAdded.lowerArmImg = lowerArmImg;
         meleeHitBox.enabled = armAdded.isMelee;
         Destroy(this);
         return armAdded;
@@ -104,5 +108,10 @@ public class PlayerArm : PlayerParts {
         meleeDamage = mDmg;
         ammoUsage = ammoUse;
         fuelUsage = fuelUse;
+    }
+
+    public void UpdateSprite(Sprite upperArm, Sprite lowerArm) {
+        upperArmImg.sprite = upperArm;
+        lowerArmImg.sprite = lowerArm;
     }
 }

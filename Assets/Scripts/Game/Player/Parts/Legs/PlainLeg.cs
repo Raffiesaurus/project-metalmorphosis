@@ -3,9 +3,9 @@ public class PlainLeg : PlayerLeg {
         legPart = LegPart.Plain;
         partRarity = PartRarity.Common;
 
-        healthUp = 0;
-        ammoUp = 0;
-        fuelUp = 0;
-        speedUp = 1;
+        healthBoost = 0;
+        ammoBoost = 0;
+        fuelBoost = 0;
+        speedBoost = 1;
     }
 }

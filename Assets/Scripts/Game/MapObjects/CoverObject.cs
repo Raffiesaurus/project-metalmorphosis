@@ -6,18 +6,11 @@ public class CoverObject : MonoBehaviour {
 
     [SerializeField] private float health = 0;
 
-    // Start is called before the first frame update
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    public void UpdateHealth(float change) {
-        health += change;
+    public void UpdateHealth(float healthChange) {
+        if (GameManager.OneHitMode && healthChange < 0) {
+            healthChange = -999999999;
+        }
+        health += healthChange;
 
         health = Mathf.Clamp(health, 0, 100);
 

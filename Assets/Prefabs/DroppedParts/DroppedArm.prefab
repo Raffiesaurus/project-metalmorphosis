@@ -48,12 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partType: 0
-  partRarity: 0
+  partRarity: 3
   partName: 
   rb: {fileID: 0}
   boxCol: {fileID: 0}
   assignedImage: {fileID: 0}
   partImages: []
+  spanwed: 1
 --- !u!50 &5603499264285369091
 Rigidbody2D:
   serializedVersion: 4

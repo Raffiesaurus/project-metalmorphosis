@@ -15,13 +15,13 @@ public class PlayerMain : MonoBehaviour {
 
     [SerializeField] public PlayerCamera playerCam = null;
 
-    [HideInInspector] public float currentHealth = 0.0f;
-    [HideInInspector] public float currentFuel = 0.0f;
-    [HideInInspector] public float legSpeedMulti = 1.0f;
-    [HideInInspector] public float meleeDmgBonus = 0.0f;
-    [HideInInspector] public float rangeDmgBonus = 0.0f;
+    [SerializeField] public float currentHealth = 0.0f;
+    [SerializeField] public float currentFuel = 0.0f;
+    [SerializeField] public float legSpeedMulti = 1.0f;
+    [SerializeField] public float meleeDmgBonus = 0.0f;
+    [SerializeField] public float rangeDmgBonus = 0.0f;
 
-    [HideInInspector] public int currentAmmo = 0;
+    [SerializeField] public int currentAmmo = 0;
 
     [SerializeField] public BoxCollider2D meleeHitBox;
 
@@ -67,18 +67,20 @@ public class PlayerMain : MonoBehaviour {
         legs.legPart = PartsManager.EquippedLeg;
         legs = legs.AssignScript();
 
-        healthBoost = legs.healthUp;
-        ammoBoost = legs.ammoUp;
-        fuelBoost = legs.fuelUp;
-        legSpeedMulti = legs.speedUp;
+        healthBoost = legs.healthBoost;
+        ammoBoost = legs.ammoBoost;
+        fuelBoost = legs.fuelBoost;
+        legSpeedMulti = legs.speedBoost;
 
         head.headPart = PartsManager.EquippedHead;
         head = head.AssignScript();
 
-        healthBoost += head.healthChange;
-        ammoBoost += head.ammoChange;
-        fuelBoost += head.fuelChange;
-        legSpeedMulti += head.speedChange;
+        healthBoost += head.healthBoost;
+        ammoBoost += head.ammoBoost;
+        fuelBoost += head.fuelBoost;
+        legSpeedMulti += head.speedBoost;
+        meleeDmgBonus = head.meleeDmgBoost;
+        rangeDmgBonus = head.rangeDmgBoost;
 
         UpdateHealth(0);
         UpdateFuel(0);
@@ -87,6 +89,21 @@ public class PlayerMain : MonoBehaviour {
         GameManager.OneHitMode = head.oneHitMode;
         GameManager.PlayerReturnDamage = head.returnDmg;
         GameManager.PlayerReturnDamageAmount = head.returnDmgAmount;
+
+        //UpdateSprites();
+    }
+
+    private void UpdateSprites() {
+        List<Sprite> leftArmImages = PartsManager.GetArmSprites(leftArm.armPart);
+        List<Sprite> rightArmImages = PartsManager.GetArmSprites(rightArm.armPart);
+        List<Sprite> legImages = PartsManager.GetLegSprites(legs.legPart);
+        List<Sprite> headImages = PartsManager.GetHeadSprites(head.headPart);
+
+        leftArm.UpdateSprite(leftArmImages[0], leftArmImages[1]);
+        rightArm.UpdateSprite(rightArmImages[0], rightArmImages[1]);
+        legs.UpdateSprite(legImages[0], legImages[1], legImages[2]);
+        head.UpdateSprite(headImages[0]);
+
     }
 
     public void OnLeftClick(Vector3 mousePos) {
@@ -117,8 +134,11 @@ public class PlayerMain : MonoBehaviour {
 
     public void OnUtilityOne() {
         if (head.swapAmmoHp) {
-            UpdateHealth(head.hpGain);
-            UpdateAmmo(head.ammoLoss);
+            if (currentAmmo >= head.ammoLoss && currentFuel >= head.fuelLoss) {
+                UpdateHealth(head.hpGain);
+                UpdateAmmo(-head.ammoLoss);
+                UpdateFuel(-head.fuelLoss);
+            }
         }
     }
 
@@ -146,15 +166,18 @@ public class PlayerMain : MonoBehaviour {
 
     public void UpdateHealth(float healthChange) {
 
+        if (GameManager.OneHitMode && healthChange < 0) {
+            healthChange = -999999999;
+        }
+
         if (healthChange < 0) {
             currentHealth += (healthChange * ((100 - dmgReductionPercentage) / 100));
         } else {
             currentHealth += healthChange;
         }
-
-        Mathf.Clamp(currentHealth, 0, (maxHealth + healthBoost));
-
-        GameUIManager.UpdateHealthBar(currentHealth / (maxHealth + healthBoost));
+        float maxHealthPossible = maxHealth + healthBoost;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealthPossible);
+        GameUIManager.UpdateHealthBar(currentHealth / maxHealthPossible);
 
         if (currentHealth <= 0) {
             OnDeath();
@@ -163,13 +186,13 @@ public class PlayerMain : MonoBehaviour {
 
     public void UpdateAmmo(int ammoChange) {
         currentAmmo += ammoChange;
-        Mathf.Clamp(currentAmmo, 0, (maxAmmo + ammoBoost));
+        currentAmmo = Mathf.Clamp(currentAmmo, 0, (maxAmmo + ammoBoost));
         GameUIManager.UpdateAmmoCount(currentAmmo, (maxAmmo + ammoBoost));
     }
 
     public void UpdateFuel(float fuelChange) {
         currentFuel += fuelChange;
-        Mathf.Clamp(currentFuel, 0, (maxFuel + fuelBoost));
+        currentFuel = Mathf.Clamp(currentFuel, 0, (maxFuel + fuelBoost));
         GameUIManager.UpdateFuelBar(currentFuel / (maxFuel + fuelBoost));
     }
 

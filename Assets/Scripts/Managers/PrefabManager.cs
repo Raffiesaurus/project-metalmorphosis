@@ -7,6 +7,7 @@ public class PrefabManager : MonoBehaviour {
     [SerializeField] public GameObject basicBullet = null;
     [SerializeField] public GameObject grenadeBullet = null;
     [SerializeField] public GameObject blitzBullet = null;
+    [SerializeField] public GameObject shieldIgnoreBullet = null;
 
     [SerializeField] public GameObject armDrop = null;
     [SerializeField] public GameObject legDrop = null;
@@ -35,16 +36,19 @@ public class PrefabManager : MonoBehaviour {
 
     }
 
-    public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint, string ownerTag) {
+    public static void SpawnAndFire(BulletType prefabType, Vector3 startPoint, Vector3 firePoint, GameObject owner) {
         if (prefabType == BulletType.BasicBullet) {
             GameObject newBasicBullet = Instantiate(instance.basicBullet);
-            newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint, ownerTag);
+            newBasicBullet.GetComponent<BasicBullet>().OnFire(startPoint, firePoint, owner);
         } else if (prefabType == BulletType.Grenade) {
             GameObject newGrenadeBullet = Instantiate(instance.grenadeBullet);
-            newGrenadeBullet.GetComponent<GrenadeBullet>().OnFire(startPoint, firePoint, ownerTag);
+            newGrenadeBullet.GetComponent<GrenadeBullet>().OnFire(startPoint, firePoint, owner);
         } else if (prefabType == BulletType.BlitzBullet) {
             GameObject newBlitzBullet = Instantiate(instance.blitzBullet);
-            newBlitzBullet.GetComponent<BlitzBullet>().OnFire(startPoint, firePoint, ownerTag);
+            newBlitzBullet.GetComponent<BlitzBullet>().OnFire(startPoint, firePoint, owner);
+        } else if (prefabType == BulletType.ShieldIgnore) {
+            GameObject newShieldIgnoreBullet = Instantiate(instance.shieldIgnoreBullet);
+            newShieldIgnoreBullet.GetComponent<ShieldIgnoreBullet>().OnFire(startPoint, firePoint, owner);
         }
     }
 
@@ -58,6 +62,7 @@ public class PrefabManager : MonoBehaviour {
             droppedPart.GetComponent<DroppedLeg>().SetData(type, spawnPoint, rarity);
         } else if (type == PartType.Head) {
             droppedPart = Instantiate(instance.headDrop);
+            droppedPart.GetComponent<DroppedHead>().SetData(type, spawnPoint, rarity);
         }
         droppedPart.transform.SetParent(instance.partDropParent.transform);
     }

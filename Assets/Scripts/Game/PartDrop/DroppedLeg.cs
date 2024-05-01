@@ -11,6 +11,14 @@ public class DroppedLeg : DroppablePart {
         uiData = new PartDropData();
         uiData.partType = "Legs";
         uiData.partImage = assignedImage;
+        if (partRarity == PartRarity.Unassigned) {
+            int partRandom = Random.Range(0, 10);
+            if (partRandom <= 6) {
+                partRarity = PartRarity.Common;
+            } else {
+                partRarity = PartRarity.Rare;
+            }
+        }
         if (partRarity == PartRarity.Common) {
             uiData.partRarity = "Common";
             int randomPart = Random.Range(0, 3);

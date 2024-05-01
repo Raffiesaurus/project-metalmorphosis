@@ -12,6 +12,16 @@ TagManager:
   - cover
   - part_drop
   - ui
+  - enemy_shield
+  - bullet
+  - left_arm
+  - right_arm
+  - head
+  - legs
+  - new_left_arm
+  - new_right_arm
+  - new_legs
+  - new_head
   layers:
   - Default
   - TransparentFX
@@ -28,8 +38,8 @@ TagManager:
   - Game_UI
   - 
   - 3D
-  - 
   - PartDrop
+  - PartDropInactive
   - Cover
   - PartPickup
   - 

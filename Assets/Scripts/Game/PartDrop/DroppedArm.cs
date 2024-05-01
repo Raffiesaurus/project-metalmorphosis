@@ -10,6 +10,16 @@ public class DroppedArm : DroppablePart {
         base.FormItem();
         uiData = new PartDropData();
         uiData.partImage = assignedImage;
+        if (partRarity == PartRarity.Unassigned) {
+            int partRandom = Random.Range(0, 10);
+            if (partRandom <= 4) {
+                partRarity = PartRarity.Common;
+            } else if (partRandom <= 7) {
+                partRarity = PartRarity.Rare;
+            } else {
+                partRarity = PartRarity.Epic;
+            }
+        }
         if (partRarity == PartRarity.Common) {
             // Lucky Scalpel, Lefty, Righty, Nail Gun
             int randomPart = Random.Range(0, 4);

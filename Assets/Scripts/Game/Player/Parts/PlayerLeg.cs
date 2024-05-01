@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlayerLeg : PlayerParts {
     [SerializeField] public LegPart legPart = LegPart.Plain;
 
-    [SerializeField] public int ammoUp = 0;
-    [SerializeField] public float healthUp = 0.0f;
-    [SerializeField] public float fuelUp = 0.0f;
-    [SerializeField] public float speedUp = 1.0f;
+    [SerializeField] public int ammoBoost = 0;
+    [SerializeField] public float healthBoost = 0.0f;
+    [SerializeField] public float fuelBoost = 0.0f;
+    [SerializeField] public float speedBoost = 1.0f;
+
+    [SerializeField] public SpriteRenderer upperLegImg = null;
+    [SerializeField] public SpriteRenderer lowerLegImg = null;
+    [SerializeField] public SpriteRenderer footImg = null;
 
     public virtual void Awake() {
 
@@ -38,6 +42,9 @@ public class PlayerLeg : PlayerParts {
                 legAdded = gameObject.AddComponent<HeavyArtilleryLeg>();
                 break;
         }
+        legAdded.upperLegImg = upperLegImg;
+        legAdded.lowerLegImg = lowerLegImg;
+        legAdded.footImg = footImg;
         Destroy(this);
         return legAdded;
     }
@@ -54,4 +61,9 @@ public class PlayerLeg : PlayerParts {
 
     }
 
+    public void UpdateSprite(Sprite upperLeg, Sprite lowerLeg, Sprite foot) {
+        upperLegImg.sprite = upperLeg;
+        lowerLegImg.sprite = lowerLeg;
+        footImg.sprite = foot;
+    }
 }

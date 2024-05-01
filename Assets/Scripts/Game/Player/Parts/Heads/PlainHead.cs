@@ -7,12 +7,12 @@ public class PlainHead : PlayerHead {
         headPart = HeadPart.Plain;
         partRarity = PartRarity.Common;
 
-        healthChange = 0;
-        ammoChange = 0;
-        fuelChange = 0;
-        speedChange = 0;
-        meleeDmgChange = 0;
-        rangeDmgChange = 0;
+        healthBoost = 0;
+        ammoBoost = 0;
+        fuelBoost = 0;
+        speedBoost = 0;
+        meleeDmgBoost = 0;
+        rangeDmgBoost = 0;
         hpGain = 0;
         ammoLoss = 0;
         swapAmmoHp = false;

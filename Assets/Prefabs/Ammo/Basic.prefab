@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8334942146844776873}
   m_Layer: 9
   m_Name: Basic
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,4 +175,5 @@ MonoBehaviour:
   boxCollider: {fileID: 7942622325346453739}
   damage: 25
   speed: 10
-  shotBy: 
+  bounceCount: 0
+  shotBy: {fileID: 0}
