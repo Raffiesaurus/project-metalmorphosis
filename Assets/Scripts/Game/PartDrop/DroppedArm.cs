@@ -10,7 +10,6 @@ public class DroppedArm : DroppablePart {
         base.FormItem();
         uiData = new PartDropData();
         uiData.partImage = assignedImage;
-        Debug.Log("Spawned Item: " + partRarity);
         if (partRarity == PartRarity.Unassigned) {
             int partRandom = Random.Range(0, 10);
             if (partRandom <= 4) {
