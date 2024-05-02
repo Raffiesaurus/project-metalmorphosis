@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
@@ -140,18 +139,22 @@ public class PlayerControl : MonoBehaviour {
 
         if ((mousePoint.x - transform.position.x) > 0) {
             playerSprites.transform.localScale = new(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerMain.LookRight();
         }
 
         if ((mousePoint.x - transform.position.x) < 0) {
             playerSprites.transform.localScale = new(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerMain.LookLeft();
         }
 
         if (moveHorizontal > 0.1f) {
             playerSprites.transform.localScale = new(Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerMain.LookRight();
         }
 
         if (moveHorizontal < -0.1f) {
             playerSprites.transform.localScale = new(-Math.Abs(playerSprites.transform.localScale.x), playerSprites.transform.localScale.y, playerSprites.transform.localScale.z);
+            playerMain.LookLeft();
         }
 
     }
@@ -171,4 +174,5 @@ public class PlayerControl : MonoBehaviour {
     void Slide() {
 
     }
+
 }

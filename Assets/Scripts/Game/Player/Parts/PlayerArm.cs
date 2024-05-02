@@ -111,7 +111,10 @@ public class PlayerArm : PlayerParts {
     }
 
     public void UpdateSprite(Sprite upperArm, Sprite lowerArm) {
-        upperArmImg.sprite = upperArm;
-        lowerArmImg.sprite = lowerArm;
+        if (upperArm != null)
+            upperArmImg.sprite = upperArm;
+
+        if (lowerArm != null)
+            lowerArmImg.sprite = lowerArm;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class PlayerMain : MonoBehaviour {
 
@@ -90,7 +91,7 @@ public class PlayerMain : MonoBehaviour {
         GameManager.PlayerReturnDamage = head.returnDmg;
         GameManager.PlayerReturnDamageAmount = head.returnDmgAmount;
 
-        //UpdateSprites();
+        UpdateSprites();
     }
 
     private void UpdateSprites() {
@@ -205,4 +206,19 @@ public class PlayerMain : MonoBehaviour {
         transform.position = spawnPoint;
         playerCam.transform.position = new(transform.position.x, transform.position.y + 2, transform.position.z - 4);
     }
+
+    public void LookLeft() {
+        leftArm.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        leftArm.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 1;
+        rightArm.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -1;
+        rightArm.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
+    }
+
+    public void LookRight() {
+        leftArm.GetComponent<SpriteRenderer>().sortingOrder = -1;
+        leftArm.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
+        rightArm.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        rightArm.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 1;
+    }
+
 }

@@ -22,6 +22,7 @@ TagManager:
   - new_right_arm
   - new_legs
   - new_head
+  - ui_text
   layers:
   - Default
   - TransparentFX

@@ -297,7 +297,9 @@ public class SwapScreen : MonoBehaviour {
     }
 
     public void Update() {
-
+        if (!GameUIManager.IsInSwapScreen) {
+            return;
+        }
         if (!hasUninstalled) {
             if (Input.GetMouseButtonDown(0)) {
                 Ray ray = sceneCam.ScreenPointToRay(Input.mousePosition);

@@ -10,9 +10,13 @@ public class PlayerLeg : PlayerParts {
     [SerializeField] public float fuelBoost = 0.0f;
     [SerializeField] public float speedBoost = 1.0f;
 
-    [SerializeField] public SpriteRenderer upperLegImg = null;
-    [SerializeField] public SpriteRenderer lowerLegImg = null;
-    [SerializeField] public SpriteRenderer footImg = null;
+    [SerializeField] public SpriteRenderer upperLegImgR = null;
+    [SerializeField] public SpriteRenderer lowerLegImgR = null;
+    [SerializeField] public SpriteRenderer footImgR = null;
+
+    [SerializeField] public SpriteRenderer upperLegImgL = null;
+    [SerializeField] public SpriteRenderer lowerLegImgL = null;
+    [SerializeField] public SpriteRenderer footImgL = null;
 
     public virtual void Awake() {
 
@@ -42,9 +46,12 @@ public class PlayerLeg : PlayerParts {
                 legAdded = gameObject.AddComponent<HeavyArtilleryLeg>();
                 break;
         }
-        legAdded.upperLegImg = upperLegImg;
-        legAdded.lowerLegImg = lowerLegImg;
-        legAdded.footImg = footImg;
+        legAdded.upperLegImgR = upperLegImgR;
+        legAdded.lowerLegImgR = lowerLegImgR;
+        legAdded.footImgR = footImgR;
+        legAdded.upperLegImgL = upperLegImgL;
+        legAdded.lowerLegImgL = lowerLegImgL;
+        legAdded.footImgL = footImgL;
         Destroy(this);
         return legAdded;
     }
@@ -62,8 +69,8 @@ public class PlayerLeg : PlayerParts {
     }
 
     public void UpdateSprite(Sprite upperLeg, Sprite lowerLeg, Sprite foot) {
-        upperLegImg.sprite = upperLeg;
-        lowerLegImg.sprite = lowerLeg;
-        footImg.sprite = foot;
+        upperLegImgR.sprite = upperLegImgL.sprite = upperLeg;
+        lowerLegImgR.sprite = lowerLegImgL.sprite = lowerLeg;
+        footImgR.sprite = footImgL.sprite = foot;
     }
 }

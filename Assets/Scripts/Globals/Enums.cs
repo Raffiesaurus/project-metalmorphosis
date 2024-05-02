@@ -78,3 +78,21 @@ public enum Tags {
     Floor,
     Enemy
 }
+
+public enum DisplayRes { 
+    Min,
+    Med,
+    Max,
+}
+
+public enum WindowMode {
+    Window,
+    Full,
+    Borderless,
+}
+
+public enum Quality {
+    Min,
+    Med,
+    Max,
+}

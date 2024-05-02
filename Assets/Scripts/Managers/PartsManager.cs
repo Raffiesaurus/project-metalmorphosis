@@ -195,7 +195,7 @@ public class PartsManager : MonoBehaviour {
         equippedLeftArm = ArmPart.Backfire;
         equippedRightArm = ArmPart.Blitzburst;
         equippedLeg = LegPart.Plain;
-        equippedHead = HeadPart.Boundman;
+        equippedHead = HeadPart.Plain;
         if (instance == null) {
             instance = this;
         }
