@@ -6,6 +6,7 @@ using UnityEngine;
 public class ChaserEnemy : EnemyUnit {
 
     [SerializeField] private BoxCollider2D meleeHitBox = null;
+    [SerializeField] private Animator animator;
 
     private bool isPlayerInMeleeRange = false;
 
@@ -25,6 +26,8 @@ public class ChaserEnemy : EnemyUnit {
             shouldMoveToPlayer = false;
 
             rb.velocity = Vector2.zero;
+
+            animator.SetTrigger("attack");
 
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
             if (GameManager.PlayerReturnDamage) {
