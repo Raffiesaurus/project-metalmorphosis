@@ -12,6 +12,8 @@ public class ShieldEnemy : EnemyUnit {
     public float postFireCdCounter = 0.0f;
     public float postFireDuration = 5.0f;
 
+    [SerializeField] private Animator animator;
+
     public override void Start() {
         base.Start();
     }
@@ -28,14 +30,19 @@ public class ShieldEnemy : EnemyUnit {
             } else if (dirVecNormalized.x > 0.1) {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
+            animator.SetBool("fire_right", false);
+            animator.SetBool("idle", true);
+            animator.SetBool("fire_left", false);
             return;
         }
 
         if (!isFiring) {
             if (!isPlayerInRange) {
                 shouldMoveToPlayer = true;
+                animator.SetBool("idle", false);
             } else {
                 shouldMoveToPlayer = false;
+                animator.SetBool("idle", true);
             }
 
             if (!shouldMoveToPlayer && isPlayerInRange) {
@@ -61,6 +68,13 @@ public class ShieldEnemy : EnemyUnit {
     }
 
     private void ShootPlayer() {
+
+        if (dirVecNormalized.x > 0) {
+            animator.SetBool("fire_left", true);
+        } else {
+            animator.SetBool("fire_right", true);
+        }
+
         currentAmmo -= ammoUsage;
 
         if (cdCounter <= 0) {
