@@ -38,6 +38,8 @@ public class GameUIManager : MonoBehaviour {
     [SerializeField] private GameObject mapScreen = null;
     [SerializeField] private GameObject swapUI = null;
 
+    [SerializeField] private PauseMenu pauseScreen = null;
+
     [SerializeField] private TMP_Text ammoText = null;
 
     [SerializeField] private TMP_Text notificationText = null;
@@ -49,6 +51,7 @@ public class GameUIManager : MonoBehaviour {
             instance = this;
         }
         gameOverScreen.gameObject.SetActive(false);
+        pauseScreen.gameObject.SetActive(false);
     }
 
     public static void UpdateHealthBar(float ratio) {
@@ -102,10 +105,19 @@ public class GameUIManager : MonoBehaviour {
         CameraManager.SwitchToMapView();
         instance.gameOverScreen.gameObject.SetActive(true);
         if (victory) {
+            AudioManager.PlaySFX(AudioClips.Victory);
             instance.gameOverScreen.PlayerWon();
         } else {
+            AudioManager.PlaySFX(AudioClips.Defeat);
             instance.gameOverScreen.PlayerDeath();
         }
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (!pauseScreen.isActive) {
+                pauseScreen.Activate();
+            }
+        }
+    }
 }

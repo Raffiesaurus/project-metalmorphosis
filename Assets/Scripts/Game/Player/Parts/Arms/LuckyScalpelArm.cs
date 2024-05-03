@@ -19,6 +19,7 @@ public class LuckyScalpelArm : PlayerArm {
         if (cdCounter <= 0 && player.currentFuel >= fuelUsage) {
             cdCounter = cooldown;
             player.UpdateFuel(-fuelUsage);
+            AudioManager.PlaySFX(AudioClips.MeleeHit);
             player.DealMeleeDamage(meleeDamage * ((100 + player.meleeDmgBonus) / 100));
         }
     }

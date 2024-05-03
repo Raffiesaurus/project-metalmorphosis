@@ -18,6 +18,9 @@ public class PrefabManager : MonoBehaviour {
     [SerializeField] public GameObject partDropUIParent = null;
     [SerializeField] public GameObject pickupPartUI = null;
 
+    [SerializeField] private Sprite ammoIcon = null;
+    [SerializeField] private Sprite fuelIcon = null;
+
     private static PrefabManager instance = null;
 
     private void Awake() {
@@ -72,7 +75,14 @@ public class PrefabManager : MonoBehaviour {
         newUI.transform.SetParent(instance.partDropUIParent.transform);
         newUI.transform.localPosition = Vector3.zero;
         newUI.transform.localScale = Vector3.one * 40;
-        newUI.GetComponent<PickupPartUI>().SetData(uidata, droppedObject);
+        Sprite consumpIcon = null;
+        if (uidata.ammo) {
+            consumpIcon = instance.ammoIcon;
+        }
+        if (uidata.fuel) {
+            consumpIcon = instance.fuelIcon;
+        }
+        newUI.GetComponent<PickupPartUI>().SetData(uidata, droppedObject, consumpIcon);
     }
 
     public static void HidePickupUI() {

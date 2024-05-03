@@ -16,6 +16,7 @@ public class JudyArm : PlayerArm {
     public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
         if (cdCounter <= 0) {
             cdCounter = cooldown;
+            AudioManager.PlaySFX(AudioClips.MeleeHit);
             player.DealMeleeDamage(meleeDamage * ((100 + player.meleeDmgBonus) / 100));
         }
     }

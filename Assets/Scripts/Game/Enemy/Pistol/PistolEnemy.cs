@@ -81,6 +81,7 @@ public class PistolEnemy : EnemyUnit {
     private void ShootPlayer() {
         if (cdCounter <= 0) {
             animator.SetTrigger("attack");
+            AudioManager.PlaySFX(AudioClips.Gunfire);
             currentAmmo -= ammoUsage;
             PrefabManager.SpawnAndFire(bulletType, bulletSpawn.position, playerPos, gameObject);
             cdCounter = cooldown;

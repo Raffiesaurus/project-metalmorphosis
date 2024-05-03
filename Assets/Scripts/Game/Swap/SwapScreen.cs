@@ -37,6 +37,7 @@ public class SwapScreen : MonoBehaviour {
     public void Setup(PartDropData data) {
         hasUninstalled = false;
         hasInstalled = false;
+        partToTouch = "";
         sceneCam = CameraManager.GetEquipScreenCamera();
         partData = data;
         CheckPart();
@@ -118,9 +119,9 @@ public class SwapScreen : MonoBehaviour {
     }
 
     void CheckPart() {
-        if (partData.partType == "Left") {
+        if (partData.partType == "Left Arm") {
             MoveToLeftArm();
-        } else if (partData.partType == "Right") {
+        } else if (partData.partType == "Right Arm") {
             MoveToRightArm();
         } else if (partData.partType == "Legs") {
             MoveToLeg();
@@ -325,7 +326,7 @@ public class SwapScreen : MonoBehaviour {
                 }
             }
         }
-        if (hasInstalled && hasUninstalled && Input.GetKeyDown(KeyCode.P)) {
+        if ((!hasUninstalled || (hasInstalled && hasUninstalled)) && Input.GetKeyDown(KeyCode.P)) {
             GameUIManager.SwitchToInGame();
         }
     }

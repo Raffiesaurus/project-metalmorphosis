@@ -96,3 +96,16 @@ public enum Quality {
     Med,
     Max,
 }
+
+public enum AudioClips {
+    Button,
+    ButtonHover,
+    Gunfire,
+    MeleeHit,
+    EnemyMeleeHit,
+    Walk,
+    Victory,
+    Defeat,
+    Hurt,
+    GrenadeExplode,
+}

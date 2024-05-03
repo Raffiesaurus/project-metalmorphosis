@@ -17,6 +17,7 @@ public class ChainsawArm : PlayerArm {
     public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
         if (cdCounter <= 0 && player.currentFuel >= fuelUsage) {
             cdCounter = cooldown;
+            AudioManager.PlaySFX(AudioClips.MeleeHit);
             player.UpdateFuel(-fuelUsage);
             player.DealMeleeDamage(meleeDamage * ((100 + player.meleeDmgBonus) / 100));
         }

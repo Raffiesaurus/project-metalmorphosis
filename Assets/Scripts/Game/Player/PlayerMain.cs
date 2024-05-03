@@ -173,6 +173,7 @@ public class PlayerMain : MonoBehaviour {
 
         if (healthChange < 0) {
             currentHealth += (healthChange * ((100 - dmgReductionPercentage) / 100));
+            AudioManager.PlaySFX(AudioClips.Hurt);
         } else {
             currentHealth += healthChange;
         }

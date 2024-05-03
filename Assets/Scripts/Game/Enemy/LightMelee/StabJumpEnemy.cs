@@ -64,7 +64,7 @@ public class StabJumpEnemy : EnemyUnit {
             rb.velocity = Vector2.zero;
 
             rb.AddForce(new(jumpBackForce.x * -moveSign, jumpBackForce.y));
-
+            AudioManager.PlaySFX(AudioClips.EnemyMeleeHit);
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
             if (GameManager.PlayerReturnDamage) {
                 UpdateHealth(-meleeDamage * (GameManager.PlayerReturnDamageAmount / 100));

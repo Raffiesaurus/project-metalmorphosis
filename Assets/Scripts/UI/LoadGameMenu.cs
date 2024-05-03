@@ -17,6 +17,7 @@ public class LoadGameMenu : MonoBehaviour {
     }
 
     public void HighlightButton(BaseEventData eventData) {
+        AudioManager.PlaySFX(AudioClips.ButtonHover);
         GameObject hoveredObject = ((PointerEventData)eventData).pointerEnter;
         if (hoveredObject.GetComponent<TMP_Text>() != null) {
             textHighlight.transform.gameObject.SetActive(true);
@@ -31,10 +32,12 @@ public class LoadGameMenu : MonoBehaviour {
     }
 
     public void OnSaveSlot() {
+        AudioManager.PlaySFX(AudioClips.Button);
         SceneManager.LoadSceneAsync(1);
     }
 
     public void OnBackButton() {
+        AudioManager.PlaySFX(AudioClips.Button); 
         UIManager.ActivateMainMenu();
     }
 }

@@ -15,6 +15,8 @@ public class PartDropData {
     [HideInInspector] public string partType;
     [HideInInspector] public string partDescription;
     [HideInInspector] public string partConsumption;
+    [HideInInspector] public bool ammo;
+    [HideInInspector] public bool fuel;
     [SerializeField] public Sprite partImage;
 }
 

@@ -41,7 +41,7 @@ public class PlayerControl : MonoBehaviour {
 
     void Update() {
 
-        if (GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { rb.velocity = Vector2.zero; return; }
+        if (GameUIManager.IsInMapScreen || GameUIManager.IsInSwapScreen) { moveHorizontal = moveVertical = 0; rb.velocity = Vector3.zero; return; }
 
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         //moveVertical = Input.GetAxisRaw("Vertical");
@@ -101,8 +101,10 @@ public class PlayerControl : MonoBehaviour {
 
         if (moveHorizontal > 0.1f || moveHorizontal < -0.1f) {
             rb.velocity = new(moveHorizontal * moveSpeed * moveSpeedMultiplier * playerMain.legSpeedMulti, rb.velocity.y);
+            AudioManager.PlayWalk();
         } else {
             rb.velocity = new(0, rb.velocity.y);
+            AudioManager.StopWalk();
         }
         playerMain.playerAnimator.SetFloat("Speed", rb.velocity.x);
 

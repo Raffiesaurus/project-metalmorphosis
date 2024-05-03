@@ -61,9 +61,6 @@ public abstract class Bullet : MonoBehaviour {
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision) {
-
-        Debug.Log(collision.tag + " " + collision.gameObject);
-
         if (GameManager.BulletBounce && bounceCount <= 0) {
             if (collision.CompareTag("wall") || collision.CompareTag("floor")) {
                 Vector3 contactPoint = collision.ClosestPoint(transform.position);
@@ -92,7 +89,6 @@ public abstract class Bullet : MonoBehaviour {
                     if (oneWay.CheckSide(transform.position.x)) {
                         KillBullet();
                     } else {
-                        Debug.Log("WHEEEEE");
                     }
                 } else {
                     if (collision.gameObject.TryGetComponent(out CoverObject coverObj)) {

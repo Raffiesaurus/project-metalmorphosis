@@ -92,6 +92,7 @@ public class MapLevelPrefab : MonoBehaviour {
     }
 
     public void OnLevelStart() {
+        AudioManager.PlaySFX(AudioClips.Button);
         hasStartedLevel = true;
         LevelManager.StartLevel(this, levelType);
     }
