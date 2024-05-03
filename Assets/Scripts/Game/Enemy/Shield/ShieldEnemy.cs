@@ -75,9 +75,9 @@ public class ShieldEnemy : EnemyUnit {
             animator.SetBool("fire_right", true);
         }
 
-        currentAmmo -= ammoUsage;
 
         if (cdCounter <= 0) {
+            currentAmmo -= ammoUsage;
             PrefabManager.SpawnAndFire(bulletType, transform.position, playerPos, gameObject);
             cdCounter = cooldown;
         }

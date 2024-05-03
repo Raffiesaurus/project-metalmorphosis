@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1587461426, guid: 612baba07bd1a6a4287c71d948e25ed4, type: 3}
+  m_Sprite: {fileID: -2051072837, guid: 7bc96392b1f1c5c49b88e50d7f291e30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 1558959814886012301}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 926f1cf2c8bbceb4c8c1428a09eedfb9, type: 2}
+  m_Controller: {fileID: 9100000, guid: b82f58e345fd8fb4b940747a97d1485d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 5211666323825405972}
   - component: {fileID: 7325729460255601809}
   m_Layer: 6
-  m_Name: ChaserEnemy
+  m_Name: ChaserEnemy_2
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.25, y: 1.25}
+  m_Size: {x: 1.25, y: 0.46033764}
   m_EdgeRadius: 0
 --- !u!50 &7325729460255601809
 Rigidbody2D:
@@ -340,7 +340,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.59652245, y: 0}
+  m_Offset: {x: 0.5513282, y: 0.049353898}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -351,7 +351,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.82475233, y: 1}
+  m_Size: {x: 0.6096555, y: 0.618629}
   m_EdgeRadius: 0
 --- !u!50 &8618484107173765832
 Rigidbody2D:
