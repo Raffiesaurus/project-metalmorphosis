@@ -2051,33 +2051,33 @@ MonoBehaviour:
   headPoint: {fileID: 1490610720}
   arms:
   - {fileID: 5670690430260558351, guid: 40fc3d3bbab0c1c46be642d4ff8b4153, type: 3}
-  - {fileID: 0}
+  - {fileID: 5629686824475781025, guid: 706f23f83f0c20341a11a51aa29cd02e, type: 3}
   - {fileID: 633461607587553682, guid: c0b420a8752d7cd4ca2f9f8cb0f0fe36, type: 3}
   - {fileID: 3032379739544414661, guid: c9bab2b14a5f62f44b76765f7b17c3a5, type: 3}
   - {fileID: 8244688497541781393, guid: d1deea01965d9f54ab8fb52547073dfc, type: 3}
   - {fileID: 483052971726545989, guid: 95f82cf3ae875a442a77af53f19f7415, type: 3}
-  - {fileID: 0}
+  - {fileID: 436952570071501968, guid: d883b247e4f14744bbd0a72e570d3ee4, type: 3}
   - {fileID: 6913584054722393137, guid: d4fd88ef0b6e9c04d8454c3b20244daf, type: 3}
-  - {fileID: 0}
-  - {fileID: 7862923655821777791, guid: 4efafd7a893fb8c419afc61dc4fdb1d2, type: 3}
+  - {fileID: 8830354710317531726, guid: e289147d1ca4dcd4ea785fb51b7b75f5, type: 3}
+  - {fileID: 314371722759183945, guid: 4efafd7a893fb8c419afc61dc4fdb1d2, type: 3}
   heads:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1463216110581952835, guid: ddccf1fbabf68a54a90141d8aa132e94, type: 3}
+  - {fileID: 8056335997406642697, guid: 5e87087b89b1a964c9c355860d42c88b, type: 3}
+  - {fileID: 3115688407131577368, guid: 654c6891764f39f4d9b2469d5b58eda6, type: 3}
+  - {fileID: 305444295627211129, guid: 6c92e342bf76dc94aa838af13725ceec, type: 3}
   - {fileID: 5355472974289341569, guid: d43fc5994b214144d807cd165c3c4c11, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 8531941288267701480, guid: a29902e17be9d344595731afcaf814b9, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2288540928450426722, guid: 4a1deaaaa3357f8409facd18f0bce206, type: 3}
+  - {fileID: 3654216089914822675, guid: dce41e6247f96a1469202a7bd7adb4a6, type: 3}
+  - {fileID: 1938316903001061916, guid: a9f0711f733255c4ca456fbbd88bc41f, type: 3}
+  - {fileID: 1671586356188729860, guid: a29902e17be9d344595731afcaf814b9, type: 3}
+  - {fileID: 4469444607638441445, guid: 7d0ecc8fa9c1ea44db79c98a03be25da, type: 3}
+  - {fileID: 3545266925954099727, guid: 0564f077e6e57e04d913ee1456a28aff, type: 3}
   - {fileID: 347941394353811630, guid: 23ec57841881dc7419457953973725ec, type: 3}
   legs:
   - {fileID: 1329811964665540396, guid: 060ecab9c268cd740b93155f11ed724a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 961426383133090370, guid: df0412483efc14c43918d1b36b0caad3, type: 3}
+  - {fileID: 3320695561508107909, guid: d7eaffc846fdc8841a53c8fc51f70910, type: 3}
+  - {fileID: 3622536961541916813, guid: 0bf62eb92abb4b849bbacb310a6bb50b, type: 3}
   - {fileID: 5052295197118377175, guid: 4a8f57cd48aad314eb77fda551230395, type: 3}
   newPartParent: {fileID: 1726121448}
 --- !u!1 &931827222
@@ -4260,7 +4260,7 @@ MonoBehaviour:
   - {fileID: 7335079822759661267, guid: 882cb0834a490654bb3b5d91883a32a0, type: 3}
   morgueBoss:
   - {fileID: 7335079822759661267, guid: c7c0cf071f8922b4e9f3d2faf46d3f6c, type: 3}
-  spawnThisLevel: {fileID: 7335079822759661267, guid: 82f6d31f711fb2a4aafacba970437747, type: 3}
+  spawnThisLevel: {fileID: 7335079822759661267, guid: f6bb45382d4171446bc7ffd6579d2324, type: 3}
   levelParent: {fileID: 415019551}
   spawnLevel: {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
   maxLevel: 20
