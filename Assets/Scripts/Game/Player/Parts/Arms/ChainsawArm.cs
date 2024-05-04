@@ -19,6 +19,7 @@ public class ChainsawArm : PlayerArm {
             cdCounter = cooldown;
             AudioManager.PlaySFX(AudioClips.MeleeHit);
             player.UpdateFuel(-fuelUsage);
+            player.playerAnimator.SetTrigger("LeftArmMelee");
             player.DealMeleeDamage(meleeDamage * ((100 + player.meleeDmgBonus) / 100));
         }
     }

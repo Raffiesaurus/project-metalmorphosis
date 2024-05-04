@@ -108,7 +108,6 @@ public class PlayerMain : MonoBehaviour {
     }
 
     public void OnLeftClick(Vector3 mousePos) {
-        playerAnimator.SetTrigger("LeftArmFire");
         leftArm.PartFire(mousePos, firingSpawnPoint.transform.position);
     }
 
@@ -117,7 +116,6 @@ public class PlayerMain : MonoBehaviour {
     }
 
     public void OnRightClick(Vector3 mousePos) {
-        playerAnimator.SetTrigger("RightArmFire");
         rightArm.PartFire(mousePos, firingSpawnPoint.transform.position);
     }
 

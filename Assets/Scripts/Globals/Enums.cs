@@ -108,4 +108,7 @@ public enum AudioClips {
     Defeat,
     Hurt,
     GrenadeExplode,
+    WoodBreak,
+    PartInstall,
+    PartUninstall,
 }

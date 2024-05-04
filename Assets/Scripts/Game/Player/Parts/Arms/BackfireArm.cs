@@ -21,6 +21,7 @@ public class BackfireArm : PlayerArm {
             player.UpdateFuel(-fuelUsage);
             cdCounter = cooldown;
             AudioManager.PlaySFX(AudioClips.Gunfire);
+            player.playerAnimator.SetTrigger("LeftArmFire");
             PrefabManager.SpawnAndFire(bulletType, spawnPoint, mousePos, gameObject);
         }
     }

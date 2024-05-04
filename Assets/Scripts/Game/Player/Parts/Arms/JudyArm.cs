@@ -17,6 +17,7 @@ public class JudyArm : PlayerArm {
         if (cdCounter <= 0) {
             cdCounter = cooldown;
             AudioManager.PlaySFX(AudioClips.MeleeHit);
+            player.playerAnimator.SetTrigger("RightArmMelee");
             player.DealMeleeDamage(meleeDamage * ((100 + player.meleeDmgBonus) / 100));
         }
     }

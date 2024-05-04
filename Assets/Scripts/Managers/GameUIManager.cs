@@ -96,8 +96,8 @@ public class GameUIManager : MonoBehaviour {
 
     public static void ShowNotification(string message) {
         instance.notificationText.text = message;
-        Tween.Scale(instance.notificationText.transform, endValue: 1, startValue: 0, duration: 1.0f, ease: Ease.InSine);
-        Tween.Scale(instance.notificationText.transform, endValue: 0, startValue: 1, duration: 1.0f, ease: Ease.OutSine, startDelay: 1.5f);
+        Tween.Scale(instance.notificationText.transform, endValue: 1, startValue: 0, duration: 0.75f, ease: Ease.InSine);
+        Tween.Scale(instance.notificationText.transform, endValue: 0, startValue: 1, duration: 0.75f, ease: Ease.OutSine, startDelay: 1.25f);
     }
 
     public static void GameOver(bool victory) {
@@ -119,5 +119,7 @@ public class GameUIManager : MonoBehaviour {
                 pauseScreen.Activate();
             }
         }
+
+        isInMapScreen = gameOverScreen.gameObject.activeInHierarchy || mapScreen.gameObject.activeInHierarchy || pauseScreen.isActive;
     }
 }

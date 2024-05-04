@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SwapScreen : MonoBehaviour {
@@ -22,6 +23,8 @@ public class SwapScreen : MonoBehaviour {
     [SerializeField] private GameObject[] legs;
 
     [SerializeField] private GameObject newPartParent = null;
+
+    [SerializeField] private TMP_Text helpText = null;
 
     private GameObject newPartSpawned = null;
 
@@ -135,6 +138,7 @@ public class SwapScreen : MonoBehaviour {
         Vector3 moveToPos = leftArmPoint.position;
         moveToPos.z -= 2.0f;
         sceneCam.transform.position = moveToPos;
+        helpText.text = "Click on left arm to uninstall.";
     }
 
     void MoveToRightArm() {
@@ -142,6 +146,7 @@ public class SwapScreen : MonoBehaviour {
         Vector3 moveToPos = rightArmPoint.position;
         moveToPos.z -= 2.0f;
         sceneCam.transform.position = moveToPos;
+        helpText.text = "Click on right arm to uninstall.";
     }
 
     void MoveToLeg() {
@@ -149,6 +154,7 @@ public class SwapScreen : MonoBehaviour {
         Vector3 moveToPos = legsPoint.position;
         moveToPos.z -= 2.0f;
         sceneCam.transform.position = moveToPos;
+        helpText.text = "Click on legs to uninstall.";
     }
 
     void MoveToHead() {
@@ -156,6 +162,7 @@ public class SwapScreen : MonoBehaviour {
         Vector3 moveToPos = headPoint.position;
         moveToPos.z -= 2.0f;
         sceneCam.transform.position = moveToPos;
+        helpText.text = "Click on head to uninstall.";
     }
 
     void Uninstall() {
@@ -175,11 +182,10 @@ public class SwapScreen : MonoBehaviour {
         Vector3 moveToPos = leftArm.transform.position;
         moveToPos.x += 5;
         leftArm.transform.position = moveToPos;
-
         uninstalledPart = GetArmName(PartsManager.EquippedLeftArm);
         PartsManager.EquippedLeftArm = ArmPart.Lucky_Scalpel;
         GameUIManager.ShowNotification("Uninstalled " + uninstalledPart + " from left arm.");
-
+        AudioManager.PlaySFX(AudioClips.PartUninstall);
         SpawnNewLeftArm(moveToPos);
     }
 
@@ -187,11 +193,10 @@ public class SwapScreen : MonoBehaviour {
         Vector3 moveToPos = rightArm.transform.position;
         moveToPos.x -= 5;
         rightArm.transform.position = moveToPos;
-
         uninstalledPart = GetArmName(PartsManager.EquippedRightArm);
         PartsManager.EquippedRightArm = ArmPart.Nail_Gun;
         GameUIManager.ShowNotification("Uninstalled " + uninstalledPart + " from right arm.");
-
+        AudioManager.PlaySFX(AudioClips.PartUninstall);
         SpawnNewRightArm(moveToPos);
     }
 
@@ -202,6 +207,7 @@ public class SwapScreen : MonoBehaviour {
         uninstalledPart = GetHeadName(PartsManager.EquippedHead);
         PartsManager.EquippedHead = HeadPart.Plain;
         GameUIManager.ShowNotification("Uninstalled " + uninstalledPart + " from head.");
+        AudioManager.PlaySFX(AudioClips.PartUninstall);
         SpawnNewHead(moveToPos);
     }
 
@@ -212,6 +218,7 @@ public class SwapScreen : MonoBehaviour {
         uninstalledPart = GetLegName(PartsManager.EquippedLeg);
         PartsManager.EquippedLeg = LegPart.Plain;
         GameUIManager.ShowNotification("Uninstalled " + uninstalledPart + " from legs.");
+        AudioManager.PlaySFX(AudioClips.PartUninstall);
         SpawnNewLeg(moveToPos);
     }
 
@@ -220,6 +227,7 @@ public class SwapScreen : MonoBehaviour {
         spawnPos.x -= 3;
         newPartSpawned = Instantiate(arms[(int)partData.leftArm], newPartParent.transform);
         newPartSpawned.transform.position = spawnPos;
+        helpText.text = "Click on new left arm to install.";
     }
 
     void SpawnNewRightArm(Vector3 spawnPos) {
@@ -227,6 +235,7 @@ public class SwapScreen : MonoBehaviour {
         spawnPos.x += 3;
         newPartSpawned = Instantiate(arms[(int)partData.rightArm], newPartParent.transform);
         newPartSpawned.transform.position = spawnPos;
+        helpText.text = "Click on new right arm to install.";
     }
 
     void SpawnNewHead(Vector3 spawnPos) {
@@ -234,6 +243,7 @@ public class SwapScreen : MonoBehaviour {
         spawnPos.y -= 4;
         newPartSpawned = Instantiate(heads[(int)partData.head], newPartParent.transform);
         newPartSpawned.transform.position = spawnPos;
+        helpText.text = "Click on new head to install.";
     }
 
     void SpawnNewLeg(Vector3 spawnPos) {
@@ -241,6 +251,7 @@ public class SwapScreen : MonoBehaviour {
         spawnPos.y += 4;
         newPartSpawned = Instantiate(legs[(int)partData.legs], newPartParent.transform);
         newPartSpawned.transform.position = spawnPos;
+        helpText.text = "Click on new leg to install.";
     }
 
     void Install() {
@@ -265,6 +276,8 @@ public class SwapScreen : MonoBehaviour {
         newPartSpawned.tag = "left_arm";
         newPartSpawned.transform.parent = leftArm.transform.parent;
         leftArm = newPartSpawned;
+        AudioManager.PlaySFX(AudioClips.PartInstall);
+        helpText.text = "Press P to return to game.";
     }
 
     void InstallRightArm() {
@@ -275,6 +288,8 @@ public class SwapScreen : MonoBehaviour {
         newPartSpawned.tag = "right_arm";
         newPartSpawned.transform.parent = rightArm.transform.parent;
         rightArm = newPartSpawned;
+        AudioManager.PlaySFX(AudioClips.PartInstall);
+        helpText.text = "Press P to return to game.";
     }
 
     void InstallLegs() {
@@ -285,6 +300,8 @@ public class SwapScreen : MonoBehaviour {
         newPartSpawned.tag = "legs";
         newPartSpawned.transform.parent = leg.transform.parent;
         leg = newPartSpawned;
+        AudioManager.PlaySFX(AudioClips.PartInstall);
+        helpText.text = "Press P to return to game.";
     }
 
     void InstallHead() {
@@ -295,6 +312,8 @@ public class SwapScreen : MonoBehaviour {
         newPartSpawned.tag = "head";
         newPartSpawned.transform.parent = head.transform.parent;
         head = newPartSpawned;
+        AudioManager.PlaySFX(AudioClips.PartInstall);
+        helpText.text = "Press P to return to game.";
     }
 
     public void Update() {

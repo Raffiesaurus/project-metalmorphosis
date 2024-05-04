@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour {
     }
 
     public static void SetMasterVolume(float volume) {
+        if (instance == null) { return; }
         instance.masterVol = volume;
         instance.bgmSource.volume = instance.musicVol * instance.masterVol;
         instance.sfxSource.volume = instance.sfxVol * instance.masterVol;
@@ -40,10 +41,12 @@ public class AudioManager : MonoBehaviour {
     }
 
     public static float GetMasterVolume() {
+        if (instance == null) { return 1; }
         return instance.masterVol;
     }
 
     public static void SetMuicVolume(float volume) {
+        if (instance == null) { return; }
         instance.musicVol = volume;
         instance.bgmSource.volume = instance.musicVol * instance.masterVol;
         instance.sfxSource.volume = instance.sfxVol * instance.masterVol;
@@ -51,10 +54,12 @@ public class AudioManager : MonoBehaviour {
     }
 
     public static float GetMusicVolume() {
+        if (instance == null) { return 1; }
         return instance.musicVol;
     }
 
     public static void SetSFXVolume(float volume) {
+        if (instance == null) { return; }
         instance.sfxVol = volume;
         instance.bgmSource.volume = instance.musicVol * instance.masterVol;
         instance.sfxSource.volume = instance.sfxVol * instance.masterVol;
@@ -62,20 +67,24 @@ public class AudioManager : MonoBehaviour {
     }
 
     public static float GetSFXVolume() {
+        if (instance == null) { return 1; }
         return instance.sfxVol;
     }
 
     public static void PlaySFX(AudioClips sfx) {
+        if (instance == null) { return; }
         instance.sfxSource.PlayOneShot(instance.audioClips[(int)sfx], instance.sfxSource.volume);
     }
 
     public static void PlayWalk() {
+        if(instance == null) { return; }
         if (!instance.walkSource.isPlaying) {
             instance.walkSource.Play();
         }
     }
 
     public static void StopWalk() {
+        if (instance == null) { return; }
         instance.walkSource.Stop();
     }
 }
