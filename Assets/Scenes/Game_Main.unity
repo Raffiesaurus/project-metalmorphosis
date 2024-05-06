@@ -365,7 +365,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 6.28
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -4260,7 +4260,7 @@ MonoBehaviour:
   - {fileID: 7335079822759661267, guid: 882cb0834a490654bb3b5d91883a32a0, type: 3}
   morgueBoss:
   - {fileID: 7335079822759661267, guid: c7c0cf071f8922b4e9f3d2faf46d3f6c, type: 3}
-  spawnThisLevel: {fileID: 7335079822759661267, guid: 82f6d31f711fb2a4aafacba970437747, type: 3}
+  spawnThisLevel: {fileID: 7335079822759661267, guid: 718e7465d32934e49bdf854e405372a0, type: 3}
   levelParent: {fileID: 415019551}
   spawnLevel: {fileID: 7335079822759661267, guid: 4a0f409f0c4e7604d84e239d2185b452, type: 3}
   maxLevel: 20
