@@ -17,10 +17,13 @@ public class PickupPartUI : MonoBehaviour {
     [SerializeField] private TMP_Text descText = null;
     [SerializeField] private SpriteRenderer image = null;
 
-    public void SetData(PartDropData data, GameObject droppedObject) {
+    public void SetData(PartDropData data, GameObject droppedObject, Sprite consumpIcon) {
         uiData = data;
+        image.sprite = consumpIcon;
         linkedObject = droppedObject;
         Vector2 uiPoint = CameraManager.GetUICamera().WorldToViewportPoint(droppedObject.transform.position);
+        uiPoint.y += 150;
+        transform.localScale = new Vector3(30, 30, 30);
         transform.localPosition = new Vector2(uiPoint.x, uiPoint.y);
         ApplyData();
     }
@@ -30,7 +33,6 @@ public class PickupPartUI : MonoBehaviour {
         rarityText.text = uiData.partRarity;
         typeText.text = uiData.partType;
         descText.text = uiData.partDescription;
-        image.sprite = uiData.partImage;
     }
 
     private void Update() {

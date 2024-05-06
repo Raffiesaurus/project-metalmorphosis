@@ -15,6 +15,7 @@ public class CoverObject : MonoBehaviour {
         health = Mathf.Clamp(health, 0, 100);
 
         if (health <= 0) {
+            AudioManager.PlaySFX(AudioClips.WoodBreak);
             Destroy(gameObject);
         }
     }

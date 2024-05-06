@@ -28,7 +28,7 @@ public class ChaserEnemy : EnemyUnit {
             rb.velocity = Vector2.zero;
 
             animator.SetTrigger("attack");
-
+            AudioManager.PlaySFX(AudioClips.EnemyMeleeHit);
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
             if (GameManager.PlayerReturnDamage) {
                 UpdateHealth(-meleeDamage * (GameManager.PlayerReturnDamageAmount / 100));

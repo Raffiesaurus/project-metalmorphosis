@@ -19,6 +19,7 @@ public class CreditsMenu : MonoBehaviour
     public void HighlightButton(BaseEventData eventData) {
         GameObject hoveredObject = ((PointerEventData)eventData).pointerEnter;
         if (hoveredObject.GetComponent<TMP_Text>() != null) {
+            AudioManager.PlaySFX(AudioClips.ButtonHover);
             textHighlight.transform.gameObject.SetActive(true);
         }
     }
@@ -31,6 +32,7 @@ public class CreditsMenu : MonoBehaviour
     }
 
     public void OnBackButton() {
+        AudioManager.PlaySFX(AudioClips.Button); 
         UIManager.ActivateMainMenu();
     }
 }

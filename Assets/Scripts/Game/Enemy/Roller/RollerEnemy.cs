@@ -15,7 +15,6 @@ public class RollerEnemy : EnemyUnit {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("player")) {
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
             UpdateHealth(-99999);

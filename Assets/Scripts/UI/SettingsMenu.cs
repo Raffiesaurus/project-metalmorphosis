@@ -100,8 +100,15 @@ public class SettingsMenu : MonoBehaviour {
                 break;
         }
 
+        audioStuff.SetActive(true);
 
-        OnAudioButton();
+        graphicsStuff.SetActive(false);
+        graphicsBox.transform.localPosition = new Vector3(-579.900024f, 18, 0);
+        graphicsButton.transform.localPosition = graphicsBox.transform.localPosition;
+
+        controlsStuff.SetActive(false);
+        controlsBox.transform.localPosition = new Vector3(-579.900024f, -166, 0);
+        controlsButton.transform.localPosition = controlsBox.transform.localPosition;
     }
 
     public void Deactivate() {
@@ -109,6 +116,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void HighlightButton(BaseEventData eventData) {
+        AudioManager.PlaySFX(AudioClips.ButtonHover);
         GameObject hoveredObject = ((PointerEventData)eventData).pointerEnter;
         if (hoveredObject.GetComponent<TMP_Text>() != null) {
             textHighlight.transform.gameObject.SetActive(true);
@@ -123,6 +131,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnAudioButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         audioStuff.SetActive(true);
 
         graphicsStuff.SetActive(false);
@@ -135,6 +144,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnGraphicsButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         audioStuff.SetActive(false);
 
         graphicsStuff.SetActive(true);
@@ -147,6 +157,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnControlsButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         audioStuff.SetActive(false);
 
         graphicsStuff.SetActive(false);
@@ -174,6 +185,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnDisplayRightButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         displayCount++;
         if (displayCount > 2) {
             displayCount = 0;
@@ -195,6 +207,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnDisplayLeftButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         displayCount--;
         if (displayCount < 0) {
             displayCount = 2;
@@ -216,6 +229,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnWindowRightButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         windowCount++;
         if (windowCount > 2) {
             windowCount = 0;
@@ -237,6 +251,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnWindowLeftButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         windowCount--;
         if (windowCount < 0) {
             windowCount = 2;
@@ -258,6 +273,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnQualityRightButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         qualityCount++;
         if (qualityCount > 2) {
             qualityCount = 0;
@@ -279,6 +295,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnQualityLeftButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         qualityCount--;
         if (qualityCount < 0) {
             qualityCount = 2;
@@ -300,6 +317,7 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     public void OnBackButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         UIManager.ActivateMainMenu();
     }
 }

@@ -9,6 +9,8 @@ public class DroppedHead : DroppablePart {
     public override void FormItem() {
         base.FormItem();
         uiData = new PartDropData();
+        uiData.fuel = false;
+        uiData.ammo = false;
         uiData.partType = "Head";
         uiData.partImage = assignedImage;
         if (partRarity == PartRarity.Unassigned) {
@@ -23,72 +25,72 @@ public class DroppedHead : DroppablePart {
         }
         if (partRarity == PartRarity.Common) {
             int randomPart = Random.Range(0, 3);
-            uiData.partRarity = "Common";
+            uiData.partRarity = "Rarity: Common";
             if (randomPart == 0) {
                 uiData.partName = "Thinker";
                 uiData.head = HeadPart.Thinker;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Increased speed, reduced HP.";
             } else if (randomPart == 1) {
                 uiData.partName = "Magnifeye";
                 uiData.head = HeadPart.Magnifeye;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Increased ranged damage, reduced melee damage.";
             } else {
                 uiData.partName = "Minimifeye";
                 uiData.head = HeadPart.Minimifeye;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Increased melee damage, reduced ranged damage.";
             }
 
         } else if (partRarity == PartRarity.Rare) {
-            uiData.partRarity = "Rare";
+            uiData.partRarity = "Rarity: Rare";
             int randomPart = Random.Range(0, 5);
             if (randomPart == 0) {
                 uiData.partName = "Meathead";
                 uiData.head = HeadPart.Meathead;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Greatly increases all damage dealt, reduces max HP.";
             } else if (randomPart == 1) {
                 uiData.partName = "Pinhead";
                 uiData.head = HeadPart.Pinhead;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Deals return damage on hit.";
             } else if (randomPart == 2) {
                 uiData.partName = "Farsighted";
                 uiData.head = HeadPart.Farsighted;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Greatly increases ranged damage, reduced melee damage.";
             } else if (randomPart == 3) {
                 uiData.partName = "Nearsighted";
                 uiData.head = HeadPart.Nearsighted;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Greatly increases melee damage, reduced ranged damage.";
             } else if (randomPart == 4) {
                 uiData.partName = "Neurons";
                 uiData.head = HeadPart.Neurons;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Greatly increased speed.";
             }
 
         } else {
-            uiData.partRarity = "Epic";
+            uiData.partRarity = "Rarity: Epic";
             int randomPart = Random.Range(0, 3);
             if (randomPart == 0) {
                 uiData.partName = "Fishbowl";
                 uiData.head = HeadPart.Fishbowl;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Player and enemies are set to 1 HP.";
             } else if (randomPart == 1) {
                 uiData.partName = "Surgeon";
                 uiData.head = HeadPart.Surgeon;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Converts 15 ammo and fuel to 15 HP.";
             } else {
                 uiData.partName = "Boundman";
                 uiData.head = HeadPart.Boundman;
                 uiData.partType = "Head";
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Bullets shot by the player ricochet once.";
             }
 
         }

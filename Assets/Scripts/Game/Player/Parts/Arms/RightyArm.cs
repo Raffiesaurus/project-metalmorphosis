@@ -11,6 +11,7 @@ public class RightyArm : PlayerArm {
     }
 
     public override void PartFire(Vector3 mousePos, Vector3 spawnPoint) {
+        player.playerAnimator.SetTrigger("RightArmMelee");
         player.UpdateDamageReductionPercentage(50);
     }
 }

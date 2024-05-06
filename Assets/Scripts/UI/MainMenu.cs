@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void HighlightButton(BaseEventData eventData) {
+        AudioManager.PlaySFX(AudioClips.ButtonHover);
         Vector3 buttonPosition = ((PointerEventData)eventData).pointerEnter.transform.position;
         buttonPosition.y += 9;
         buttonPosition.x -= 35;
@@ -35,26 +36,32 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void OnPlayButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         UIManager.ActivateNewGame();     
     }
 
     public void OnSettingsButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         UIManager.ActivateSettings();
     }
 
     public void OnLoadButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         UIManager.ActivateLoadGame();
     }
 
     public void OnCreditsButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         UIManager.ActivateCredits();
     }
 
     public void OnHelpButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         UIManager.ActivateHelp();
     }
 
     public void OnExitButton() {
+        AudioManager.PlaySFX(AudioClips.Button);
         Application.Quit();
     }
 }

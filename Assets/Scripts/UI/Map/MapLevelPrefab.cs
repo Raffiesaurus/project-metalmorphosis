@@ -57,17 +57,36 @@ public class MapLevelPrefab : MonoBehaviour {
                     arrowObjects[i].transform.eulerAngles = new(0, 0, angle);
                     Debug.Log("Angle: " + angle);
                 }*/
-        foreach (GameObject mapLevelObject in postConnection) {
-            MapLevelPrefab level = mapLevelObject.GetComponent<MapLevelPrefab>();
-            if (level.col == col) {
-                arrowObjects[1].SetActive(true);
-            } else if (level.col < col) {
-                arrowObjects[0].SetActive(true);
-            } else if (level.col > col) {
-                arrowObjects[2].SetActive(true);
+
+        if (levelType == LevelType.Boss) {
+            foreach (GameObject mapLevelObject in preConnection) {
+                MapLevelPrefab level = mapLevelObject.GetComponent<MapLevelPrefab>();
+
+                if (level.col == col - 2) {
+                    arrowObjects[0].SetActive(true);
+                } else if (level.col == col - 1) {
+                    arrowObjects[1].SetActive(true);
+                } else if (level.col == col) {
+                    arrowObjects[2].SetActive(true);
+                } else if (level.col == col + 1) {
+                    arrowObjects[3].SetActive(true);
+                } else if (level.col == col + 2) {
+                    arrowObjects[4].SetActive(true);
+                }
+
+            }
+        } else {
+            foreach (GameObject mapLevelObject in postConnection) {
+                MapLevelPrefab level = mapLevelObject.GetComponent<MapLevelPrefab>();
+                if (level.col == col) {
+                    arrowObjects[1].SetActive(true);
+                } else if (level.col < col) {
+                    arrowObjects[0].SetActive(true);
+                } else if (level.col > col) {
+                    arrowObjects[2].SetActive(true);
+                }
             }
         }
-
     }
 
     private void Update() {
@@ -92,6 +111,7 @@ public class MapLevelPrefab : MonoBehaviour {
     }
 
     public void OnLevelStart() {
+        AudioManager.PlaySFX(AudioClips.Button);
         hasStartedLevel = true;
         LevelManager.StartLevel(this, levelType);
     }

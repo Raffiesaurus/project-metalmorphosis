@@ -12,6 +12,10 @@ public class PistolEnemy : EnemyUnit {
     private bool isMovingToCover = false;
     private bool isAtCover = false;
 
+    [SerializeField] private Transform bulletSpawn;
+
+    [SerializeField] private Animator animator;
+
     public override void Start() {
         base.Start();
         coverObjects = transform.parent.GetComponentsInChildren<CoverObject>();
@@ -20,13 +24,15 @@ public class PistolEnemy : EnemyUnit {
     public override void Update() {
         base.Update();
 
+
+
         if (isMovingToCover) {
 
             rb.velocity = moveVel;
 
-            if (coverObjectChosen != null) {
+            if (coverObjectChosen != null && coverObjects.Length > 0) {
                 float distanceToCover = Vector3.Distance(transform.position, coverObjectChosen.transform.position);
-                if (distanceToCover <= 0.05) {
+                if (distanceToCover <= 1) {
                     isMovingToCover = false;
                     isAtCover = true;
                     rb.velocity = Vector2.zero;
@@ -37,25 +43,49 @@ public class PistolEnemy : EnemyUnit {
 
         } else {
 
-            if (cdCounter > 0 && !isAtCover) {
-                MoveToCover();
+            if (dirVecNormalized.x < 0.1) {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            } else if (dirVecNormalized.x > 0.1) {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
 
-            if (isPlayerInRange && cdCounter <= 0) {
-                ShootPlayer();
-            } else if (!isPlayerInRange && cdCounter <= 0) {
-                MoveToPlayer();
+            if (coverObjects.Length > 0) {
+                if (!isAtCover) {
+                    if (cdCounter > 0) {
+                        MoveToCover();
+                    } else {
+                        if (isPlayerInRange) {
+                            ShootPlayer();
+                        } else if (!isPlayerInRange) {
+                            MoveToPlayer();
+                        }
+                    }
+                } else {
+                    if (isPlayerInRange) {
+                        ShootPlayer();
+                    } else if (!isPlayerInRange) {
+                        MoveToPlayer();
+                    }
+                }
+            } else {
+                if (isPlayerInRange && cdCounter <= 0) {
+                    ShootPlayer();
+                } else if (!isPlayerInRange && cdCounter <= 0) {
+                    MoveToPlayer();
+                }
             }
-
         }
 
     }
 
     private void ShootPlayer() {
-        isAtCover = false;
-        currentAmmo -= ammoUsage;
-        cdCounter = cooldown;
-        PrefabManager.SpawnAndFire(bulletType, transform.position, playerPos, gameObject);
+        if (cdCounter <= 0) {
+            animator.SetTrigger("attack");
+            AudioManager.PlaySFX(AudioClips.Gunfire);
+            currentAmmo -= ammoUsage;
+            PrefabManager.SpawnAndFire(bulletType, bulletSpawn.position, playerPos, gameObject);
+            cdCounter = cooldown;
+        }
     }
 
     private void MoveToCover() {

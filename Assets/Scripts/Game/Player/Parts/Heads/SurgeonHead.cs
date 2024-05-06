@@ -14,8 +14,8 @@ public class SurgeonHead : PlayerHead {
         meleeDmgBoost = 0;
         rangeDmgBoost = 0;
         hpGain = 25;
-        ammoLoss = 25;
-        fuelLoss = 10;
+        ammoLoss = 15;
+        fuelLoss = 15;
         swapAmmoHp = true;
         bulletBounce = false;
         oneHitMode = false;

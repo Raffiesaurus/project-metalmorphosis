@@ -23,6 +23,7 @@ TagManager:
   - new_legs
   - new_head
   - ui_text
+  - pickup
   layers:
   - Default
   - TransparentFX

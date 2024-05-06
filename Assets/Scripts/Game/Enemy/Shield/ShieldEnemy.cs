@@ -68,16 +68,16 @@ public class ShieldEnemy : EnemyUnit {
     }
 
     private void ShootPlayer() {
-
-        if (dirVecNormalized.x > 0) {
-            animator.SetBool("fire_left", true);
-        } else {
-            animator.SetBool("fire_right", true);
-        }
-
-        currentAmmo -= ammoUsage;
-
         if (cdCounter <= 0) {
+
+            if (dirVecNormalized.x > 0) {
+                animator.SetBool("fire_left", true);
+            } else {
+                animator.SetBool("fire_right", true);
+            }
+
+            AudioManager.PlaySFX(AudioClips.Gunfire);
+            currentAmmo -= ammoUsage;
             PrefabManager.SpawnAndFire(bulletType, transform.position, playerPos, gameObject);
             cdCounter = cooldown;
         }

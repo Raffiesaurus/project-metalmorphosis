@@ -39,6 +39,7 @@ public class GrenadeBullet : Bullet {
                 player.UpdateHealth(-damage);
             }
         }
+        AudioManager.PlaySFX(AudioClips.GrenadeExplode);
         Destroy(gameObject, 0.2f);
     }
 

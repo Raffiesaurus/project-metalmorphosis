@@ -17,6 +17,8 @@ public class BlitzburstArm : PlayerArm {
         if (cdCounter <= 0 && player.currentAmmo >= ammoUsage) {
             player.UpdateAmmo(-ammoUsage);
             cdCounter = cooldown;
+            AudioManager.PlaySFX(AudioClips.Gunfire);
+            player.playerAnimator.SetTrigger("RightArmFire");
             PrefabManager.SpawnAndFire(bulletType, spawnPoint, mousePos, gameObject);
         }
     }

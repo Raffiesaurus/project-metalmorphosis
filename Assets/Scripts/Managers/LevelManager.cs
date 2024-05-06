@@ -111,7 +111,7 @@ public class LevelManager : MonoBehaviour {
                 bossLevel.tempName = (levelsPerGame - 1).ToString() + " BOSS";
                 bossLevel.gameObject.name = (levelsPerGame - 1).ToString() + " BOSS";
                 bossLevel.row = (levelsPerGame - 1);
-                bossLevel.col = 0;
+                bossLevel.col = 2;
                 bossLevel.canClick = false;
                 bossLevel.SetLevelType(LevelType.Boss, mapScreen.restImage);
             } else {
@@ -219,6 +219,7 @@ public class LevelManager : MonoBehaviour {
             } else {
                 if (mapLevel.tempName.StartsWith((levelsPerGame - 2).ToString())) {
                     mapLevel.SetLevelType(LevelType.Rest, mapScreen.restImage);
+                    bossLevel.preConnection.Add(mapLevel.gameObject);
                 } else if (mapLevel.tempName.StartsWith(((levelsPerGame - 2) / 2).ToString())) {
                     mapLevel.SetLevelType(LevelType.Puzzle, mapScreen.puzzleImage);
                 } else {
@@ -238,7 +239,7 @@ public class LevelManager : MonoBehaviour {
             }
 
         }
-
+        bossLevel.SetArrowDirections();
         CheckAllLevels();
 
     }

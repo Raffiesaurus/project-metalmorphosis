@@ -9,6 +9,8 @@ public class DroppedLeg : DroppablePart {
     public override void FormItem() {
         base.FormItem();
         uiData = new PartDropData();
+        uiData.fuel = false;
+        uiData.ammo = false; 
         uiData.partType = "Legs";
         uiData.partImage = assignedImage;
         if (partRarity == PartRarity.Unassigned) {
@@ -20,27 +22,27 @@ public class DroppedLeg : DroppablePart {
             }
         }
         if (partRarity == PartRarity.Common) {
-            uiData.partRarity = "Common";
+            uiData.partRarity = "Rarity: Common";
             int randomPart = Random.Range(0, 3);
             if (randomPart == 0) {
                 uiData.partName = "Gassy";
                 uiData.legs = LegPart.Gassy;
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Increases max fuel capacity.";
             } else if (randomPart == 1) {
                 uiData.partName = "Heavy Artillery";
                 uiData.legs = LegPart.Heavy_Artillery;
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Increases max ammo capacity.";
             } else {
                 uiData.partName = "Overclocked";
                 uiData.legs = LegPart.Overclocked;
-                uiData.partDescription = "Description";
+                uiData.partDescription = "Increases move speed.";
             }
 
         } else {
-            uiData.partRarity = "Rare";
+            uiData.partRarity = "Rarity: Rare";
             uiData.partName = "Dumptruck";
             uiData.legs = LegPart.Dumptruck;
-            uiData.partDescription = "Description";
+            uiData.partDescription = "Increases max HP capacity.";
         }
     }
 
