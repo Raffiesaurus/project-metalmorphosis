@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8283167313988394853}
   boxCollider: {fileID: 7942622325346453739}
-  damage: 25
+  damage: 35
   speed: 10
   bounceCount: 0
   shotBy: {fileID: 0}

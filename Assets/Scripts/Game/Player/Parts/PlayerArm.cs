@@ -15,13 +15,13 @@ public class PlayerArm : PlayerParts {
 
     [HideInInspector] public float cdCounter = 0.0f;
     [HideInInspector] public BulletType bulletType = BulletType.None;
-    [HideInInspector] public bool isMelee = false;
+    [HideInInspector] public bool isMelee = true;
 
     public virtual void Awake() {
     }
 
     public PlayerArm AssignScript() {
-        isMelee = false;
+        //isMelee = false;
         BoxCollider2D meleeHitBox = GameManager.GetPlayer().meleeHitBox;
         PlayerArm armAdded = null;
         switch (armPart) {

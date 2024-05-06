@@ -192,13 +192,14 @@ public class PartsManager : MonoBehaviour {
     }
 
     private void Awake() {
-        equippedLeftArm = ArmPart.Backfire;
-        equippedRightArm = ArmPart.Blitzburst;
+        equippedLeftArm = ArmPart.Lucky_Scalpel;
+        equippedRightArm = ArmPart.Nail_Gun;
         equippedLeg = LegPart.Plain;
         equippedHead = HeadPart.Plain;
         if (instance == null) {
             instance = this;
         }
+        GameManager.GetPlayer().UpdateEquippedItems();
     }
 
 }

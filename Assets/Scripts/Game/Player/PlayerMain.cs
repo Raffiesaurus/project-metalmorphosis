@@ -16,7 +16,7 @@ public class PlayerMain : MonoBehaviour {
 
     [SerializeField] public PlayerCamera playerCam = null;
 
-    [SerializeField] public float currentHealth = 0.0f;
+    [SerializeField] public float currentHealth = 100.0f;
     [SerializeField] public float currentFuel = 0.0f;
     [SerializeField] public float legSpeedMulti = 1.0f;
     [SerializeField] public float meleeDmgBonus = 0.0f;
@@ -56,7 +56,6 @@ public class PlayerMain : MonoBehaviour {
     }
 
     public void UpdateEquippedItems() {
-
         meleeHitBox.enabled = false;
 
         leftArm.armPart = PartsManager.EquippedLeftArm;

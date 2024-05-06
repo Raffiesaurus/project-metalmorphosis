@@ -31,7 +31,8 @@ public class PistolEnemy : EnemyUnit {
             rb.velocity = moveVel;
 
             if (coverObjectChosen != null && coverObjects.Length > 0) {
-                float distanceToCover = Vector3.Distance(transform.position, coverObjectChosen.transform.position);
+                float distanceToCover = Vector3.Distance(transform.localPosition, coverObjectChosen.transform.localPosition);
+                Debug.Log(distanceToCover);
                 if (distanceToCover <= 1) {
                     isMovingToCover = false;
                     isAtCover = true;
@@ -39,6 +40,7 @@ public class PistolEnemy : EnemyUnit {
                 }
             } else {
                 isMovingToCover = false;
+                isAtCover = false;
             }
 
         } else {
@@ -90,12 +92,16 @@ public class PistolEnemy : EnemyUnit {
 
     private void MoveToCover() {
         if (coverObjects != null && coverObjects.Length > 0) {
+
             int randomCover = Random.Range(0, coverObjects.Length);
             coverObjectChosen = coverObjects[randomCover];
 
+            Debug.Log(transform.localPosition);
+            Debug.Log(coverObjectChosen.transform.localPosition);
+
             if (coverObjectChosen != null) {
 
-                Vector3 moveVec = coverObjectChosen.transform.position - transform.position;
+                Vector3 moveVec = coverObjectChosen.transform.localPosition - transform.localPosition;
                 moveVec.Normalize();
 
                 moveVel = new(moveVec.x * moveSpeed * moveSpeedMultiplier, rb.velocity.y);

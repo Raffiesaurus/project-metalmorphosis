@@ -10,7 +10,7 @@ public class LuckyScalpelArm : PlayerArm {
         partRarity = PartRarity.Common;
 
         cooldown = 3;
-        meleeDamage = 10;
+        meleeDamage = 20;
         fuelUsage = 20;
     }
 

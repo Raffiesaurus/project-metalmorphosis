@@ -18,6 +18,7 @@ public class RollerEnemy : EnemyUnit {
         if (collision.gameObject.CompareTag("player")) {
             GameManager.GetPlayer().UpdateHealth(-meleeDamage);
             UpdateHealth(-99999);
+            AudioManager.PlaySFX(AudioClips.GrenadeExplode);
         }
     }
 

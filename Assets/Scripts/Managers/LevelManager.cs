@@ -318,7 +318,7 @@ public class LevelManager : MonoBehaviour {
             bunchOfLevels = morgueBoss;
         }
 
-        int randLevelNum = Random.Range(0, bunchOfLevels.Length - 1);
+        int randLevelNum = Random.Range(0, bunchOfLevels.Length);
 
         GameObject mapToSpawn = bunchOfLevels[randLevelNum];
 

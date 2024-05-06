@@ -6648,7 +6648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &755991299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17764,7 +17764,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: question mark
+  m_text: "We need your help in finding the way out of this ever-changing morgue
+    and into our freedom. No two tries are ever the same.\n\nFind dropped parts and
+    install them to become stronger. \n\nWatch out for the boss guarding the final
+    gate.\n\nGood luck soldier.\n\nControls:\nWASD - Movement.\nLeft Click - Use
+    left arm.\nRight Click - Use right arm.\nX / Z - Interact with dropped item.\nP
+    - Return to game from swap screen.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7437e34792dd1a848bc335df1f369593, type: 2}
   m_sharedMaterial: {fileID: -7062900996311987008, guid: 7437e34792dd1a848bc335df1f369593, type: 2}
@@ -17803,7 +17808,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 25
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

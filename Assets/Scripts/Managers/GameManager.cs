@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 
     private static GameManager instance = null;
 
-    private bool bulletBounce;
+    private bool bulletBounce = false;
     public static bool BulletBounce {
         get {
             return instance.bulletBounce;
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private bool oneHitMode;
+    private bool oneHitMode = false;
     public static bool OneHitMode {
         get {
             return instance.oneHitMode;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private bool playerReturnDamage;
+    private bool playerReturnDamage = false;
     public static bool PlayerReturnDamage {
         get {
             return instance.playerReturnDamage;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private float playerReturnDamageAmount;
+    private float playerReturnDamageAmount = 0.0f;
     public static float PlayerReturnDamageAmount {
         get {
             return instance.playerReturnDamageAmount;
