@@ -1,12 +1,12 @@
 # Project Metalmorphosis
 
-A **Unity game project** — work in progress. Built in Unity with C#.
+A **Unity game project**. Built in Unity with C#. 
 
 ## About
 
-Project Metalmorphosis is a Unity-based game currently in development. The repo contains the full Unity project structure including assets, packages, and project settings.
+Project Metalmorphosis is n innovative roguelike 2D platformer featuring a unique limb-swapping mechanic set in a dystopian sci-fi universe with body horror aesthetics. Pioneered a modular character system allowing real-time biomechanical augmentation, where players dynamically acquire and equip mechanical limbs with distinct abilities, creating emergent gameplay strategies. Features procedurally generated environments ensuring infinite replayability. 
 
-> Full description, features, and screenshots to be added as the project progresses.
+The repo contains the full Unity project structure including assets, packages, and project settings.
 
 ## Tech
 
